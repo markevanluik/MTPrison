@@ -1,0 +1,75 @@
+﻿@page "{searchString?}"
+@model MTPrisonApp.Pages.Prisoners.IndexModel
+
+@{
+    ViewData["Title"] = "Prisoners";
+}
+
+<h1>Prisoners</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        Offense:<select asp-for="PrisonerOffense" asp-items="Model.Offenses">
+            <option value="">All</option>
+        </select>
+        First name: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].DoB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].Offense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].DateOfRelease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prisoner[0].DateOfImprisonment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Prisoner) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Offense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfImprisonment)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
