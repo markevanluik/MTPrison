@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTPrison.Data.Party;
+using MTPrison.Domain.Party;
 using MTPrisonApp.Data;
 
 namespace MTPrisonApp.Models
@@ -11,18 +13,18 @@ namespace MTPrisonApp.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationDbContext>>()))
             {
-                if (context == null || context.Prisoner == null || context.PrisonCell == null)
+                if (context == null || context.Prisoners == null || context.PrisonCell == null)
                 {
                     throw new ArgumentNullException("Null Context");
                 }
 
-                if (context.Prisoner.Any() || context.PrisonCell.Any())
+                if (context.Prisoners.Any() || context.PrisonCell.Any())
                 {
                     return;
                 }
 
-                context.Prisoner.AddRange(
-                    new Prisoner
+                context.Prisoners.AddRange(
+                    new PrisonerData
                     {
                         Id = "12345",
                         FirstName = "Bob",
@@ -33,7 +35,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new Prisoner
+                    new PrisonerData
                     {
                         Id = "22345",
                         FirstName = "John",
@@ -44,7 +46,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new Prisoner
+                    new PrisonerData
                     {
                         Id = "32345",
                         FirstName = "Jane",
@@ -55,7 +57,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new Prisoner
+                    new PrisonerData
                     {
                         Id = "42345",
                         FirstName = "Foo",

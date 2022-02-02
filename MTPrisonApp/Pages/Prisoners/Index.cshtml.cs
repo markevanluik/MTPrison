@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MTPrison.Data.Party;
+using MTPrison.Domain.Party;
+using MTPrison.Facade.Party;
 using MTPrisonApp.Data;
 
 namespace MTPrisonApp.Pages.Prisoners
@@ -20,7 +23,7 @@ namespace MTPrisonApp.Pages.Prisoners
             _context = context;
         }
 
-        public IList<Prisoner> Prisoner { get;set; }
+        public IList<PrisonerView> Prisoners { get;set; }
 
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
@@ -31,10 +34,10 @@ namespace MTPrisonApp.Pages.Prisoners
 
         public async Task OnGetAsync()
         {
-            IQueryable<string> offenseQuery = from m in _context.Prisoner
+            IQueryable<string> offenseQuery = from m in _context.Prisoners
                                             orderby m.Offense
                                             select m.Offense;
-            var prisoners = from m in _context.Prisoner
+            var prisoners = from m in _context.Prisoners
                          select m;
             if (!string.IsNullOrEmpty(SearchString))
             {
@@ -45,7 +48,9 @@ namespace MTPrisonApp.Pages.Prisoners
                 prisoners = prisoners.Where(x => x.Offense == PrisonerOffense);
             }
             Offenses = new SelectList(await offenseQuery.Distinct().ToListAsync());
-            Prisoner = await prisoners.ToListAsync();
+            List<PrisonerData> prisonerDatas = await prisoners.ToListAsync();
+            PrisonerViewFactory prisonerViewFactory = new PrisonerViewFactory();
+            Prisoners = prisonerDatas.Select(x => prisonerViewFactory.Create(new Prisoner(x))).ToList();
         }
     }
 }

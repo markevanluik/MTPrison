@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MTPrison.Facade.Party;
 using MTPrisonApp.Data;
 
 namespace MTPrisonApp.Pages.Prisoners
@@ -25,7 +26,7 @@ namespace MTPrisonApp.Pages.Prisoners
         }
 
         [BindProperty]
-        public Prisoner Prisoner { get; set; }
+        public PrisonerView Prisoner { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -34,8 +35,8 @@ namespace MTPrisonApp.Pages.Prisoners
             {
                 return Page();
             }
-
-            _context.Prisoner.Add(Prisoner);
+            var d = new PrisonerViewFactory().Create(Prisoner).Data;
+            _context.Prisoners.Add(d);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

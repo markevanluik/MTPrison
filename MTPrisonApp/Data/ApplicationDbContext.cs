@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MTPrisonApp.Data;
+using MTPrison.Data.Party;
+using MTPrisonApp.Models;
 
 namespace MTPrisonApp.Data
 {
@@ -10,7 +11,7 @@ namespace MTPrisonApp.Data
             : base(options)
         {
         }
-        public DbSet<MTPrisonApp.Data.Prisoner> Prisoner { get; set; }
-        public DbSet<MTPrisonApp.Data.PrisonCell> PrisonCell { get; set; }
+        public DbSet<PrisonerData> Prisoners { get; set; }
+        public DbSet<PrisonCell> PrisonCell { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MTPrisonApp.Data
+namespace MTPrisonApp.Models
 {
     public class PrisonCell
     {

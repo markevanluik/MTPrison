@@ -23,34 +23,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].FirstName)
+                @Html.DisplayNameFor(model => model.Prisoners[0].FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].LastName)
+                @Html.DisplayNameFor(model => model.Prisoners[0].DoB)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].DoB)
+                @Html.DisplayNameFor(model => model.Prisoners[0].Offense)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].Offense)
+                @Html.DisplayNameFor(model => model.Prisoners[0].DateOfRelease)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].DateOfRelease)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prisoner[0].DateOfImprisonment)
+                @Html.DisplayNameFor(model => model.Prisoners[0].DateOfImprisonment)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Prisoner) {
+@foreach (var item in Model.Prisoners) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DoB)

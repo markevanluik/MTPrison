@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MTPrison.Domain.Party;
+using MTPrison.Facade.Party;
 using MTPrisonApp.Data;
 
 namespace MTPrisonApp.Pages.Prisoners
@@ -20,7 +22,7 @@ namespace MTPrisonApp.Pages.Prisoners
         }
 
         [BindProperty]
-        public Prisoner Prisoner { get; set; }
+        public PrisonerView Prisoner { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -29,12 +31,15 @@ namespace MTPrisonApp.Pages.Prisoners
                 return NotFound();
             }
 
-            Prisoner = await _context.Prisoner.FirstOrDefaultAsync(m => m.Id == id);
+            var d = await _context.Prisoners.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Prisoner == null)
+            if (d == null)
             {
                 return NotFound();
             }
+
+            Prisoner = new PrisonerViewFactory().Create(new Prisoner(d));
+
             return Page();
         }
 
@@ -45,11 +50,11 @@ namespace MTPrisonApp.Pages.Prisoners
                 return NotFound();
             }
 
-            Prisoner = await _context.Prisoner.FindAsync(id);
+            var d = await _context.Prisoners.FindAsync(id);
 
-            if (Prisoner != null)
+            if (d != null)
             {
-                _context.Prisoner.Remove(Prisoner);
+                _context.Prisoners.Remove(d);
                 await _context.SaveChangesAsync();
             }
 

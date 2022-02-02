@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MTPrisonApp.Data;
+using MTPrisonApp.Models;
 
 namespace MTPrisonApp.Pages.PrisonCells
 {
