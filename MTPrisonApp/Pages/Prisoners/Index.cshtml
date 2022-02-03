@@ -1,5 +1,5 @@
 ﻿@page "{searchString?}"
-@model MTPrisonApp.Pages.Prisoners.IndexModel
+@model MTPrisonApp.Pages.Prisoners.PrisonersPage
 
 @{
     ViewData["Title"] = "Prisoners";
@@ -8,17 +8,20 @@
 <h1>Prisoners</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" asp-page-handler="Create">Create New</a>
 </p>
-<form>
+
+<!-- search problem should be here -->
+<form> <!--tried asp-page-handler="Index"-->
     <p>
         Offense:<select asp-for="PrisonerOffense" asp-items="Model.Offenses">
             <option value="">All</option>
         </select>
         First name: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filter" /><!--tried handler="Index"-->
     </p>
 </form>
+
 <table class="table">
     <thead>
         <tr>
@@ -59,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.DateOfImprisonment)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
