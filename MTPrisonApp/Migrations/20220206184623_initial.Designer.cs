@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MTPrisonApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220202205913_initial")]
+    [Migration("20220206184623_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,6 +226,28 @@ namespace MTPrisonApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MTPrison.Data.Party.PrisonCellData", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CellNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Section")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PrisonCells");
+                });
+
             modelBuilder.Entity("MTPrison.Data.Party.PrisonerData", b =>
                 {
                     b.Property<string>("Id")
@@ -252,30 +274,6 @@ namespace MTPrisonApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Prisoners");
-                });
-
-            modelBuilder.Entity("MTPrisonApp.Models.PrisonCell", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CellNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Section")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PrisonCell");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

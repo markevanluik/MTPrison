@@ -1,5 +1,5 @@
 ﻿@page
-@model MTPrisonApp.Pages.PrisonCells.DeleteModel
+@model MTPrisonApp.Pages.PrisonCells.PrisonCellsPage
 
 @{
     ViewData["Title"] = "Delete";
@@ -19,12 +19,6 @@
             @Html.DisplayFor(model => model.PrisonCell.CellNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PrisonCell.Capacity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PrisonCell.Capacity)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrisonCell.Type)
         </dt>
         <dd class="col-sm-10">
@@ -40,7 +34,7 @@
     
     <form method="post">
         <input type="hidden" asp-for="PrisonCell.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
     </form>
 </div>

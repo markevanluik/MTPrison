@@ -22,6 +22,6 @@ namespace MTPrison.Domain.Party
         public DateTime DateOfRelease => data?.DateOfRelease ?? defaultDate;
         public DateTime DateOfImprisonment => data?.DateOfImprisonment ?? defaultDate;
         public PrisonerData Data => data;
-        public override string ToString() => $"{FirstName} {LastName}";
+        public string Fullname() => $"{FirstName} {LastName}";
     }
 }

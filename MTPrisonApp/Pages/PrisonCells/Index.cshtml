@@ -1,5 +1,5 @@
-﻿@page
-@model MTPrisonApp.Pages.PrisonCells.IndexModel
+﻿@page "{searchString?}"
+@model MTPrisonApp.Pages.PrisonCells.PrisonCellsPage
 
 @{
     ViewData["Title"] = "Prison Cells";
@@ -8,7 +8,7 @@
 <h1>Prison Cells</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" asp-page-handler="Create">Create New</a>
 </p>
 <form>
     <p>
@@ -25,22 +25,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PrisonCell[0].CellNumber)
+                @Html.DisplayNameFor(model => model.PrisonCells[0].CellNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrisonCell[0].Capacity)
+                @Html.DisplayNameFor(model => model.PrisonCells[0].Capacity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrisonCell[0].Type)
+                @Html.DisplayNameFor(model => model.PrisonCells[0].Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrisonCell[0].Section)
+                @Html.DisplayNameFor(model => model.PrisonCells[0].Section)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.PrisonCell) {
+@foreach (var item in Model.PrisonCells) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CellNumber)
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Section)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

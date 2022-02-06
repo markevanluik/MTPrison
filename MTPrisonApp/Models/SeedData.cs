@@ -13,12 +13,12 @@ namespace MTPrisonApp.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationDbContext>>()))
             {
-                if (context == null || context.Prisoners == null || context.PrisonCell == null)
+                if (context == null || context.Prisoners == null || context.PrisonCells == null)
                 {
                     throw new ArgumentNullException("Null Context");
                 }
 
-                if (context.Prisoners.Any() || context.PrisonCell.Any())
+                if (context.Prisoners.Any() || context.PrisonCells.Any())
                 {
                     return;
                 }
@@ -69,8 +69,8 @@ namespace MTPrisonApp.Models
                     }
                 );
 
-                context.PrisonCell.AddRange(
-                    new PrisonCell
+                context.PrisonCells.AddRange(
+                    new PrisonCellData
                     {
                         Id = "52345",
                         CellNumber = 1,
@@ -79,7 +79,7 @@ namespace MTPrisonApp.Models
                         Section = "C"
                     },
 
-                    new PrisonCell
+                    new PrisonCellData
                     {
                         Id = "62345",
                         CellNumber = 21,
@@ -88,7 +88,7 @@ namespace MTPrisonApp.Models
                         Section = "B"
                     },
 
-                    new PrisonCell
+                    new PrisonCellData
                     {
                         Id = "72345",
                         CellNumber = 31,
@@ -97,7 +97,7 @@ namespace MTPrisonApp.Models
                         Section = "A"
                     },
 
-                    new PrisonCell
+                    new PrisonCellData
                     {
                         Id = "82345",
                         CellNumber = 32,

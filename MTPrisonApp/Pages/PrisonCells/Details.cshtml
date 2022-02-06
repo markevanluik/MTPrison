@@ -1,5 +1,5 @@
 ﻿@page
-@model MTPrisonApp.Pages.PrisonCells.DetailsModel
+@model MTPrisonApp.Pages.PrisonCells.PrisonCellsPage
 
 @{
     ViewData["Title"] = "Details";
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.PrisonCell.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@Model.PrisonCell.Id">Edit</a> |
+    <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
 </div>

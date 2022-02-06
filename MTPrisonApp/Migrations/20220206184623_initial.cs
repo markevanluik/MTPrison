@@ -49,18 +49,18 @@ namespace MTPrisonApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PrisonCell",
+                name: "PrisonCells",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CellNumber = table.Column<int>(type: "int", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Section = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Section = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PrisonCell", x => x.Id);
+                    table.PrimaryKey("PK_PrisonCells", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,7 +244,7 @@ namespace MTPrisonApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PrisonCell");
+                name: "PrisonCells");
 
             migrationBuilder.DropTable(
                 name: "Prisoners");

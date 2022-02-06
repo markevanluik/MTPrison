@@ -25,7 +25,7 @@ namespace MTPrison.Facade.Party
             DoB = o.DoB,
             DateOfImprisonment = o.DateOfImprisonment,
             DateOfRelease = o.DateOfRelease,
-            FullName = o.ToString()
+            FullName = o.Fullname()
         };
     }
 }
