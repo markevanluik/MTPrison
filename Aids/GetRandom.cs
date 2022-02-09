@@ -32,6 +32,8 @@ namespace MTPrison.Aids
             else if (typeof(T) == typeof(bool?)) return Bool();
             else if (typeof(T) == typeof(DateTime)) return DateTime();
             else if (typeof(T) == typeof(DateTime?)) return DateTime();
+            else if (typeof(T) == typeof(int)) return Int32();
+            else if (typeof(T) == typeof(int?)) return Int32();
             else return String();
         }
 

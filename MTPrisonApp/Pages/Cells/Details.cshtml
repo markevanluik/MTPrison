@@ -1,42 +1,17 @@
 ﻿@page
 @model MTPrisonApp.Pages.Cells.CellsPage
+@using MTPrison.Pages.Extensions
 
 @{
-    ViewData["Title"] = "Details";
+    Layout = "_Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Cell</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cell.CellNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cell.CellNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cell.Capacity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cell.Capacity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cell.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cell.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cell.Section)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cell.Section)
-        </dd>
-    </dl>
-</div>
+<dl class="row">
+    @Html.MyEditorFor(m => m.Cell.CellNumber)
+    @Html.MyEditorFor(m => m.Cell.Capacity)
+    @Html.MyEditorFor(m => m.Cell.Type)
+    @Html.MyEditorFor(m => m.Cell.Section)
+</dl>
 <div>
     <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@Model.Cell.Id">Edit</a> |
     <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
