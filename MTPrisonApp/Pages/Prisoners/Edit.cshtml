@@ -7,5 +7,7 @@
 }
 
 <body>
+    @*@Html.MyEditorFor(m => m.Prisoner.Id)*@
+    <input type="hidden" asp-for="Prisoner.Id" />
     <partial name="_EditPrisoner"/>
 </body>
