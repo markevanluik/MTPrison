@@ -1,64 +1,11 @@
 ﻿@page
 @model MTPrisonApp.Pages.Prisoners.PrisonersPage
+@using MTPrison.Pages.Extensions
 
 @{
-    ViewData["Title"] = "Create";
+    Layout = "_Create";
 }
-
-<h1>Create</h1>
-
-<h4>Prisoner</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" asp-page-handler="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Prisoner.Id" class="control-label"></label>
-                <input asp-for="Prisoner.Id" class="form-control" />
-                <span asp-validation-for="Prisoner.Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.FirstName" class="control-label"></label>
-                <input asp-for="Prisoner.FirstName" class="form-control" />
-                <span asp-validation-for="Prisoner.FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.LastName" class="control-label"></label>
-                <input asp-for="Prisoner.LastName" class="form-control" />
-                <span asp-validation-for="Prisoner.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.DoB" class="control-label"></label>
-                <input asp-for="Prisoner.DoB" class="form-control" />
-                <span asp-validation-for="Prisoner.DoB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.Offense" class="control-label"></label>
-                <input asp-for="Prisoner.Offense" class="form-control" />
-                <span asp-validation-for="Prisoner.Offense" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.DateOfRelease" class="control-label"></label>
-                <input asp-for="Prisoner.DateOfRelease" class="form-control" />
-                <span asp-validation-for="Prisoner.DateOfRelease" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prisoner.DateOfImprisonment" class="control-label"></label>
-                <input asp-for="Prisoner.DateOfImprisonment" class="form-control" />
-                <span asp-validation-for="Prisoner.DateOfImprisonment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index" asp-page-handler="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<body>
+    @Html.MyEditorFor(m => m.Prisoner.Id)
+    <partial name="_EditPrisoner"/>
+</body>

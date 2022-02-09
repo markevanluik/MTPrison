@@ -1,0 +1,15 @@
+﻿@model Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+
+@{
+    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("sPage", string.Empty) ?? "Unspecified";
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Prisoner</h4>
+    <hr />
+    @RenderBody()
+</div>
