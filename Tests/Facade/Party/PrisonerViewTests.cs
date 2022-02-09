@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MTPrison.Tests.Facade.Party
 {
     [TestClass]
-    public class PrisonerViewTest : BaseTests<PrisonerView>
+    public class PrisonerViewTests : BaseTests<PrisonerView>
     {
         [TestMethod] public void IdTest() => isProperty<string>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
