@@ -41,7 +41,7 @@ namespace MTPrisonApp.Pages.Cells
         public async Task<IActionResult> OnGetDetailsAsync(string id)
         {
             Cell = await GetCell(id);
-            return Page();
+            return Cell == null ? NotFound() : Page();
         }
         private async Task<CellView> GetCell(string id)
         {
@@ -53,7 +53,7 @@ namespace MTPrisonApp.Pages.Cells
         public async Task<IActionResult> OnGetDeleteAsync(string id)
         {
             Cell = await GetCell(id);
-            return Page();
+            return Cell == null ? NotFound() : Page();
         }
         public async Task<IActionResult> OnPostDeleteAsync(string id)
         {
@@ -75,7 +75,7 @@ namespace MTPrisonApp.Pages.Cells
         public async Task<IActionResult> OnGetEditAsync(string id)
         {
             Cell = await GetCell(id);
-            return Page();
+            return Cell == null ? NotFound() : Page();
         }
         public async Task<IActionResult> OnPostEditAsync()
         {
