@@ -36,6 +36,5 @@ namespace MTPrison.Aids
             else if (typeof(T) == typeof(int?)) return Int32();
             else return String();
         }
-
     }
 }
