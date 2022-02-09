@@ -1,0 +1,9 @@
+﻿@model MTPrisonApp.Pages.Prisoners.PrisonersPage
+@using MTPrison.Pages.Extensions
+
+    @Html.MyEditorFor(m => m.Prisoner.FirstName)
+    @Html.MyEditorFor(m => m.Prisoner.LastName)
+    @Html.MyEditorFor(m => m.Prisoner.Offense)
+    @Html.MyEditorFor(m => m.Prisoner.DoB)
+    @Html.MyEditorFor(m => m.Prisoner.DateOfRelease)
+    @Html.MyEditorFor(m => m.Prisoner.DateOfImprisonment)

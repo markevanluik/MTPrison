@@ -1,0 +1,16 @@
+﻿@model Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+
+@{
+    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("sPage", string.Empty) ?? "Unspecified";
+    ViewData["Title"] = "Delete";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>@ViewData["SubTitle"]</h4>
+    <hr />
+    @RenderBody()
+</div>
