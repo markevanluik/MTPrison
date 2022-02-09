@@ -1,15 +1,11 @@
 ﻿@page "{searchString?}"
 @model MTPrisonApp.Pages.Prisoners.PrisonersPage
+@using MTPrison.Pages.Extensions
 
 @{
-    ViewData["Title"] = "Prisoners";
+    Layout = "_Index";
 }
 
-<h1>Prisoners</h1>
-
-<p>
-    <a asp-page="Create" asp-page-handler="Create">Create New</a>
-</p>
 
 <!-- search problem should be here -->
 <form> <!--tried asp-page-handler="Index"-->

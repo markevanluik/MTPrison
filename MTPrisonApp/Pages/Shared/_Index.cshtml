@@ -1,0 +1,15 @@
+﻿@model Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+
+
+@{
+    ViewData["Title"] = Model?.GetType()?.Name?.Replace("Page", string.Empty) ?? "Unspecified";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create" asp-page-handler="Create">Create New</a>
+</p>
+
+    @RenderBody()
