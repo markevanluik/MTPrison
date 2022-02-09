@@ -7,21 +7,21 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 using MTPrisonApp.Data;
 
-namespace MTPrisonApp.Pages.PrisonCells
+namespace MTPrisonApp.Pages.Cells
 {
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-    public class PrisonCellsPage : PageModel
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public class CellsPage : PageModel
     {
         private readonly ApplicationDbContext context;
-        [BindProperty] public PrisonCellView PrisonCell { get; set; }
-        public IList<PrisonCellView> PrisonCells { get; set; }
+        [BindProperty] public CellView Cell { get; set; }
+        public IList<CellView> Cells { get; set; }
         public SelectList Sections { get; set; }
-        [BindProperty(SupportsGet = true)] public string? PrisonCellSection { get; set; }
+        [BindProperty(SupportsGet = true)] public string? CellSection { get; set; }
         public SelectList Types { get; set; }
-        [BindProperty(SupportsGet = true)] public string? PrisonCellType { get; set; }
-        public PrisonCellsPage(ApplicationDbContext c) => context = c;
+        [BindProperty(SupportsGet = true)] public string? CellType { get; set; }
+        public CellsPage(ApplicationDbContext c) => context = c;
         public IActionResult OnGetCreate()
         {
             return Page();
@@ -32,27 +32,27 @@ namespace MTPrisonApp.Pages.PrisonCells
             {
                 return Page();
             }
-            var d = new PrisonCellViewFactory().Create(PrisonCell).Data;
-            context.PrisonCells.Add(d);
+            var d = new CellViewFactory().Create(Cell).Data;
+            context.Cells.Add(d);
             await context.SaveChangesAsync();
 
             return RedirectToPage("./Index", "Index");
         }
         public async Task<IActionResult> OnGetDetailsAsync(string id)
         {
-            PrisonCell = await GetPrisonCell(id);
+            Cell = await GetCell(id);
             return Page();
         }
-        private async Task<PrisonCellView> GetPrisonCell(string id)
+        private async Task<CellView> GetCell(string id)
         {
             if (id == null) return null;
-            var d = await context.PrisonCells.FirstOrDefaultAsync(m => m.Id == id);
+            var d = await context.Cells.FirstOrDefaultAsync(m => m.Id == id);
             if (d == null) return null;
-            return new PrisonCellViewFactory().Create(new PrisonCell(d));
+            return new CellViewFactory().Create(new Cell(d));
         }
         public async Task<IActionResult> OnGetDeleteAsync(string id)
         {
-            PrisonCell = await GetPrisonCell(id);
+            Cell = await GetCell(id);
             return Page();
         }
         public async Task<IActionResult> OnPostDeleteAsync(string id)
@@ -62,11 +62,11 @@ namespace MTPrisonApp.Pages.PrisonCells
                 return NotFound();
             }
 
-            var d = await context.PrisonCells.FindAsync(id);
+            var d = await context.Cells.FindAsync(id);
 
             if (d != null)
             {
-                context.PrisonCells.Remove(d);
+                context.Cells.Remove(d);
                 await context.SaveChangesAsync();
             }
 
@@ -74,7 +74,7 @@ namespace MTPrisonApp.Pages.PrisonCells
         }
         public async Task<IActionResult> OnGetEditAsync(string id)
         {
-            PrisonCell = await GetPrisonCell(id);
+            Cell = await GetCell(id);
             return Page();
         }
         public async Task<IActionResult> OnPostEditAsync()
@@ -84,7 +84,7 @@ namespace MTPrisonApp.Pages.PrisonCells
                 return Page();
             }
 
-            context.Attach(new PrisonCellViewFactory().Create(PrisonCell).Data).State = EntityState.Modified;
+            context.Attach(new CellViewFactory().Create(Cell).Data).State = EntityState.Modified;
 
             try
             {
@@ -92,7 +92,7 @@ namespace MTPrisonApp.Pages.PrisonCells
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PrisonCellExists(PrisonCell.Id))
+                if (!CellExists(Cell.Id))
                 {
                     return NotFound();
                 }
@@ -104,31 +104,31 @@ namespace MTPrisonApp.Pages.PrisonCells
 
             return RedirectToPage("./Index", "Index");
         }
-        private bool PrisonCellExists(string id) 
-            => context.PrisonCells.Any(e => e.Id == id);
+        private bool CellExists(string id)
+            => context.Cells.Any(e => e.Id == id);
         public async Task OnGetIndexAsync()
         {
-            IQueryable<string> sectionQuery = from m in context.PrisonCells
+            IQueryable<string> sectionQuery = from m in context.Cells
                                               orderby m.Section
                                               select m.Section;
-            IQueryable<string> typeQuery = from m in context.PrisonCells
+            IQueryable<string> typeQuery = from m in context.Cells
                                            orderby m.Type
                                            select m.Type;
-            var prisonCells = from m in context.PrisonCells
+            var prisonCells = from m in context.Cells
                               select m;
-            if (!string.IsNullOrEmpty(PrisonCellSection))
+            if (!string.IsNullOrEmpty(CellSection))
             {
-                prisonCells = prisonCells.Where(x => x.Section == PrisonCellSection);
+                prisonCells = prisonCells.Where(x => x.Section == CellSection);
             }
-            if (!string.IsNullOrEmpty(PrisonCellType))
+            if (!string.IsNullOrEmpty(CellType))
             {
-                prisonCells = prisonCells.Where(x => x.Type == PrisonCellType);
+                prisonCells = prisonCells.Where(x => x.Type == CellType);
             }
             Sections = new SelectList(await sectionQuery.Distinct().ToListAsync());
             Types = new SelectList(await typeQuery.Distinct().ToListAsync());
-            List<PrisonCellData> prisonCellDatas = await prisonCells.ToListAsync();
-            PrisonCellViewFactory prisonCellViewFactory = new PrisonCellViewFactory();
-            PrisonCells = prisonCellDatas.Select(x => prisonCellViewFactory.Create(new PrisonCell(x))).ToList();
+            List<CellData> prisonCellDatas = await prisonCells.ToListAsync();
+            CellViewFactory prisonCellViewFactory = new CellViewFactory();
+            Cells = prisonCellDatas.Select(x => prisonCellViewFactory.Create(new Cell(x))).ToList();
         }
     }
 }

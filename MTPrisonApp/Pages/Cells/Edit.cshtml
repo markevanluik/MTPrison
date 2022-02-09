@@ -1,0 +1,50 @@
+﻿@page
+@model MTPrisonApp.Pages.Cells.CellsPage
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Cell</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-page-handler="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Cell.Id" />
+            <div class="form-group">
+                <label asp-for="Cell.CellNumber" class="control-label"></label>
+                <input asp-for="Cell.CellNumber" class="form-control" />
+                <span asp-validation-for="Cell.CellNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Capacity" class="control-label"></label>
+                <input asp-for="Cell.Capacity" class="form-control" />
+                <span asp-validation-for="Cell.Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Type" class="control-label"></label>
+                <input asp-for="Cell.Type" class="form-control" />
+                <span asp-validation-for="Cell.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cell.Section" class="control-label"></label>
+                <input asp-for="Cell.Section" class="form-control" />
+                <span asp-validation-for="Cell.Section" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

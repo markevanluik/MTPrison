@@ -12,6 +12,6 @@ namespace MTPrisonApp.Data
         {
         }
         public DbSet<PrisonerData> Prisoners { get; set; }
-        public DbSet<PrisonCellData> PrisonCells { get; set; }
+        public DbSet<CellData> Cells { get; set; }
     }
 }

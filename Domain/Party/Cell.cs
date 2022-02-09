@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace MTPrison.Domain.Party
 {
-    public class PrisonCell
+    public class Cell
     {
         private const string defaultStr = "Undefined";
         private const int defaultInt = int.MinValue;
-        private PrisonCellData data;
-        public PrisonCell() : this(new PrisonCellData()) { }
-        public PrisonCell(PrisonCellData d) => data = d;
+        private CellData data;
+        public Cell() : this(new CellData()) { }
+        public Cell(CellData d) => data = d;
         public string Id => data?.Id ?? defaultStr;
         public int CellNumber => data?.CellNumber ?? defaultInt;
         public int Capacity => data?.Capacity ?? defaultInt;
         public string? Type => data?.Type ?? defaultStr;
         public string? Section => data?.Section ?? defaultStr;
-        public PrisonCellData Data => data;
+        public CellData Data => data;
 
         //public List<Prisoner> Occupants { get; set; }
     }

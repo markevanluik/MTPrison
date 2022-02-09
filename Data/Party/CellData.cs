@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTPrison.Data.Party
 {
-    public class PrisonCellData
+    public class CellData
     {
         public string Id { get; set; }
         public int CellNumber { get; set; }

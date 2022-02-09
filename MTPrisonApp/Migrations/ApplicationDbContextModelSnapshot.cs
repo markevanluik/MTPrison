@@ -224,7 +224,7 @@ namespace MTPrisonApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MTPrison.Data.Party.PrisonCellData", b =>
+            modelBuilder.Entity("MTPrison.Data.Party.CellData", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -243,7 +243,7 @@ namespace MTPrisonApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PrisonCells");
+                    b.ToTable("Cells");
                 });
 
             modelBuilder.Entity("MTPrison.Data.Party.PrisonerData", b =>

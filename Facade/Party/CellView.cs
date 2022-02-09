@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MTPrison.Facade.Party
 {
-    public class PrisonCellView
+    public class CellView
     {
         [Required] public string Id { get; set; }
         [Display(Name = "Cell Number")] [Range(1, 10000)] public int CellNumber { get; set; }

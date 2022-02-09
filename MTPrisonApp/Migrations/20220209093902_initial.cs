@@ -49,7 +49,7 @@ namespace MTPrisonApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PrisonCells",
+                name: "Cells",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -60,7 +60,7 @@ namespace MTPrisonApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PrisonCells", x => x.Id);
+                    table.PrimaryKey("PK_Cells", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,7 +244,7 @@ namespace MTPrisonApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PrisonCells");
+                name: "Cells");
 
             migrationBuilder.DropTable(
                 name: "Prisoners");
