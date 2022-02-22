@@ -1,20 +1,17 @@
 ﻿@page "{searchString?}"
 @model MTPrisonApp.Pages.Prisoners.PrisonersPage
-@using MTPrison.Pages.Extensions
 
 @{
     Layout = "_Index";
 }
 
-
-<!-- search problem should be here -->
-<form> <!--tried asp-page-handler="Index"-->
+<form>
     <p>
         Offense:<select asp-for="PrisonerOffense" asp-items="Model.Offenses">
             <option value="">All</option>
         </select>
         First name: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" /><!--tried handler="Index"-->
+        <input type="submit" value="Filter" />
     </p>
 </form>
 

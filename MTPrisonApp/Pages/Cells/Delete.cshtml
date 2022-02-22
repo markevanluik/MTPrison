@@ -4,16 +4,9 @@
 
 @{
     Layout = "_Delete";
+    ViewData["itemId"] = Model?.Cell?.Id??string.Empty;
 }
 
-<dl class="row">
-    @Html.MyViewerFor(m => m.Cell.CellNumber)
-    @Html.MyViewerFor(m => m.Cell.Type)
-    @Html.MyViewerFor(m => m.Cell.Section)
-</dl>
-    
-<form method="post">
-    <input type="hidden" asp-for="Cell.Id" />
-    <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" /> |
-    <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
-</form>
+<body>
+    <partial name="_ShowCell"/>
+</body>

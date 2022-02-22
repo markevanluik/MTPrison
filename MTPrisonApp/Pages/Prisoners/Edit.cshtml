@@ -1,13 +1,11 @@
 ﻿@page
 @model MTPrisonApp.Pages.Prisoners.PrisonersPage
-@using MTPrison.Pages.Extensions
 
 @{
     Layout = "_Edit";
 }
 
 <body>
-    @*@Html.MyEditorFor(m => m.Prisoner.Id)*@
     <input type="hidden" asp-for="Prisoner.Id" />
     <partial name="_EditPrisoner"/>
 </body>

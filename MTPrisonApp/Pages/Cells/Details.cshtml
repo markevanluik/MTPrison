@@ -4,15 +4,9 @@
 
 @{
     Layout = "_Details";
+    ViewData["itemId"] = Model?.Cell?.Id??string.Empty;
 }
 
-<dl class="row">
-    @Html.MyEditorFor(m => m.Cell.CellNumber)
-    @Html.MyEditorFor(m => m.Cell.Capacity)
-    @Html.MyEditorFor(m => m.Cell.Type)
-    @Html.MyEditorFor(m => m.Cell.Section)
-</dl>
-<div>
-    <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@Model.Cell.Id">Edit</a> |
-    <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
-</div>
+<body>
+    <partial name="_ShowCell"/>
+</body>
