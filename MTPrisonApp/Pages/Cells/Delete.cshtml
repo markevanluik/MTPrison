@@ -6,11 +6,9 @@
     Layout = "_Delete";
 }
 
-<dl class="row">
-    @Html.MyViewerFor(m => m.Cell.CellNumber)
-    @Html.MyViewerFor(m => m.Cell.Type)
-    @Html.MyViewerFor(m => m.Cell.Section)
-</dl>
+<body>
+    <partial name="_ShowCell"/>
+</body>
     
 <form method="post">
     <input type="hidden" asp-for="Cell.Id" />

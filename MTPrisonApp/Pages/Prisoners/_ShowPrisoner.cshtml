@@ -1,0 +1,9 @@
+﻿@model MTPrisonApp.Pages.Prisoners.PrisonersPage
+@using MTPrison.Pages.Extensions
+
+    @Html.MyViewerFor(m => m.Prisoner.FirstName)
+    @Html.MyViewerFor(m => m.Prisoner.LastName)
+    @Html.MyViewerFor(m => m.Prisoner.Offense)
+    @Html.MyViewerFor(m => m.Prisoner.DoB)
+    @Html.MyViewerFor(m => m.Prisoner.DateOfRelease)
+    @Html.MyViewerFor(m => m.Prisoner.DateOfImprisonment)
