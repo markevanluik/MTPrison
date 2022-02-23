@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTPrison.Data.Party
-{
-    public class PrisonerData
-    {
-        public string Id { get; set; }
+namespace MTPrison.Data.Party {
+    public class PrisonerData : EntityData {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Offense { get; set; }

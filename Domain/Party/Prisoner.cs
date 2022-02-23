@@ -1,27 +1,20 @@
 ﻿using MTPrison.Data.Party;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MTPrison.Domain.Party
-{
-    public class Prisoner
-    {
+namespace MTPrison.Domain.Party {
+    public class Prisoner : Entity<PrisonerData> {
         private const string defaultStr = "Undefined";
         private DateTime defaultDate => DateTime.MinValue;
-        private PrisonerData data;
+
         public Prisoner() : this(new PrisonerData()) { }
-        public Prisoner(PrisonerData d) => data = d;
-        public string Id => data?.Id ?? defaultStr;
-        public string FirstName => data?.FirstName ?? defaultStr;
-        public string LastName => data?.LastName ?? defaultStr;
-        public string Offense => data?.Offense ?? defaultStr;
-        public DateTime DoB => data?.DoB ?? defaultDate;
-        public DateTime DateOfRelease => data?.DateOfRelease ?? defaultDate;
-        public DateTime DateOfImprisonment => data?.DateOfImprisonment ?? defaultDate;
-        public PrisonerData Data => data;
+        public Prisoner(PrisonerData d) : base(d) { }
+        public string Id => Data?.Id ?? defaultStr;
+        public string FirstName => Data?.FirstName ?? defaultStr;
+        public string LastName => Data?.LastName ?? defaultStr;
+        public string Offense => Data?.Offense ?? defaultStr;
+        public DateTime DoB => Data?.DoB ?? defaultDate;
+        public DateTime DateOfRelease => Data?.DateOfRelease ?? defaultDate;
+        public DateTime DateOfImprisonment => Data?.DateOfImprisonment ?? defaultDate;
+
         public string Fullname() => $"{FirstName} {LastName}";
     }
 }
