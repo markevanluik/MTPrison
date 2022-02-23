@@ -1,9 +1,7 @@
 ﻿using MTPrison.Data.Party;
 
-namespace MTPrison.Domain.Party
-{
-    public class Cell
-    {
+namespace MTPrison.Domain.Party {
+    public class Cell {
         private const string defaultStr = "Undefined";
         private const int defaultInt = int.MinValue;
         private CellData data;

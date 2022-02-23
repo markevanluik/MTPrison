@@ -2,10 +2,9 @@
 using MTPrison.Data.Party;
 using System;
 
-namespace MTPrison.Tests.Data.Party
-{
-    [TestClass] public class PrisonerDataTests : BaseTests<PrisonerData>
-    {
+namespace MTPrison.Tests.Data.Party {
+    [TestClass]
+    public class PrisonerDataTests : BaseTests<PrisonerData> {
         [TestMethod] public void IdTest() => isProperty<string>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();

@@ -1,8 +1,6 @@
 ﻿
-namespace MTPrison.Data.Party
-{
-    public class CellData
-    {
+namespace MTPrison.Data.Party {
+    public class CellData {
         public string Id { get; set; }
         public int CellNumber { get; set; }
         public int Capacity { get; set; }

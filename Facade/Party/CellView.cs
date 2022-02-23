@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MTPrison.Facade.Party
-{
-    public class CellView
-    {
+namespace MTPrison.Facade.Party {
+    public class CellView {
         [Required] public string Id { get; set; }
         [Display(Name = "Cell Number")] [Range(1, 10000)] public int CellNumber { get; set; }
         [Display(Name = "Capacity")] [Range(1, 1000)] public int Capacity { get; set; }

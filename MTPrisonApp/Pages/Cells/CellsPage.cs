@@ -7,13 +7,11 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 using MTPrisonApp.Data;
 
-namespace MTPrisonApp.Pages.Cells
-{
+namespace MTPrisonApp.Pages.Cells {
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    public class CellsPage : PageModel
-    {
+    public class CellsPage : PageModel {
         private readonly ApplicationDbContext context;
         [BindProperty] public CellView Cell { get; set; }
         public IList<CellView> Cells { get; set; }
@@ -22,14 +20,11 @@ namespace MTPrisonApp.Pages.Cells
         public SelectList Types { get; set; }
         [BindProperty(SupportsGet = true)] public string? CellType { get; set; }
         public CellsPage(ApplicationDbContext c) => context = c;
-        public IActionResult OnGetCreate()
-        {
+        public IActionResult OnGetCreate() {
             return Page();
         }
-        public async Task<IActionResult> OnPostCreateAsync()
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> OnPostCreateAsync() {
+            if (!ModelState.IsValid) {
                 return Page();
             }
             var d = new CellViewFactory().Create(Cell).Data;
@@ -38,66 +33,51 @@ namespace MTPrisonApp.Pages.Cells
 
             return RedirectToPage("./Index", "Index");
         }
-        public async Task<IActionResult> OnGetDetailsAsync(string id)
-        {
+        public async Task<IActionResult> OnGetDetailsAsync(string id) {
             Cell = await GetCell(id);
             return Cell == null ? NotFound() : Page();
         }
-        private async Task<CellView> GetCell(string id)
-        {
+        private async Task<CellView> GetCell(string id) {
             if (id == null) return null;
             var d = await context.Cells.FirstOrDefaultAsync(m => m.Id == id);
             if (d == null) return null;
             return new CellViewFactory().Create(new Cell(d));
         }
-        public async Task<IActionResult> OnGetDeleteAsync(string id)
-        {
+        public async Task<IActionResult> OnGetDeleteAsync(string id) {
             Cell = await GetCell(id);
             return Cell == null ? NotFound() : Page();
         }
-        public async Task<IActionResult> OnPostDeleteAsync(string id)
-        {
-            if (id == null)
-            {
+        public async Task<IActionResult> OnPostDeleteAsync(string id) {
+            if (id == null) {
                 return NotFound();
             }
 
             var d = await context.Cells.FindAsync(id);
 
-            if (d != null)
-            {
+            if (d != null) {
                 context.Cells.Remove(d);
                 await context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index", "Index");
         }
-        public async Task<IActionResult> OnGetEditAsync(string id)
-        {
+        public async Task<IActionResult> OnGetEditAsync(string id) {
             Cell = await GetCell(id);
             return Cell == null ? NotFound() : Page();
         }
-        public async Task<IActionResult> OnPostEditAsync()
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<IActionResult> OnPostEditAsync() {
+            if (!ModelState.IsValid) {
                 return Page();
             }
 
             context.Attach(new CellViewFactory().Create(Cell).Data).State = EntityState.Modified;
 
-            try
-            {
+            try {
                 await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CellExists(Cell.Id))
-                {
+            } catch (DbUpdateConcurrencyException) {
+                if (!CellExists(Cell.Id)) {
                     return NotFound();
-                }
-                else
-                {
+                } else {
                     throw;
                 }
             }
@@ -106,8 +86,7 @@ namespace MTPrisonApp.Pages.Cells
         }
         private bool CellExists(string id)
             => context.Cells.Any(e => e.Id == id);
-        public async Task OnGetIndexAsync()
-        {
+        public async Task OnGetIndexAsync() {
             IQueryable<string> sectionQuery = from m in context.Cells
                                               orderby m.Section
                                               select m.Section;
@@ -116,12 +95,10 @@ namespace MTPrisonApp.Pages.Cells
                                            select m.Type;
             var prisonCells = from m in context.Cells
                               select m;
-            if (!string.IsNullOrEmpty(CellSection))
-            {
+            if (!string.IsNullOrEmpty(CellSection)) {
                 prisonCells = prisonCells.Where(x => x.Section == CellSection);
             }
-            if (!string.IsNullOrEmpty(CellType))
-            {
+            if (!string.IsNullOrEmpty(CellType)) {
                 prisonCells = prisonCells.Where(x => x.Type == CellType);
             }
             Sections = new SelectList(await sectionQuery.Distinct().ToListAsync());

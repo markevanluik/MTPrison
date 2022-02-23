@@ -3,29 +3,22 @@ using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
 using MTPrisonApp.Data;
 
-namespace MTPrisonApp.Models
-{
-    public class SeedData
-    {
-        public static void Initialize(IServiceProvider serviceProvider)
-        {
+namespace MTPrisonApp.Models {
+    public class SeedData {
+        public static void Initialize(IServiceProvider serviceProvider) {
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<ApplicationDbContext>>()))
-            {
-                if (context == null || context.Prisoners == null || context.Cells == null)
-                {
+                    DbContextOptions<ApplicationDbContext>>())) {
+                if (context == null || context.Prisoners == null || context.Cells == null) {
                     throw new ArgumentNullException("Null Context");
                 }
 
-                if (context.Prisoners.Any() || context.Cells.Any())
-                {
+                if (context.Prisoners.Any() || context.Cells.Any()) {
                     return;
                 }
 
                 context.Prisoners.AddRange(
-                    new PrisonerData
-                    {
+                    new PrisonerData {
                         Id = "12345",
                         FirstName = "Bob",
                         LastName = "Smith",
@@ -35,8 +28,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new PrisonerData
-                    {
+                    new PrisonerData {
                         Id = "22345",
                         FirstName = "John",
                         LastName = "Doe",
@@ -46,8 +38,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new PrisonerData
-                    {
+                    new PrisonerData {
                         Id = "32345",
                         FirstName = "Jane",
                         LastName = "Doe",
@@ -57,8 +48,7 @@ namespace MTPrisonApp.Models
                         DateOfRelease = DateTime.Parse("2002-2-2")
                     },
 
-                    new PrisonerData
-                    {
+                    new PrisonerData {
                         Id = "42345",
                         FirstName = "Foo",
                         LastName = "Bar",
@@ -70,8 +60,7 @@ namespace MTPrisonApp.Models
                 );
 
                 context.Cells.AddRange(
-                    new CellData
-                    {
+                    new CellData {
                         Id = "52345",
                         CellNumber = 1,
                         Capacity = 3,
@@ -79,8 +68,7 @@ namespace MTPrisonApp.Models
                         Section = "C"
                     },
 
-                    new CellData
-                    {
+                    new CellData {
                         Id = "62345",
                         CellNumber = 21,
                         Capacity = 2,
@@ -88,8 +76,7 @@ namespace MTPrisonApp.Models
                         Section = "B"
                     },
 
-                    new CellData
-                    {
+                    new CellData {
                         Id = "72345",
                         CellNumber = 31,
                         Capacity = 1,
@@ -97,8 +84,7 @@ namespace MTPrisonApp.Models
                         Section = "A"
                     },
 
-                    new CellData
-                    {
+                    new CellData {
                         Id = "82345",
                         CellNumber = 32,
                         Capacity = 1,

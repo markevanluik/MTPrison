@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Facade.Party;
 
-namespace MTPrison.Tests.Facade.Party
-{
-    [TestClass] public class CellViewTest : BaseTests<CellView>
-    {
+namespace MTPrison.Tests.Facade.Party {
+    [TestClass]
+    public class CellViewTest : BaseTests<CellView> {
         [TestMethod] public void IdTest() => isProperty<string>();
         [TestMethod] public void CellNumberTest() => isProperty<int>();
         [TestMethod] public void CapacityTest() => isProperty<int>();
