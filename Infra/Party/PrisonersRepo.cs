@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTPrison.Infra.Party {
     public class PrisonersRepo : Repo<Prisoner, PrisonerData>, IPrisonersRepo {

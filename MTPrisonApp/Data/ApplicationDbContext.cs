@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MTPrison.Data.Party;
-using MTPrisonApp.Models;
 
 namespace MTPrisonApp.Data
 {

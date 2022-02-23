@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 using MTPrison.Infra.Party;
