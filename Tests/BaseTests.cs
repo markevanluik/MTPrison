@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 namespace MTPrison.Tests {
-    public abstract class BaseTests<TClass> : AssertTests where TClass : class, new() {
+    public abstract class BaseTests<TClass> : TestAsserts where TClass : class, new() {
         protected TClass obj;
         protected BaseTests() => obj = new TClass();
         protected void isProperty<T>(T? value = default, bool isReadOnly = false) {

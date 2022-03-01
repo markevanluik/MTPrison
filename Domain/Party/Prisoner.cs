@@ -4,7 +4,6 @@ namespace MTPrison.Domain.Party {
     public class Prisoner : Entity<PrisonerData> {
         private const string defaultStr = "Undefined";
         private DateTime defaultDate => DateTime.MinValue;
-
         public Prisoner() : this(new PrisonerData()) { }
         public Prisoner(PrisonerData d) : base(d) { }
         public string Id => Data?.Id ?? defaultStr;
@@ -14,7 +13,6 @@ namespace MTPrison.Domain.Party {
         public DateTime DoB => Data?.DoB ?? defaultDate;
         public DateTime DateOfRelease => Data?.DateOfRelease ?? defaultDate;
         public DateTime DateOfImprisonment => Data?.DateOfImprisonment ?? defaultDate;
-
         public string Fullname() => $"{FirstName} {LastName}";
     }
 }
