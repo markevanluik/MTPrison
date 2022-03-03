@@ -4,7 +4,6 @@ using System;
 
 namespace MTPrison.Tests.Data.Party {
     [TestClass] public class PrisonerDataTests : BaseTests<PrisonerData> {
-        [TestMethod] public void IdTest() => isProperty<string>();
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();
         [TestMethod] public void OffenseTest() => isProperty<string?>();

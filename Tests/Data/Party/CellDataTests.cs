@@ -3,7 +3,6 @@ using MTPrison.Data.Party;
 
 namespace MTPrison.Tests.Data.Party {
     [TestClass] public class CellDataTests : BaseTests<CellData> {
-        [TestMethod] public void IdTest() => isProperty<string>();
         [TestMethod] public void CellNumberTest() => isProperty<int>();
         [TestMethod] public void CapacityTest() => isProperty<int>();
         [TestMethod] public void TypeTest() => isProperty<string?>();
