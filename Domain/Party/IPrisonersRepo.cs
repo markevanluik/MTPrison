@@ -1,5 +1,4 @@
 ﻿
 namespace MTPrison.Domain.Party {
-    public interface IPrisonersRepo : IRepo<Prisoner> {
-    }
+    public interface IPrisonersRepo : IRepo<Prisoner> { }
 }

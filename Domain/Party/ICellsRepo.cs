@@ -1,5 +1,4 @@
 ﻿
 namespace MTPrison.Domain.Party {
-    public interface ICellsRepo : IRepo<Cell> {
-    }
+    public interface ICellsRepo : IRepo<Cell> { }
 }
