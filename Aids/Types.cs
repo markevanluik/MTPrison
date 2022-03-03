@@ -19,7 +19,8 @@ namespace MTPrison.Aids {
             => Safe.Run(() => t?.FullName?.IsRealTypeName() ?? false);
         public static string? GetName(this Type? t) => t?.Name ?? string.Empty;
         public static List<string>? DeclaredMembers(this Type? t)
-            => t?.GetMembers(allDeclaredOnly)?.ToList()?.Select(x => x.Name)?.ToList() ?? new();
+            => t?.GetMembers(allDeclaredOnly)?.ToList()?.Select(x => x.Name)?
+            .Where(x => !x.StartsWith("get") && !x.StartsWith("set") && !x.StartsWith(".ctor")).ToList() ?? new();
         public static bool IsInherited(this Type? t, Type subclass)
             => Safe.Run(() => t?.IsSubclassOf(subclass) ?? false, false);
         public static bool HasAttribute<TAttribute>(this Type? t) where TAttribute : Attribute
