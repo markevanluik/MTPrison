@@ -7,12 +7,13 @@ namespace MTPrison.Aids {
         public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
         public static bool Bool() => Int32() % 2 == 0;
         public static DateTime DateTime(ushort minYear = 1900, ushort maxYear = 2100) {
-            var year = Int32(minYear, maxYear);
+            var year = Int32(minYear, maxYear - 1);
             var days = Int32(1, 365);
             var seconds = Int32(1, 24 * 60 * 60);
-            var d = new DateTime(year);
-            d.AddDays(days);
-            d.AddSeconds(seconds);
+            var d = new DateTime();
+            d = d.AddYears(year);
+            d = d.AddDays(days);
+            d = d.AddSeconds(seconds);
             return d;
         }
         public static string String(ushort minLength = 5, ushort maxLength = 30) {
@@ -22,12 +23,16 @@ namespace MTPrison.Aids {
             return sb.ToString();
         }
         public static dynamic Value<T>() {
-            if (typeof(T) == typeof(bool)) return Bool();
+            if (typeof(T) == typeof(int)) return Int32();
+            else if (typeof(T) == typeof(int?)) return Int32();
+            else if (typeof(T) == typeof(double)) return Double();
+            else if (typeof(T) == typeof(double?)) return Double();
+            else if (typeof(T) == typeof(char)) return Char();
+            else if (typeof(T) == typeof(char?)) return Char();
+            else if (typeof(T) == typeof(bool)) return Bool();
             else if (typeof(T) == typeof(bool?)) return Bool();
             else if (typeof(T) == typeof(DateTime)) return DateTime();
             else if (typeof(T) == typeof(DateTime?)) return DateTime();
-            else if (typeof(T) == typeof(int)) return Int32();
-            else if (typeof(T) == typeof(int?)) return Int32();
             else return String();
         }
     }
