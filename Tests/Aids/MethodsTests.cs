@@ -1,16 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
-using System;
 using System.Reflection;
 
-namespace MTPrison.Tests.Aids {     // not working correctly
+namespace MTPrison.Tests.Aids {
     [TestClass] public class MethodsTests : IsTypeTested {
-        public static bool JustAMethod() => true;
-        private readonly MethodInfo? info = typeof(MethodsTests).GetMethod("JustAMethod");
         [TestMethod] public void HasAttributeTest() {
-
-            Assert.IsTrue(info.HasAttribute<Attribute>());
+            MethodInfo? info = typeof(MethodsTests).Method("JustAMethod");
+            Assert.IsTrue(info.HasAttribute<TestMethodAttribute>());
         }
+        [TestMethod] public static bool JustAMethod() => true;
 
     }
 }
