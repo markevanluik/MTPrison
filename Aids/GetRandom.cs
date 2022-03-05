@@ -2,10 +2,10 @@
 
 namespace MTPrison.Aids {
     public static class GetRandom {
-        public static int Int32(int min = int.MinValue, int max = int.MaxValue) => Random.Shared.Next(min, max);
-        public static double Double(double min = short.MinValue, double max = short.MaxValue) => min + Random.Shared.NextDouble() * (max - min);
-        public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
         public static bool Bool() => Int32() % 2 == 0;
+        public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
+        public static double Double(double min = short.MinValue, double max = short.MaxValue) => min + Random.Shared.NextDouble() * (max - min);
+        public static int Int32(int min = int.MinValue, int max = int.MaxValue) => Random.Shared.Next(min, max);
         public static DateTime DateTime(ushort minYear = 1900, ushort maxYear = 2100) {
             var year = Int32(minYear, maxYear - 1);
             var days = Int32(1, 365);
@@ -23,14 +23,14 @@ namespace MTPrison.Aids {
             return sb.ToString();
         }
         public static dynamic Value<T>() {
-            if (typeof(T) == typeof(int)) return Int32();
-            else if (typeof(T) == typeof(int?)) return Int32();
-            else if (typeof(T) == typeof(double)) return Double();
-            else if (typeof(T) == typeof(double?)) return Double();
+            if (typeof(T) == typeof(bool)) return Bool();
+            else if (typeof(T) == typeof(bool?)) return Bool();
             else if (typeof(T) == typeof(char)) return Char();
             else if (typeof(T) == typeof(char?)) return Char();
-            else if (typeof(T) == typeof(bool)) return Bool();
-            else if (typeof(T) == typeof(bool?)) return Bool();
+            else if (typeof(T) == typeof(double)) return Double();
+            else if (typeof(T) == typeof(double?)) return Double();
+            else if (typeof(T) == typeof(int)) return Int32();
+            else if (typeof(T) == typeof(int?)) return Int32();
             else if (typeof(T) == typeof(DateTime)) return DateTime();
             else if (typeof(T) == typeof(DateTime?)) return DateTime();
             else return String();
