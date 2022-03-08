@@ -10,8 +10,8 @@ namespace MTPrison.Tests {
             var memberName = getCallingMember(nameof(isProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
             isNotNull(propertyInfo);
+            if (isNullOrDefault(value)) value = random<T>();
             var canWrite = propertyInfo?.CanWrite ?? false;
-            if (isNullOrDefault(value) && canWrite) value = random<T>();
             if (canWrite) propertyInfo?.SetValue(obj, value);
             else value = (T?)propertyInfo?.GetValue(obj);
             areEqual(value, propertyInfo?.GetValue(obj));
