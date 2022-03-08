@@ -4,8 +4,8 @@ using MTPrison.Aids;
 namespace MTPrison.Tests.Aids {
     [TestClass] public class GetNamespaceTests : IsTypeTested {
         [TestMethod] public void OfTypeTest() {
-            Assert.AreEqual(GetNamespace.OfType(null), string.Empty);
-            Assert.AreEqual(GetNamespace.OfType(this), "MTPrison.Tests.Aids");
+            areEqual(GetNamespace.OfType(null), string.Empty);
+            areEqual(GetNamespace.OfType(this), "MTPrison.Tests.Aids");
         }
     }
 }

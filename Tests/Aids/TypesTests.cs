@@ -24,7 +24,7 @@ namespace MTPrison.Tests.Aids {
             Assert.IsTrue(GetType().IsRealType());
         }
         [TestMethod] public void GetNameTest() {
-            Assert.AreEqual("TypesTests", GetType().GetName());
+            areEqual("TypesTests", GetType().GetName());
         }
         [TestMethod] public void DeclaredMembersTest() {
             Assert.IsTrue(Types.DeclaredMembers(null) != null);

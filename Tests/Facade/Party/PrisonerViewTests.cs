@@ -11,7 +11,7 @@ namespace MTPrison.Tests.Facade.Party {
         [TestMethod] public void DoBTest() => isProperty<DateTime?>();
         [TestMethod] public void DateOfReleaseTest() => isProperty<DateTime?>();
         [TestMethod] public void DateOfImprisonmentTest() => isProperty<DateTime?>();
-        [TestMethod] public void FullNameTest() => isInconclusive();
+        [TestMethod] public void FullNameTest() => isProperty<string?>();
     }
 
 }

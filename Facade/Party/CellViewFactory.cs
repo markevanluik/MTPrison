@@ -9,7 +9,6 @@ namespace MTPrison.Facade.Party {
             Capacity = v.Capacity,
             Type = v.Type,
             Section = v.Section
-
         });
 
         public CellView Create(Cell p) => new() {

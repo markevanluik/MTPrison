@@ -14,12 +14,12 @@ namespace MTPrison.Tests.Aids {
             Assert.IsNull(assembly);
 
             assembly = GetAssembly.ByName("MTPrison.Aids");
-            Assert.IsNotNull(assembly);
+            isNotNull(assembly);
         }
         [TestMethod] public void OfTypeTest() {
             assembly = GetAssembly.OfType(this);
-            Assert.IsNotNull(assembly);
-            Assert.AreEqual("MTPrison.Tests", assembly?.FullName?.Split(',')[0]);
+            isNotNull(assembly);
+            areEqual("MTPrison.Tests", assembly?.FullName?.Split(',')[0]);
         }
         [TestMethod] public void TypesTest() {
             assembly = GetAssembly.ByName("No.Business.Here");
@@ -28,7 +28,7 @@ namespace MTPrison.Tests.Aids {
 
             assembly = GetAssembly.ByName("MTPrison.Aids");
             assemblyList = GetAssembly.Types(assembly);
-            Assert.IsNotNull(assemblyList);
+            isNotNull(assemblyList);
         }
         [TestMethod] public void TypeTest() {
             assembly = GetAssembly.ByName("MTPrison.Aids");
@@ -37,8 +37,8 @@ namespace MTPrison.Tests.Aids {
 
             assembly = GetAssembly.ByName("MTPrison.Aids");
             type = assembly?.Type("GetAssembly");
-            Assert.IsNotNull(type);
-            Assert.AreEqual(type?.FullName, "MTPrison.Aids.GetAssembly");
+            isNotNull(type);
+            areEqual(type?.FullName, "MTPrison.Aids.GetAssembly");
 
         }
     }

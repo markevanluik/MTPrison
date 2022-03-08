@@ -9,14 +9,14 @@ namespace MTPrison.Tests.Aids {
         }
 
         [TestMethod] public void RemoveTest() {
-            Assert.AreEqual("123.qwerty", s?.Remove("abc."));
+            areEqual("123.qwerty", s?.Remove("abc."));
         }
         [TestMethod] public void IsRealTypeNameTest() {
             Assert.IsTrue(s.IsRealTypeName());
 
         }
         [TestMethod] public void RemoveTailTest() {
-            Assert.AreEqual("123.abc", s.RemoveTail());
+            areEqual("123.abc", s.RemoveTail());
         }
     }
 }

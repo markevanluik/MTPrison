@@ -11,17 +11,17 @@ namespace MTPrison.Tests.Aids {
         }
 
         [TestMethod] public void GetFirstTest() {
-            Assert.AreEqual(null, Lists.GetFirst(list));
+            areEqual(null, Lists.GetFirst(list));
 
             list?.Add(1);
-            Assert.AreEqual(1, list.GetFirst());
+            areEqual(1, list.GetFirst());
         }
         [TestMethod] public void RemoveTest() {
-            Assert.AreEqual(0, list.Remove(x => x == 1));
+            areEqual(0, list.Remove(x => x == 1));
 
             list?.Add(1); list?.Add(1); list?.Add(3);
-            Assert.AreEqual(2, list.Remove(x => x == 1));
-            Assert.AreEqual(3, list.GetFirst());
+            areEqual(2, list.Remove(x => x == 1));
+            areEqual(3, list.GetFirst());
         }
         [TestMethod] public void IsEmptyTest() {
             Assert.IsTrue(list.IsEmpty());
