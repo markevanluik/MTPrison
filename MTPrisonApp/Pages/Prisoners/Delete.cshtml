@@ -2,11 +2,9 @@
 @model MTPrisonApp.Pages.Prisoners.PrisonersPage
 
 @{
-    Layout = "_Delete";
-    ViewData["itemId"] = Model?.Prisoner?.Id??string.Empty; 
+    Layout = "_Delete"; 
 }
 
 <body>
     <partial name="_ShowPrisoner"/>
 </body>
-@*asd*@

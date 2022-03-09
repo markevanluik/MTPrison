@@ -21,15 +21,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Cells[0].CellNumber)
-            <th> @Html.DisplayNameFor(model => model.Cells[0].Capacity)
-            <th> @Html.DisplayNameFor(model => model.Cells[0].Type)
-            <th> @Html.DisplayNameFor(model => model.Cells[0].Section)
+            <th> @Html.DisplayNameFor(model => model.Items[0].CellNumber)
+            <th> @Html.DisplayNameFor(model => model.Items[0].Capacity)
+            <th> @Html.DisplayNameFor(model => model.Items[0].Type)
+            <th> @Html.DisplayNameFor(model => model.Items[0].Section)
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Cells) {
+@foreach (var item in Model.Items) {
         <tr>
             <td> @Html.DisplayFor(modelItem => item.CellNumber)
             <td> @Html.DisplayFor(modelItem => item.Capacity)

@@ -18,16 +18,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Prisoners[0].FullName)
-            <th> @Html.DisplayNameFor(model => model.Prisoners[0].DoB)
-            <th> @Html.DisplayNameFor(model => model.Prisoners[0].Offense)
-            <th> @Html.DisplayNameFor(model => model.Prisoners[0].DateOfRelease)
-            <th> @Html.DisplayNameFor(model => model.Prisoners[0].DateOfImprisonment)
+            <th> @Html.DisplayNameFor(model => model.Items[0].FullName)
+            <th> @Html.DisplayNameFor(model => model.Items[0].DoB)
+            <th> @Html.DisplayNameFor(model => model.Items[0].Offense)
+            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfRelease)
+            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfImprisonment)
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Prisoners) {
+@foreach (var item in Model.Items) {
         <tr>
             <td> @Html.DisplayFor(modelItem => item.FullName)
             <td> @Html.DisplayFor(modelItem => item.DoB)

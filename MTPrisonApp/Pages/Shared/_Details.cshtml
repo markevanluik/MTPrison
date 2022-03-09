@@ -3,6 +3,7 @@
     ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("sPage", string.Empty) ?? "Unspecified";
     ViewData["Title"] = "Details";
     Layout = "_Layout";
+    var itemId = Model?.ItemId?? string.Empty;
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -12,7 +13,7 @@
     <hr />
     @RenderBody()
     <div>
-    <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id=@ViewData["itemId"]>Edit</a> |
+    <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@itemId">Edit</a> |
     <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
     </div>
 </div>

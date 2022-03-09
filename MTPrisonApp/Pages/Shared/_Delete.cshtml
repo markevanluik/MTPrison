@@ -3,6 +3,7 @@
     ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("sPage", string.Empty) ?? "Unspecified";
     ViewData["Title"] = "Delete";
     Layout = "_Layout";
+    var itemId = Model?.ItemId?? string.Empty;
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -13,7 +14,7 @@
     <hr />
     @RenderBody()     
     <form method="post">
-        <input type="hidden" asp-for-id=@ViewData["itemId"] />
+        <input type="hidden" asp-for-id="@itemId" />
         <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index" asp-page-handler="Index">Back to List</a>
     </form>
