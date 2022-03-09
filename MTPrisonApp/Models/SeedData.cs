@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTPrison.Data.Party;
-using MTPrison.Domain.Party;
-using MTPrisonApp.Data;
+using MTPrison.Infra;
 
 namespace MTPrisonApp.Models {
     public class SeedData {
         public static void Initialize(IServiceProvider serviceProvider) {
-            using (var context = new ApplicationDbContext(
+            using (var context = new PrisonDb(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<ApplicationDbContext>>())) {
+                    DbContextOptions<PrisonDb>>())) {
                 if (context == null || context.Prisoners == null || context.Cells == null) {
                     throw new ArgumentNullException("Null Context");
                 }

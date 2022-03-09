@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
+using MTPrison.Infra;
 using MTPrison.Infra.Party;
 using MTPrisonApp.Data;
 
@@ -14,7 +15,7 @@ namespace MTPrisonApp.Pages.Prisoners {
         //[BindProperty(SupportsGet = true)] public string? SearchString { get; set; }
         //public SelectList Offenses { get; set; }
         //[BindProperty(SupportsGet = true)] public string? PrisonerOffense { get; set; }
-        public PrisonersPage(ApplicationDbContext c) => repo = new PrisonersRepo(c, c.Prisoners);
+        public PrisonersPage(PrisonDb c) => repo = new PrisonersRepo(c, c.Prisoners);
         public IActionResult OnGetCreate() => Page();
         public async Task<IActionResult> OnPostCreateAsync() {
             if (!ModelState.IsValid) return Page();

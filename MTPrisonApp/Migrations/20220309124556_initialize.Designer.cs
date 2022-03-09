@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MTPrisonApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220209093902_initial")]
-    partial class initial
+    [Migration("20220309124556_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,7 +245,7 @@ namespace MTPrisonApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cells");
+                    b.ToTable("Cells", "Prison");
                 });
 
             modelBuilder.Entity("MTPrison.Data.Party.PrisonerData", b =>
@@ -273,7 +273,7 @@ namespace MTPrisonApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Prisoners");
+                    b.ToTable("Prisoners", "Prison");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

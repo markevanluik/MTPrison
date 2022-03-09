@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
+using MTPrison.Infra;
 using MTPrison.Infra.Party;
 using MTPrisonApp.Data;
 
@@ -15,7 +16,7 @@ namespace MTPrisonApp.Pages.Cells {
         //[BindProperty(SupportsGet = true)] public string? CellSection { get; set; }
         //public SelectList Types { get; set; }
         //[BindProperty(SupportsGet = true)] public string? CellType { get; set; }
-        public CellsPage(ApplicationDbContext c) => repo = new CellsRepo(c, c.Cells);
+        public CellsPage(PrisonDb c) => repo = new CellsRepo(c, c.Cells);
         public IActionResult OnGetCreate() => Page();
         public async Task<IActionResult> OnPostCreateAsync() {
             if (!ModelState.IsValid) return Page();
