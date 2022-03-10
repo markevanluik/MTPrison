@@ -2,7 +2,7 @@
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Tests.Facade.Party {
-    [TestClass] public class PrisonerViewFactoryTests : BaseTests<PrisonerViewFactory> {
+    [TestClass] public class PrisonerViewFactoryTests : IsTypeTested {
         [TestMethod] public void CreateTest() => isInconclusive();
     }
 }

@@ -2,6 +2,7 @@
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Tests.Domain.Party {
+    [TestClass] public class ICellsRepoTests : IsTypeTested { }
     [TestClass] public class CellTests : BaseTests<Cell> {
         [TestMethod] public void IdTest() => isProperty<string?>();
         [TestMethod] public void CellNumberTest() => isProperty<int>();

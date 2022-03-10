@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MTPrison.Data.Party;
+﻿using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Infra.Party {
