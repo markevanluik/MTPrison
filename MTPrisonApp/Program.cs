@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MTPrison.Domain.Party;
 using MTPrison.Infra;
+using MTPrison.Infra.Party;
 using MTPrisonApp.Data;
 using MTPrisonApp.Models;
 
@@ -11,15 +13,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-
 builder.Services.AddDbContext<PrisonDb>(options =>
     options.UseSqlServer(connectionString));
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
 
 var app = builder.Build();
 
