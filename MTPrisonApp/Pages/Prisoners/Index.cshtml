@@ -18,22 +18,22 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Items[0].FullName)
-            <th> @Html.DisplayNameFor(model => model.Items[0].DoB)
-            <th> @Html.DisplayNameFor(model => model.Items[0].Offense)
-            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfRelease)
-            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfImprisonment)
+            <th> @Html.DisplayNameFor(model => model.Items[0].FullName) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].DoB) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].Offense) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfRelease) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].DateOfImprisonment) </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Items) {
         <tr>
-            <td> @Html.DisplayFor(modelItem => item.FullName)
-            <td> @Html.DisplayFor(modelItem => item.DoB)
-            <td> @Html.DisplayFor(modelItem => item.Offense)
-            <td> @Html.DisplayFor(modelItem => item.DateOfRelease)
-            <td> @Html.DisplayFor(modelItem => item.DateOfImprisonment)
+            <td> @Html.DisplayFor(modelItem => item.FullName) </td>
+            <td> @Html.DisplayFor(modelItem => item.DoB) </td>
+            <td> @Html.DisplayFor(modelItem => item.Offense) </td>
+            <td> @Html.DisplayFor(modelItem => item.DateOfRelease) </td>
+            <td> @Html.DisplayFor(modelItem => item.DateOfImprisonment) </td>
             <td>
                 <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a> |

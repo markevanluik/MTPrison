@@ -12,8 +12,9 @@ namespace MTPrison.Infra {
             InitializeTables(b);
         }
         public static void InitializeTables(ModelBuilder b) {
-            b?.Entity<PrisonerData>()?.ToTable(nameof(Prisoners), nameof(PrisonDb).Substring(0, 6));
-            b?.Entity<CellData>()?.ToTable(nameof(Cells), nameof(PrisonDb).Substring(0, 6));
+            var schema = nameof(PrisonDb).Substring(0, 6);
+            b?.Entity<PrisonerData>()?.ToTable(nameof(Prisoners), schema);
+            b?.Entity<CellData>()?.ToTable(nameof(Cells), schema);
         }
     }
 }

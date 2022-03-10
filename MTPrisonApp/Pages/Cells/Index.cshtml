@@ -21,20 +21,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Items[0].CellNumber)
-            <th> @Html.DisplayNameFor(model => model.Items[0].Capacity)
-            <th> @Html.DisplayNameFor(model => model.Items[0].Type)
-            <th> @Html.DisplayNameFor(model => model.Items[0].Section)
+            <th> @Html.DisplayNameFor(model => model.Items[0].CellNumber) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].Capacity) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].Type) </th>
+            <th> @Html.DisplayNameFor(model => model.Items[0].Section) </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Items) {
         <tr>
-            <td> @Html.DisplayFor(modelItem => item.CellNumber)
-            <td> @Html.DisplayFor(modelItem => item.Capacity)
-            <td> @Html.DisplayFor(modelItem => item.Type)
-            <td> @Html.DisplayFor(modelItem => item.Section)
+            <td> @Html.DisplayFor(modelItem => item.CellNumber) </td>
+            <td> @Html.DisplayFor(modelItem => item.Capacity) </td>
+            <td> @Html.DisplayFor(modelItem => item.Type) </td>
+            <td> @Html.DisplayFor(modelItem => item.Section) </td>
             <td>
                 <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a> |
