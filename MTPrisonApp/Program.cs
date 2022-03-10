@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
+builder.Services.AddTransient<ICellsRepo, CellsRepo>();
 
 var app = builder.Build();
 
