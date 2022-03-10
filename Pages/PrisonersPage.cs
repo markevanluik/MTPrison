@@ -4,14 +4,13 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 using MTPrison.Infra;
 using MTPrison.Infra.Party;
-using MTPrisonApp.Data;
 
-namespace MTPrisonApp.Pages.Prisoners {
+namespace MTPrison.Pages {
     public class PrisonersPage : PageModel {
         private readonly IPrisonersRepo repo;
         [BindProperty] public PrisonerView Item { get; set; }
         public IList<PrisonerView> Items { get; set; }
-        public string ItemId => Item?.Id?? string.Empty;
+        public string ItemId => Item?.Id ?? string.Empty;
         //[BindProperty(SupportsGet = true)] public string? SearchString { get; set; }
         //public SelectList Offenses { get; set; }
         //[BindProperty(SupportsGet = true)] public string? PrisonerOffense { get; set; }

@@ -4,9 +4,8 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 using MTPrison.Infra;
 using MTPrison.Infra.Party;
-using MTPrisonApp.Data;
 
-namespace MTPrisonApp.Pages.Cells {
+namespace MTPrison.Pages {
     public class CellsPage : PageModel {
         private readonly ICellsRepo repo;
         [BindProperty] public CellView Item { get; set; }
