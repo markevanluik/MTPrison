@@ -6,13 +6,13 @@ namespace MTPrison.Tests.Domain.Party {
     [TestClass] public class IPrisonersRepoTests : IsTypeTested { }
     [TestClass] public class PrisonerTests : BaseTests<Prisoner> {
         private readonly Prisoner prisoner = new();
-        [TestMethod] public void IdTest() => isProperty<string?>();
-        [TestMethod] public void FirstNameTest() => isProperty<string?>();
-        [TestMethod] public void LastNameTest() => isProperty<string?>();
-        [TestMethod] public void OffenseTest() => isProperty<string?>();
-        [TestMethod] public void DoBTest() => isProperty<DateTime?>();
-        [TestMethod] public void DateOfReleaseTest() => isProperty<DateTime?>();
-        [TestMethod] public void DateOfImprisonmentTest() => isProperty<DateTime?>();
-        [TestMethod] public void FullnameTest() => isProperty<string?>();
+        [TestMethod] public void IdTest() => isProperty<string?>(null, true);
+        [TestMethod] public void FirstNameTest() => isProperty<string?>(null, true);
+        [TestMethod] public void LastNameTest() => isProperty<string?>(null, true);
+        [TestMethod] public void OffenseTest() => isProperty<string?>(null, true);
+        [TestMethod] public void DoBTest() => isProperty<DateTime?>(null, true);
+        [TestMethod] public void DateOfReleaseTest() => isProperty<DateTime?>(null, true);
+        [TestMethod] public void DateOfImprisonmentTest() => isProperty<DateTime?>(null, true);
+        [TestMethod] public void FullnameTest() => isProperty<string?>(null, true);
     }
 }
