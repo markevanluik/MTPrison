@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MTPrison.Data.Party;
+using MTPrison.Domain.Party;
+using System.ComponentModel.DataAnnotations;
 
 namespace MTPrison.Facade.Party {
     public class CellView : BaseView {
@@ -8,5 +10,10 @@ namespace MTPrison.Facade.Party {
         [Display(Name = "Section")] [Required] public string? Section { get; set; }
 
         //public List<Prisoner> Occupants { get; set; }
+
+    }
+    public sealed class CellViewFactory : BaseViewFactory<CellView, Cell, CellData> {
+        protected override Cell toEntity(CellData d) => new(d);
+
     }
 }
