@@ -2,7 +2,7 @@
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Facade.Party {
-    public class CellViewFactory {
+    public sealed class CellViewFactory {
         public Cell Create(CellView v) => new(new CellData {
             Id = v.Id,
             CellNumber = v.CellNumber,

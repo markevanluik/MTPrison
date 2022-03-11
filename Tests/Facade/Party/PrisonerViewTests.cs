@@ -12,5 +12,6 @@ namespace MTPrison.Tests.Facade.Party {
         [TestMethod] public void DateOfImprisonmentTest() => isProperty<DateTime?>();
         [TestMethod] public void FullNameTest() => isProperty<string?>();
     }
+    [TestClass] public class PrisonerViewFactoryTests : IsTypeTested { }
 
 }
