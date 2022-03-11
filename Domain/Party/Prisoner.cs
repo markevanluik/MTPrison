@@ -5,12 +5,12 @@ namespace MTPrison.Domain.Party {
     public class Prisoner : Entity<PrisonerData> {
         public Prisoner() : this(new PrisonerData()) { }
         public Prisoner(PrisonerData d) : base(d) { }
-        public string FirstName => Data?.FirstName ?? defaultStr;
-        public string LastName => Data?.LastName ?? defaultStr;
-        public string Offense => Data?.Offense ?? defaultStr;
-        public DateTime DoB => Data?.DoB ?? defaultDate;
-        public DateTime DateOfRelease => Data?.DateOfRelease ?? defaultDate;
-        public DateTime DateOfImprisonment => Data?.DateOfImprisonment ?? defaultDate;
+        public string FirstName => getValue(Data?.FirstName);
+        public string LastName => getValue(Data?.LastName);
+        public string Offense => getValue(Data?.Offense);
+        public DateTime DoB => getValue(Data?.DoB);
+        public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
+        public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
         public string Fullname() => $"{FirstName} {LastName}";
     }
 }

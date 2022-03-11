@@ -9,10 +9,10 @@ namespace MTPrison.Pages {
     where TEntity : Entity
     where TRepo : IBaseRepo<TEntity> {
         private readonly TRepo repo;
-        protected abstract TView toView(TEntity entity);
-        protected abstract TEntity toObject(TView item);
-        [BindProperty] public TView Item { get; set; }
-        public IList<TView> Items { get; set; }
+        protected abstract TView toView(TEntity? entity);
+        protected abstract TEntity toObject(TView? item);
+        [BindProperty] public TView? Item { get; set; }
+        public IList<TView>? Items { get; set; }
         public string ItemId => Item?.Id ?? string.Empty;
         public BasePage(TRepo r) => repo = r;
         public IActionResult OnGetCreate() => Page();
