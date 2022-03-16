@@ -11,8 +11,12 @@ namespace MTPrison.Tests.Aids {
         [TestMethod] public void RemoveTest() {
             areEqual("123.qwerty", s?.Remove("abc."));
         }
-        [TestMethod] public void IsRealTypeNameTest() {
-            Assert.IsTrue(s.IsRealTypeName());
+        [TestMethod] public void IsTypeNameTest() {
+            isFalse(s.IsTypeName());
+
+        }
+        [TestMethod] public void IsTypeFullNameTest() {
+            isTrue(s.IsTypeFullName());
 
         }
         [TestMethod] public void RemoveTailTest() {

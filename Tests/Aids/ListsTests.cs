@@ -24,16 +24,16 @@ namespace MTPrison.Tests.Aids {
             areEqual(3, list.GetFirst());
         }
         [TestMethod] public void IsEmptyTest() {
-            Assert.IsTrue(list.IsEmpty());
+            isTrue(list.IsEmpty());
 
             list?.Add(1);
-            Assert.IsFalse(list.IsEmpty());
+            isFalse(list.IsEmpty());
         }
         [TestMethod] public void ContainsItemTest() {
-            Assert.IsFalse(list.ContainsItem(x => x == 1));
+            isFalse(list.ContainsItem(x => x == 1));
 
             list?.Add(2); list?.Add(3); list?.Add(5);
-            Assert.IsTrue(list.ContainsItem(x => x == 5));
+            isTrue(list.ContainsItem(x => x == 5));
         }
     }
 }

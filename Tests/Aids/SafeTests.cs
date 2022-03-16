@@ -5,13 +5,13 @@ namespace MTPrison.Tests.Aids {
     [TestClass] public class SafeTests : IsTypeTested {
         [TestMethod] public void RunTest() {
             Safe.Run(() => ThrowException());
-            Assert.IsTrue(Safe.Run(() => ThrowException("message")) == null);
-            Assert.IsTrue(Safe.Run(() => ThrowException("message"), string.Empty) == string.Empty);
+            isTrue(Safe.Run(() => ThrowException("message")) == null);
+            isTrue(Safe.Run(() => ThrowException("message"), string.Empty) == string.Empty);
         }
-        private void ThrowException() {
+        private static void ThrowException() {
             throw new System.Exception();
         }
-        private string ThrowException(string s) {
+        private static string ThrowException(string s) {
             throw new System.Exception(s);
         }
     }
