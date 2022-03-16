@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MTPrison.Aids;
 using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
@@ -10,39 +11,19 @@ namespace MTPrison.Tests.Facade.Party {
 
         [TestMethod]
         public void CreateViewTest() {
-            var d = new CellData() {
-                Id = "----",
-                CellNumber = 123,
-                Capacity = 4,
-                Type = "AAA",
-                Section = "Gold"
-            };
+            var d = GetRandom.Value<CellData>();
             var e = new Cell(d);
             var v = new CellViewFactory().Create(e);
             isNotNull(v);
-            areEqual(v.Id, e.Id);
-            areEqual(v.CellNumber, e.CellNumber);
-            areEqual(v.Capacity, e.Capacity);
-            areEqual(v.Type, e.Type);
-            areEqual(v.Section, e.Section);
+            arePropertiesEqual(v, e);
         }
         [TestMethod]
         public void CreateEntityTest() {
-            var v = new CellView() {
-                Id = "----",
-                CellNumber = 123,
-                Capacity = 4,
-                Type = "AAA",
-                Section = "Gold"
-            };
+            var v = GetRandom.Value<CellView>();
             var e = new CellViewFactory().Create(v);
             isNotNull(e);
-            areEqual(e.Id, v.Id);
-            areEqual(e.CellNumber, v.CellNumber);
-            areEqual(e.Capacity, v.Capacity);
-            areEqual(e.Type, v.Type);
-            areEqual(e.Section, v.Section);
+            arePropertiesEqual(e, v);
+            //areNotEqual(e.FullName, v?.FullName);
         }
     }
 }
-
