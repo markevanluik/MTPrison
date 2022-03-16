@@ -16,11 +16,10 @@ namespace MTPrison.Aids {
         public static bool NameStarts(this Type? t, string? name)
             => Safe.Run(() => name is not null && (t?.FullName?.StartsWith(name) ?? false));
         public static bool IsRealType(this Type? t)
-            => Safe.Run(() => t?.FullName?.IsRealTypeName() ?? false);
+            => Safe.Run(() => t?.FullName?.IsTypeFullName() ?? false);
         public static string? GetName(this Type? t) => t?.Name ?? string.Empty;
         public static List<string>? DeclaredMembers(this Type? t)
-            => t?.GetMembers(allDeclaredOnly)?.ToList()?.Select(x => x.Name)?
-            .Where(x => !x.StartsWith("get") && !x.StartsWith("set") && !x.StartsWith(".ctor")).ToList() ?? new();
+            => t?.GetMembers(allDeclaredOnly)?.ToList()?.Select(x => x.Name)?.ToList() ?? new();
         public static bool IsInherited(this Type? t, Type superclass)
             => Safe.Run(() => t?.IsSubclassOf(superclass) ?? false, false);
         public static bool HasAttribute<TAttribute>(this Type? t) where TAttribute : Attribute

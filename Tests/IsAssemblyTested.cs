@@ -40,7 +40,7 @@ namespace MTPrison.Tests {
         private static bool isTestClass(Type x) => x?.HasAttribute<TestClassAttribute>() ?? false;
         private static bool isCorrectlyInherited(Type x) => x.IsInherited(typeof(IsTypeTested));
         private static bool isTestFor(Type testingType, Type typeToBeTested)
-              => testingType.NameEnds(typeToBeTested.Name + "Tests");
+              => testingType.NameEnds(typeToBeTested.Name.Split('`')[0] + "Tests");
         private void removeNotNeedTesting() => typesToBeTested?.Remove(x => !isTypeToBeTested(x));
         private bool isTypeToBeTested(Type x) => x?.BelongsTo(namespaceOfType) ?? false;
     }
