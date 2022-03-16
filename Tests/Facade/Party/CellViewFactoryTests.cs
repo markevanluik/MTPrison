@@ -9,21 +9,18 @@ namespace MTPrison.Tests.Facade.Party {
     public class CellViewFactoryTests : SealedClassTests<CellViewFactory> {
         [TestMethod] public void CreateTest() { }
 
-        [TestMethod]
-        public void CreateViewTest() {
+        [TestMethod] public void CreateViewTest() {
             var d = GetRandom.Value<CellData>();
             var e = new Cell(d);
             var v = new CellViewFactory().Create(e);
             isNotNull(v);
             arePropertiesEqual(v, e);
         }
-        [TestMethod]
-        public void CreateEntityTest() {
+        [TestMethod] public void CreateEntityTest() {
             var v = GetRandom.Value<CellView>();
             var e = new CellViewFactory().Create(v);
             isNotNull(e);
             arePropertiesEqual(e, v);
-            //areNotEqual(e.FullName, v?.FullName);
         }
     }
 }
