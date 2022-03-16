@@ -1,6 +1,6 @@
 ﻿
 namespace MTPrison.Data.Party {
-    public class PrisonerData : EntityData {
+    public sealed class PrisonerData : EntityData {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Offense { get; set; }

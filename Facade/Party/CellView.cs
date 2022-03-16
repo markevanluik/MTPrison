@@ -3,7 +3,7 @@ using MTPrison.Domain.Party;
 using System.ComponentModel.DataAnnotations;
 
 namespace MTPrison.Facade.Party {
-    public class CellView : BaseView {
+    public sealed class CellView : BaseView {
         [Display(Name = "Cell Number")] [Range(1, 10000)] public int CellNumber { get; set; }
         [Display(Name = "Capacity")] [Range(1, 1000)] public int Capacity { get; set; }
         [Display(Name = "Type")] [Required] public string? Type { get; set; }

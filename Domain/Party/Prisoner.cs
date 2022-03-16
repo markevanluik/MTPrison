@@ -2,7 +2,7 @@
 
 namespace MTPrison.Domain.Party {
     public interface IPrisonersRepo : IRepo<Prisoner> { }
-    public class Prisoner : Entity<PrisonerData> {
+    public sealed class Prisoner : Entity<PrisonerData> {
         public Prisoner() : this(new PrisonerData()) { }
         public Prisoner(PrisonerData d) : base(d) { }
         public string FirstName => getValue(Data?.FirstName);
@@ -11,6 +11,6 @@ namespace MTPrison.Domain.Party {
         public DateTime DoB => getValue(Data?.DoB);
         public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
-        public string Fullname() => $"{FirstName} {LastName}";
+        public string FullName() => $"{FirstName} {LastName}";
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace MTPrison.Facade {
-    public class BaseView {
+    public abstract class BaseView {
         [Required] public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

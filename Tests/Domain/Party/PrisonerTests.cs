@@ -4,8 +4,7 @@ using System;
 
 namespace MTPrison.Tests.Domain.Party {
     [TestClass] public class IPrisonersRepoTests : IsTypeTested { }
-    [TestClass] public class PrisonerTests : BaseTests<Prisoner> {
-        private readonly Prisoner prisoner = new();
+    [TestClass] public class PrisonerTests : SealedClassTests<Prisoner> {
         [TestMethod] public void IdTest() => isProperty<string?>(null, true);
         [TestMethod] public void FirstNameTest() => isProperty<string?>(null, true);
         [TestMethod] public void LastNameTest() => isProperty<string?>(null, true);
@@ -13,6 +12,6 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void DoBTest() => isProperty<DateTime?>(null, true);
         [TestMethod] public void DateOfReleaseTest() => isProperty<DateTime?>(null, true);
         [TestMethod] public void DateOfImprisonmentTest() => isProperty<DateTime?>(null, true);
-        [TestMethod] public void FullnameTest() => isProperty<string?>(null, true);
+        [TestMethod] public void FullNameTest() => isInconclusive();
     }
 }

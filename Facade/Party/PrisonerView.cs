@@ -3,7 +3,7 @@ using MTPrison.Domain.Party;
 using System.ComponentModel.DataAnnotations;
 
 namespace MTPrison.Facade.Party {
-    public class PrisonerView : BaseView {
+    public sealed class PrisonerView : BaseView {
         [Display(Name = "First Name")] [Required] public string? FirstName { get; set; }
         [Display(Name = "Last Name")] [Required] public string? LastName { get; set; }
         [Display(Name = "Offense")] [Required] public string? Offense { get; set; }
@@ -16,6 +16,11 @@ namespace MTPrison.Facade.Party {
     }
     public sealed class PrisonerViewFactory : BaseViewFactory<PrisonerView, Prisoner, PrisonerData> {
         protected override Prisoner toEntity(PrisonerData d) => new(d);
+        public override PrisonerView Create(Prisoner? e) {
+            var v = base.Create(e);
+            v.FullName = e?.FullName();
+            return v;
+        }
 
     }
 }

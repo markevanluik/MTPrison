@@ -3,9 +3,10 @@ using System.Diagnostics;
 using System.Reflection;
 
 namespace MTPrison.Tests {
-    public abstract class BaseTests<TClass> : IsTypeTested where TClass : class, new() {
-        protected TClass obj;
-        protected BaseTests() => obj = new TClass();
+    public abstract class BaseTests : IsTypeTested {
+        protected object obj;
+        protected BaseTests() => obj = createObject();
+        protected abstract object createObject();
         protected void isProperty<T>(T? value = default, bool isReadOnly = false) {
             var memberName = getCallingMember(nameof(isProperty)).Replace("Test", string.Empty);
             var propertyInfo = obj.GetType().GetProperty(memberName);
@@ -22,7 +23,7 @@ namespace MTPrison.Tests {
             return canWrite;
         }
         private static T random<T>() => GetRandom.Value<T>();
-        private string getCallingMember(string memberName) {
+        private static string getCallingMember(string memberName) {
             var s = new StackTrace();
             var isNext = false;
             for (var i = 0; s.FrameCount - 1 > 0; i++) {
