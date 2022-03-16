@@ -1,50 +1,88 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
+using MTPrison.Data.Party;
 using System;
+using System.Collections.Generic;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass]
-    public class GetRandomTests : IsTypeTested {
-        [TestMethod]
-        public void Int32Test() {
-            Assert.IsTrue(GetRandom.Int32() is >= int.MinValue and < int.MaxValue);
+    [TestClass] public class GetRandomTests : IsTypeTested {
+        private void test<T>(T min, T max) where T : IComparable<T> {
+            var x = GetRandom.Value(min, max);
+            var y = GetRandom.Value(min, max);
+            isInstanceOfType(x, typeof(T));
+            isInstanceOfType(y, typeof(T));
+            isTrue(x >= (min.CompareTo(max) < 0 ? min : max));
+            isTrue(y >= (min.CompareTo(max) < 0 ? min : max));
+            isTrue(x <= (min.CompareTo(max) < 0 ? max : min));
+            isTrue(y <= (min.CompareTo(max) < 0 ? max : min));
+            areNotEqual(x, y);
         }
-        [TestMethod]
-        public void DoubleTest() {
-            Assert.IsTrue(GetRandom.Double() is >= double.MinValue and < double.MaxValue);
+
+        [DataRow(-1000, 1000)]
+        [DataRow(-1000, 0)]
+        [DataRow(0, 1000)]
+        [DataRow(int.MaxValue - 100, int.MaxValue)]
+        [DataRow(int.MinValue, int.MinValue + 100)]
+        [DataRow(1000, -1000)]
+        [TestMethod] public void Int32Test(int min, int max) => test(min, max);
+
+        [DataRow(-1000L, 1000L)]
+        [DataRow(-1000L, 0L)]
+        [DataRow(0L, 1000L)]
+        [DataRow(long.MaxValue - 1000L, long.MaxValue)]
+        [DataRow(long.MinValue, long.MinValue + 1000L)]
+        [DataRow(1000L, -1000L)]
+        [TestMethod] public void Int64Test(long min, long max) => test(min, max);
+
+        [DataRow(-1000.0, 1000.0)]
+        [DataRow(-1000.0, 0.0)]
+        [DataRow(0.0, 1000.0)]
+        [DataRow(double.MaxValue - 1.0E+308, double.MaxValue)]
+        [DataRow(double.MinValue, double.MinValue + 1.0E+308)]
+        [DataRow(1000.0, -1000.0)]
+        [TestMethod] public void DoubleTest(double min, double max) => test(min, max);
+
+        [DataRow(char.MinValue, char.MaxValue)]
+        [DataRow('a', 'z')]
+        [DataRow('1', 'P')]
+        [DataRow('A', 'z')]
+        [TestMethod] public void CharTest(char min, char max) => test(min, max);
+        [TestMethod] public void BoolTest() {
+            var x = GetRandom.Bool();
+            var y = GetRandom.Bool();
+            var i = 0;
+            while (x == y) {
+                y = GetRandom.Bool();
+                if (i == 5) areNotEqual(x, y);
+                i++;
+            }
         }
-        [TestMethod]
-        public void CharTest() {
-            Assert.IsTrue(GetRandom.Char() is >= char.MinValue and < char.MaxValue);
+        [DynamicData(nameof(DateTimeValues), DynamicDataSourceType.Property)]
+        [TestMethod] public void DateTimeTest(DateTime min, DateTime max) => test(min, max);
+        private static IEnumerable<object[]> DateTimeValues => new List<object[]>()
+            {
+                 new object[]{ DateTime.Now.AddYears(-100), DateTime.Now.AddYears(100) },
+                 new object[]{ DateTime.Now.AddYears(100), DateTime.Now.AddYears(-100) },
+                 new object[]{ DateTime.MaxValue.AddYears(-100), DateTime.MaxValue },
+                 new object[]{ DateTime.MinValue, DateTime.MinValue.AddYears(100) }
+            };
+        [TestMethod] public void StringTest() {
+            var x = GetRandom.Value<string>();
+            var y = GetRandom.Value<string>();
+            isInstanceOfType(x, typeof(string));
+            isInstanceOfType(y, typeof(string));
+            areNotEqual(x, y);
         }
-        [TestMethod]
-        public void BoolTest() {
-            bool result = GetRandom.Bool();
-            Assert.IsTrue(result == true || result == false);
-        }
-        [TestMethod]
-        public void DateTimeTest() {
-            DateTime temp = GetRandom.DateTime();
-            Assert.IsTrue(temp >= DateTime.Parse("01.01.1900") && temp < DateTime.Parse("01.01.2100"));
-        }
-        [TestMethod]
-        public void StringTest() {
-            Assert.IsTrue(GetRandom.String().Length is >= 5 and < 30);
-        }
-        [TestMethod]
-        public void ValueTest() {
-            Assert.IsTrue(GetRandom.Value<bool>() is bool);
-            Assert.IsTrue(GetRandom.Value<bool?>() is bool);
-            Assert.IsTrue(GetRandom.Value<char>() is char);
-            Assert.IsTrue(GetRandom.Value<char?>() is char);
-            Assert.IsTrue(GetRandom.Value<double>() is double);
-            Assert.IsTrue(GetRandom.Value<double?>() is double);
-            Assert.IsTrue(GetRandom.Value<int>() is int);
-            Assert.IsTrue(GetRandom.Value<int?>() is int);
-            Assert.IsTrue(GetRandom.Value<string>() is string);
-            Assert.IsTrue(GetRandom.Value<string?>() is string);
-            Assert.IsTrue(GetRandom.Value<DateTime>() is DateTime);
-            Assert.IsTrue(GetRandom.Value<DateTime?>() is DateTime);
+        [TestMethod] public void ValueTest() {
+            var x = GetRandom.Value<PrisonerData>() as PrisonerData;
+            var y = GetRandom.Value<PrisonerData>() as PrisonerData;
+            areNotEqual(x.Id, y.Id, nameof(x.Id));
+            areNotEqual(x.FirstName, y.FirstName, nameof(x.FirstName));
+            areNotEqual(x.LastName, y.LastName, nameof(x.LastName));
+            areNotEqual(x.Offense, y.Offense, nameof(x.Offense));
+            areNotEqual(x.DoB, y.DoB, nameof(x.DoB));
+            areNotEqual(x.DateOfImprisonment, y.DateOfImprisonment, nameof(x.DateOfImprisonment));
+            areNotEqual(x.DateOfRelease, y.DateOfRelease, nameof(x.DateOfRelease));
         }
     }
 }
