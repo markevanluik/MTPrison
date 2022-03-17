@@ -1,4 +1,5 @@
 ﻿using MTPrison.Aids;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -15,6 +16,19 @@ namespace MTPrison.Tests {
             if (!canWrite(propertyInfo, isReadOnly)) return;
             propertyInfo.SetValue(obj, value);
             areEqual(value, propertyInfo.GetValue(obj));
+        }
+        protected void arePropertiesEqual(dynamic? expected, dynamic? actual, params string[]? excluded) {
+            bool isExcluded;
+            var tExpected = expected?.GetType();
+            foreach (var piExpected in tExpected?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
+                isExcluded = false;
+                foreach (var s in excluded ?? Array.Empty<string>())
+                    if (piExpected.Name == s) isExcluded = true;
+                if (isExcluded) continue;
+                var piActual = actual?.GetType().GetProperty(piExpected.Name);
+                if (piActual is null) continue;
+                areEqual(piExpected.GetValue(expected, null), piActual.GetValue(actual, null));
+            }
         }
         private static bool isNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool canWrite(PropertyInfo i, bool isReadOnly) {
@@ -33,21 +47,6 @@ namespace MTPrison.Tests {
                 if (n == memberName) isNext = true;
             }
             return string.Empty;
-        }
-        protected void arePropertiesEqual(dynamic expected, dynamic actual, params string[] exclude) {
-            var prop = expected.GetType().GetProperties();
-            foreach (PropertyInfo pi in prop) {
-                bool canCompare = true;
-                for (int i = 0; i < exclude.Length; i++) {
-                    if (pi.Name == exclude[i]) canCompare = false;
-                }
-                if (!canCompare) continue;
-                if (actual.GetType().GetProperty(pi.Name) == null) continue;
-
-                var exp = pi.GetValue(expected, null);
-                var act = actual.GetType().GetProperty(pi.Name)?.GetValue(actual, null);
-                areEqual(exp, act);
-            }
         }
     }
 }
