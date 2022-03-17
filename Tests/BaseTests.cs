@@ -34,20 +34,5 @@ namespace MTPrison.Tests {
             }
             return string.Empty;
         }
-        protected void arePropertiesEqual(dynamic expected, dynamic actual, params string[] exclude) {
-            var prop = expected.GetType().GetProperties();
-            foreach (PropertyInfo pi in prop) {
-                bool canCompare = true;
-                for (int i = 0; i < exclude.Length; i++) {
-                    if (pi.Name == exclude[i]) canCompare = false;
-                }
-                if (!canCompare) continue;
-                if (actual.GetType().GetProperty(pi.Name) == null) continue;
-
-                var exp = pi.GetValue(expected, null);
-                var act = actual.GetType().GetProperty(pi.Name)?.GetValue(actual, null);
-                areEqual(exp, act);
-            }
-        }
     }
 }
