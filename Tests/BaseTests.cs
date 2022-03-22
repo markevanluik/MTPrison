@@ -17,19 +17,6 @@ namespace MTPrison.Tests {
             propertyInfo.SetValue(obj, value);
             areEqual(value, propertyInfo.GetValue(obj));
         }
-        protected void arePropertiesEqual(dynamic? expected, dynamic? actual, params string[]? excluded) {
-            bool isExcluded;
-            var tExpected = expected?.GetType();
-            foreach (var piExpected in tExpected?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
-                isExcluded = false;
-                foreach (var s in excluded ?? Array.Empty<string>())
-                    if (piExpected.Name == s) isExcluded = true;
-                if (isExcluded) continue;
-                var piActual = actual?.GetType().GetProperty(piExpected.Name);
-                if (piActual is null) continue;
-                areEqual(piExpected.GetValue(expected, null), piActual.GetValue(actual, null));
-            }
-        }
         private static bool isNullOrDefault<T>(T? value) => value?.Equals(default(T)) ?? true;
         private static bool canWrite(PropertyInfo i, bool isReadOnly) {
             var canWrite = i?.CanWrite ?? false;
