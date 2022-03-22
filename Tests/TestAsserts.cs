@@ -22,7 +22,7 @@ namespace MTPrison.Tests {
                 if (isExcluded) continue;
                 var piActual = actual?.GetType().GetProperty(piExpected.Name);
                 if (piActual is null) continue;
-                areEqual(piExpected.GetValue(expected, null), piActual.GetValue(actual, null));
+                areEqual(piExpected.GetValue(expected), piActual.GetValue(actual));
             }
         }
     }
