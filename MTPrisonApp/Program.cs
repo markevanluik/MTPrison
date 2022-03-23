@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MTPrison.Domain.Party;
 using MTPrison.Infra;
+using MTPrison.Infra.Initializers;
 using MTPrison.Infra.Party;
 using MTPrisonApp.Data;
-using MTPrisonApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +25,9 @@ builder.Services.AddTransient<ICellsRepo, CellsRepo>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope()) {
-    var services = scope.ServiceProvider;
-
-    SeedData.Initialize(services);
+    var db = scope.ServiceProvider.GetService<PrisonDb>();
+    db?.Database?.EnsureCreated();
+    new PrisonerInitializer(db).Init();
 }
 
 // Configure the HTTP request pipeline.

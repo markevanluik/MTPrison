@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MTPrisonApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220309130130_initialize")]
-    partial class initialize
+    [Migration("20220323115227_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
