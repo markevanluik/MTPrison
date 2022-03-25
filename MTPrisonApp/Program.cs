@@ -21,6 +21,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
 builder.Services.AddTransient<ICellsRepo, CellsRepo>();
+builder.Services.AddTransient<ICountriesRepo, CountriesRepo>();
 
 var app = builder.Build();
 
