@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MTPrison.Data;
-using MTPrison.Data.Party;
+﻿using MTPrison.Data.Party;
 
 namespace MTPrison.Infra.Initializers {
-    public sealed class PrisonerInitializer : BaseInitializer<PrisonerData> {
-        public PrisonerInitializer(PrisonDb? db) : base(db, db?.Prisoners) { }
+    public sealed class PrisonersInitializer : BaseInitializer<PrisonerData> {
+        public PrisonersInitializer(PrisonDb? db) : base(db, db?.Prisoners) { }
         internal static PrisonerData createPrisoner(string firstname, string lastname, string offense, DateTime DoB, DateTime imprisonedDate, DateTime releaseDate) {
             var prisoner = new PrisonerData {
                 Id = firstname + lastname,
@@ -24,20 +22,5 @@ namespace MTPrison.Infra.Initializers {
             createPrisoner("Jane", "Doe", "Manslaughter", new DateTime(1989, 2, 12), new DateTime(1999, 1, 1), new DateTime(2002, 2, 2)),
             createPrisoner("Foo", "Bar", "GTA", new DateTime(1989, 2, 12), new DateTime(1999, 1, 1), new DateTime(2002, 2, 2))
         };
-    }
-    public abstract class BaseInitializer<TData> where TData : EntityData{
-        internal protected DbContext? db;
-        internal protected DbSet<TData>? set;
-        protected BaseInitializer(DbContext? c, DbSet<TData>? s) {
-            db = c;
-            set = s;
-        }
-        public void Init() {
-            if (set?.Any() ?? true) return;
-            set.AddRange(getEntities);
-            db?.SaveChanges();
-        }
-
-        protected abstract IEnumerable<TData> getEntities { get; }
     }
 }

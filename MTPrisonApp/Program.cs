@@ -27,7 +27,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope()) {
     var db = scope.ServiceProvider.GetService<PrisonDb>();
     db?.Database?.EnsureCreated();
-    new PrisonerInitializer(db).Init();
+    PrisonDbInitializer.Init(db);
 }
 
 // Configure the HTTP request pipeline.
