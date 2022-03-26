@@ -22,6 +22,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
 builder.Services.AddTransient<ICellsRepo, CellsRepo>();
 builder.Services.AddTransient<ICountriesRepo, CountriesRepo>();
+builder.Services.AddTransient<ICurrenciesRepo, CurrenciesRepo>();
 
 var app = builder.Build();
 
