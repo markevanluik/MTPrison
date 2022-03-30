@@ -5,8 +5,8 @@ using MTPrison.Facade;
 
 namespace MTPrison.Pages {
     public abstract class BasePage<TView, TEntity, TRepo> : PageModel
-    where TView : BaseView
-    where TEntity : Entity
+    where TView : UniqueView
+    where TEntity : UniqueEntity
     where TRepo : IBaseRepo<TEntity> {
         private readonly TRepo repo;
         protected abstract TView toView(TEntity? entity);
