@@ -2,7 +2,7 @@
 
 namespace MTPrison.Domain.Party {
     public interface ICellsRepo : IRepo<Cell> { }
-    public sealed class Cell : Entity<CellData>{
+    public sealed class Cell : UniqueEntity<CellData>{
         public Cell() : this(new CellData()) { }
         public Cell(CellData d) : base(d) { }
         public int CellNumber => getValue(Data?.CellNumber);

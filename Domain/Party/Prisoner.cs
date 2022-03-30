@@ -2,7 +2,7 @@
 
 namespace MTPrison.Domain.Party {
     public interface IPrisonersRepo : IRepo<Prisoner> { }
-    public sealed class Prisoner : Entity<PrisonerData> {
+    public sealed class Prisoner : UniqueEntity<PrisonerData> {
         public Prisoner() : this(new PrisonerData()) { }
         public Prisoner(PrisonerData d) : base(d) { }
         public string FirstName => getValue(Data?.FirstName);
