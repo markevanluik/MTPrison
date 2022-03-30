@@ -1,7 +1,7 @@
 ﻿using MTPrison.Data;
 
 namespace MTPrison.Domain {
-    public abstract class Entity {
+    public abstract class UniqueEntity {
         private const string defaultStr = "Undefined";
         private static DateTime defaultDate => DateTime.MinValue;
         private const int defaultInt = int.MinValue;
@@ -9,11 +9,11 @@ namespace MTPrison.Domain {
         protected static DateTime getValue(DateTime? v) => v ?? defaultDate;
         protected static int getValue(int? v) => v ?? defaultInt;
     }
-    public abstract class Entity<TData> : Entity where TData : EntityData, new() {
+    public abstract class UniqueEntity<TData> : UniqueEntity where TData : UniqueData, new() {
         private readonly TData data;
         public TData Data => data;
-        public Entity() : this(new TData()) { }
-        public Entity(TData d) => data = d;
+        public UniqueEntity() : this(new TData()) { }
+        public UniqueEntity(TData d) => data = d;
         public string Id => getValue(Data?.Id);
     }
 }
