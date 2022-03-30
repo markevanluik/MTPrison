@@ -1,6 +1,6 @@
 ﻿
 namespace MTPrison.Data.Party {
-    public sealed class CellData : EntityData {
+    public sealed class CellData : UniqueData {
         public int CellNumber { get; set; }
         public int Capacity { get; set; }
         public string? Type { get; set; }
