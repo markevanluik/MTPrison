@@ -9,14 +9,18 @@ namespace MTPrison.Infra.Initializers {
                 var l = new List<CurrencyData>();
                 foreach (CultureInfo cul in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
                     var c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
-                    var d = createCurrency(c.ISOCurrencySymbol, c.CurrencyEnglishName, c.CurrencyNativeName);
-                    if (l.FirstOrDefault(x => x.Id == d.Id) is not null) continue;
-                    l.Add(d);
+                    var id = c.ISOCurrencySymbol;
+                    if (!isCorrectIsoCode(id)) continue;
+                    if (l.FirstOrDefault(x => x.Id == id) is not null) continue;
+                    var data = createCurrency(id, c.CurrencyEnglishName, c.CurrencyNativeName);
+                    l.Add(data);
                 }
                 return l;
             }
         }
-        internal static CurrencyData createCurrency(string code, string name, string nativeName)
-            => new() { Id = code, Code = code, Name = name, NativeName = nativeName };
+        internal static CurrencyData createCurrency(string code, string name, string nativeName) => new() {
+            Id = code, Code = code, Name = name, NativeName = nativeName
+        };
     }
+
 }

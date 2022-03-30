@@ -2,7 +2,7 @@
 using MTPrison.Data;
 
 namespace MTPrison.Infra.Initializers {
-    public abstract class BaseInitializer<TData> where TData : EntityData{
+    public abstract class BaseInitializer<TData> where TData : UniqueData{
         internal protected DbContext? db;
         internal protected DbSet<TData>? set;
         protected BaseInitializer(DbContext? c, DbSet<TData>? s) {
@@ -16,6 +16,8 @@ namespace MTPrison.Infra.Initializers {
         }
 
         protected abstract IEnumerable<TData> getEntities { get; }
+
+        internal static bool isCorrectIsoCode(string id) => !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
     }
 
     public static class PrisonDbInitializer {
