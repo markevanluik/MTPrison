@@ -1,22 +1,9 @@
 ﻿@page
-@model MTPrison.Pages.CellsPage
+@model MTPrison.Pages.Party.CellsPage
 
 @{
     Layout = "_Index";
 }
-<!--
-<form>
-    <p>
-        Section:<select asp-for="CellSection" asp-items="Model.Sections">
-            <option value="">All</option>
-        </select>
-        Type:<select asp-for="CellType" asp-items="Model.Types">
-            <option value="">All</option>
-        </select>
-        <input type="submit" value="Filter" />
-    </p>
-</form>
--->
 
 <table class="table">
     <thead>
@@ -36,8 +23,8 @@
             <td> @Html.DisplayFor(modelItem => item.Type) </td>
             <td> @Html.DisplayFor(modelItem => item.Section) </td>
             <td>
-                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a> 
-                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a> 
+                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;
+                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id">Details</a>&nbsp;
                 <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
