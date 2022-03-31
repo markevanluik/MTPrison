@@ -3,7 +3,7 @@ using MTPrison.Data;
 using MTPrison.Domain;
 
 namespace MTPrison.Infra {
-    public abstract class BaseRepo<TDomain, TData> : IRepo<TDomain>
+    public abstract class BaseRepo<TDomain, TData> : IBaseRepo<TDomain>
         where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
 
         protected readonly DbContext? db;
