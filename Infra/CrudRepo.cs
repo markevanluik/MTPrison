@@ -22,9 +22,7 @@ namespace MTPrison.Infra {
                 _ = (set is null) ? null : await set.AddAsync(d);
                 _ = (db is null) ? 0 : await db.SaveChangesAsync();
                 return true;
-            } catch {
-                return false;
-            }
+            } catch { return false; }
         }
         public override async Task<bool> DeleteAsync(string id) {
             try {
@@ -33,9 +31,7 @@ namespace MTPrison.Infra {
                 _ = set?.Remove(d);
                 _ = (db is null) ? 0 : await db.SaveChangesAsync();
                 return true;
-            } catch {
-                return false;
-            }
+            } catch { return false; }
         }
         public override async Task<List<TDomain>> GetAsync() {
             try {
@@ -62,9 +58,7 @@ namespace MTPrison.Infra {
                 if (db is not null) db.Attach(d).State = EntityState.Modified;
                 _ = (db is null) ? 0 : await db.SaveChangesAsync();
                 return true;
-            } catch {
-                return false;
-            }
+            } catch { return false; }
         }
     }
 }

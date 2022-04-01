@@ -18,7 +18,6 @@ namespace MTPrison.Infra {
 
         // sql query
         protected internal override IQueryable<TData> createSql() => addSkipAndTake(base.createSql());
-
         internal IQueryable<TData> addSkipAndTake(IQueryable<TData> query) => query.Skip(skippedItemsCount).Take(PageSize);
         internal int totalPages => (int)Math.Ceiling(countPages);
         internal double countPages => itemsCount / (double)PageSize;
