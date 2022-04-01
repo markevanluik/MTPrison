@@ -10,57 +10,63 @@ namespace MTPrison.Pages {
         where TRepo : IBaseRepo<TEntity> {
         [BindProperty] public TView? Item { get; set; }
 
-        // uses protected repo
         protected readonly TRepo repo;
 
-        // has constructor from IBaseRepo<TEntity>
         public BasePage(TRepo r) => repo = r;
 
-        // get's Item.Id from Facade.UniqueView
         public string ItemId => Item?.Id ?? string.Empty;
 
-        // has list that \Index uses
         public IList<TView>? Items { get; set; }
 
-        // has 2 abstract methods
         protected abstract TView toView(TEntity? entity);
         protected abstract TEntity toObject(TView? item);
 
-        // returns a given type page, create
-        public IActionResult OnGetCreate() => Page();
 
+        public virtual IActionResult OnGetCreate(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) => Page();
 
-        public async Task<IActionResult> OnPostCreateAsync() {
+        public virtual async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             if (!ModelState.IsValid) return Page();
             var updated = await repo.AddAsync(toObject(Item));
             if (!updated) return NotFound();
-            return RedirectToPage("./Index", "Index");
+            return RedirectToPage("./Index", "Index", new {
+                pageIndex,
+                currentFilter,
+                sortOrder
+            });
         }
-        public async Task<IActionResult> OnGetEditAsync(string id) {
+        public virtual async Task<IActionResult> OnGetEditAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             Item = await getItem(id);
             return Item == null ? NotFound() : Page();
         }
-        public async Task<IActionResult> OnPostEditAsync() {
+        public virtual async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             if (!ModelState.IsValid) return Page();
             var obj = toObject(Item);
             var updated = await repo.UpdateAsync(obj);
             if (!updated) return NotFound();
-            return RedirectToPage("./Index", "Index");
+            return RedirectToPage("./Index", "Index", new {
+                pageIndex,
+                currentFilter,
+                sortOrder
+            });
         }
-        public async Task<IActionResult> OnGetDetailsAsync(string id) {
+        public virtual async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             Item = await getItem(id);
             return Item == null ? NotFound() : Page();
         }
-        public async Task<IActionResult> OnGetDeleteAsync(string id) {
+        public virtual async Task<IActionResult> OnGetDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             Item = await getItem(id);
             return Item == null ? NotFound() : Page();
         }
-        public async Task<IActionResult> OnPostDeleteAsync(string id) {
+        public virtual async Task<IActionResult> OnPostDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             if (id == null) return NotFound();
             await repo.DeleteAsync(id);
-            return RedirectToPage("./Index", "Index");
+            return RedirectToPage("./Index", "Index", new {
+                pageIndex,
+                currentFilter,
+                sortOrder
+            });
         }
-        public async virtual Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string currentFilter = null, string sortOrder = null) {
+        public virtual async Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
             var list = await repo.GetAsync();
             Items = new List<TView>();
             list.ForEach(obj => Items.Add(toView(obj)));
