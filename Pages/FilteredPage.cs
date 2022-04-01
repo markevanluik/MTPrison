@@ -6,8 +6,8 @@ namespace MTPrison.Pages {
         where TView : UniqueView
         where TEntity : UniqueEntity
         where TRepo : IFilteredRepo<TEntity> {
-        // constructor
+
         protected FilteredPage(TRepo r) : base(r) { }
-        //
+
     }
 }
