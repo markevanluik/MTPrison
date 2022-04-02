@@ -4,14 +4,45 @@
 @{
     Layout = "_Index";
 }
+<style>
+    a { text-decoration: none; }
+    </style>
 
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Items[0].CellNumber) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Capacity) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Type) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Section) </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.CellNumber))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.CellNumber)</a>
+            </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Capacity))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.Capacity)</a>
+            </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Type))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.Type)</a>
+            </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Section))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.Section)</a>
+            </th>
             <th></th>
         </tr>
     </thead>

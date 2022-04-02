@@ -4,13 +4,37 @@
 @{
     Layout = "_Index";
 }
+<style>
+    a { text-decoration: none; }
+    </style>
 
 <table class="table">
     <thead>
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Code) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].Name) </th>
-            <th> @Html.DisplayNameFor(model => model.Items[0].NativeName) </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Code))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.Code)</a>
+            </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Name))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.Name)</a>
+            </th>
+            <th>
+                <a asp-page="./Index"
+                   asp-page-handler="Index"
+                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.NativeName))"
+                   asp-route-pageIndex="@Model.PageIndex"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   style="color:darkslategrey">@nameof(Model.Item.NativeName)</a>
+            </th>
             <th></th>
         </tr>
     </thead>
