@@ -12,7 +12,7 @@ namespace MTPrison.Infra.Initializers {
         };
 
         protected override IEnumerable<CellData> getEntities => new[] {
-            createCell("52345", 1, 3, "Delcuxe", "C"),
+            createCell("52345", 1, 3, "Deluxe", "C"),
             createCell("62345", 21, 2, "Duo", "B"),
             createCell("72345", 31, 1, "Solitary", "A"),
             createCell("82345", 32, 1, "Solitary", "A"),
