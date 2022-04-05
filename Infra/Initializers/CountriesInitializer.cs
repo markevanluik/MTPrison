@@ -1,4 +1,6 @@
-﻿using MTPrison.Data.Party;
+﻿using MTPrison.Data;
+using MTPrison.Data.Party;
+using MTPrison.Domain;
 using System.Globalization;
 
 namespace MTPrison.Infra.Initializers {
@@ -9,14 +11,16 @@ namespace MTPrison.Infra.Initializers {
                 var l = new List<CountryData>();
                 foreach (CultureInfo cul in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
                     var c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
-                    var d = createCountry(c.ThreeLetterISORegionName, c.EnglishName, c.NativeName);
-                    if (l.FirstOrDefault(x => x.Id == d.Id) is not null) continue;
+                    var id = c.ThreeLetterISORegionName;
+                    if (!isCorrectIsoCode(id)) continue;
+                    if (l.FirstOrDefault(x => x.Id == id) is not null) continue;
+                    var d = createCountry(id, c.EnglishName, c.NativeName);
                     l.Add(d);
                 }
                 return l;
             }
         }
         internal static CountryData createCountry(string code, string name, string nativeName) 
-            => new () { Id = code, Code = code, Name = name, NativeName = nativeName };
+            => new () { Id = code ?? UniqueData.NewId, Code = code ?? UniqueEntity.DefaultStr, Name = name, NativeName = nativeName };
     }
 }
