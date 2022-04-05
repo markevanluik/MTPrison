@@ -2,10 +2,10 @@
 
 namespace MTPrison.Domain {
     public abstract class UniqueEntity {
-        private const string defaultStr = "Undefined";
+        public static string DefaultStr => "Undefined";
         private static DateTime defaultDate => DateTime.MinValue;
         private const int defaultInt = int.MinValue;
-        protected static string getValue(string? v) => v ?? defaultStr;
+        protected static string getValue(string? v) => v ?? DefaultStr;
         protected static DateTime getValue(DateTime? v) => v ?? defaultDate;
         protected static int getValue(int? v) => v ?? defaultInt;
     }
