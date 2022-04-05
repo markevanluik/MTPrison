@@ -68,6 +68,36 @@ namespace MTPrisonApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Countries",
+                schema: "Prison",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NativeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Currencies",
+                schema: "Prison",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NativeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Currencies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Prisoners",
                 schema: "Prison",
                 columns: table => new
@@ -250,6 +280,14 @@ namespace MTPrisonApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cells",
+                schema: "Prison");
+
+            migrationBuilder.DropTable(
+                name: "Countries",
+                schema: "Prison");
+
+            migrationBuilder.DropTable(
+                name: "Currencies",
                 schema: "Prison");
 
             migrationBuilder.DropTable(

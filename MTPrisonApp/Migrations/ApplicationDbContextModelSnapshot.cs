@@ -266,6 +266,26 @@ namespace MTPrisonApp.Migrations
                     b.ToTable("Countries", "Prison");
                 });
 
+            modelBuilder.Entity("MTPrison.Data.Party.CurrencyData", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NativeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Currencies", "Prison");
+                });
+
             modelBuilder.Entity("MTPrison.Data.Party.PrisonerData", b =>
                 {
                     b.Property<string>("Id")
