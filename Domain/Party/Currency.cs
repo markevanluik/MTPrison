@@ -2,7 +2,7 @@
 
 namespace MTPrison.Domain.Party {
     public interface ICurrenciesRepo : IRepo<Currency> { }
-    public sealed class Currency : CommonEntity<CurrencyData>{
+    public sealed class Currency : NamedEntity<CurrencyData>{
         public Currency() : this(new CurrencyData()) { }
         public Currency(CurrencyData d) : base(d) { }
     }

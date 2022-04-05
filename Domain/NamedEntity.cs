@@ -1,9 +1,9 @@
 ﻿using MTPrison.Data;
 
 namespace MTPrison.Domain {
-    public abstract class CommonEntity<TData> : UniqueEntity<TData> where TData : CommonData, new() {
-        public CommonEntity() : this(new TData()) { }
-        public CommonEntity(TData d) : base(d) { }
+    public abstract class NamedEntity<TData> : UniqueEntity<TData> where TData : NamedData, new() {
+        public NamedEntity() : this(new TData()) { }
+        public NamedEntity(TData d) : base(d) { }
 
         public string Code => getValue(Data?.Code);
         public string Name => getValue(Data?.Name);
