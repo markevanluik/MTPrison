@@ -20,9 +20,9 @@
         <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" />&nbsp;
         <a asp-page="Index"
            asp-page-handler="Index"
-           asp-route-sortOrder="@Model.CurrentSort"
-           asp-route-pageIndex="@Model.PageIndex"
-           asp-route-currentFilter="@Model.CurrentFilter"
+           asp-route-order="@Model.CurrentOrder"
+           asp-route-idx="@Model.PageIndex"
+           asp-route-filter="@Model.CurrentFilter"
         >Back to List</a>
     </form>
 </div>
