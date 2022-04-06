@@ -1,76 +1,11 @@
 ﻿@page
 @model MTPrison.Pages.Party.CellsPage
+@using MTPrison.Pages.Extensions
 
 @{
     Layout = "_Index";
 }
-<style>
-    a { text-decoration: none; }
-    </style>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.CellNumber))"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.CellNumber)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Capacity))"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.Capacity)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Type))"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.Type)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-sortOrder="@Model.SortOrder(nameof(Model.Item.Section))"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.Section)</a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Items) {
-        <tr>
-            <td> @Html.DisplayFor(modelItem => item.CellNumber) </td>
-            <td> @Html.DisplayFor(modelItem => item.Capacity) </td>
-            <td> @Html.DisplayFor(modelItem => item.Type) </td>
-            <td> @Html.DisplayFor(modelItem => item.Section) </td>
-            <td>
-                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Edit</a>&nbsp;
-                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Details</a>&nbsp;
-                <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.Id"
-                   asp-route-sortOrder="@Model.CurrentSort"
-                   asp-route-pageIndex="@Model.PageIndex"
-                   asp-route-currentFilter="@Model.CurrentFilter"
-                >Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    @Html.ShowTable(Model.Items)
+</body>
