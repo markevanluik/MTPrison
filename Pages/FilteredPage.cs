@@ -6,8 +6,10 @@ namespace MTPrison.Pages {
         where TView : UniqueView
         where TEntity : UniqueEntity
         where TRepo : IFilteredRepo<TEntity> {
-
         protected FilteredPage(TRepo r) : base(r) { }
-
+        public string? CurrentFilter {
+            get => repo.CurrentFilter;
+            set => repo.CurrentFilter = value;
+        }
     }
 }
