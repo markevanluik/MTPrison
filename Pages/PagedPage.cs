@@ -1,24 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
+using MTPrison.Aids;
 using MTPrison.Domain;
 using MTPrison.Facade;
 
 namespace MTPrison.Pages {
-    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>
+    public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>,
+        IPageModel, IIndexModel<TView>
         where TView : UniqueView
         where TEntity : UniqueEntity
         where TRepo : IPagedRepo<TEntity> {
-
         protected PagedPage(TRepo r) : base(r) { }
-        public string? SortOrder(string propertyName) => repo.SortOrder(propertyName);
-
-        public string? CurrentSort {
-            get => repo.CurrentSort;
-            set => repo.CurrentSort = value;
-        }
-        public string? CurrentFilter {
-            get => repo.CurrentFilter;
-            set => repo.CurrentFilter = value;
-        }
         public int PageIndex {
             get => repo.PageIndex;
             set => repo.PageIndex = value;
@@ -26,58 +18,28 @@ namespace MTPrison.Pages {
         public int TotalPages => repo.TotalPages;
         public bool HasNextPage => repo.HasNextPage;
         public bool HasPreviousPage => repo.HasPreviousPage;
+        protected override void setAttributes(int idx, string? filter, string? order) {
+            PageIndex = idx;
+            CurrentFilter = filter;
+            CurrentOrder = order;
+        }
+        protected override IActionResult redirectToIndex() => RedirectToPage("./Index", "Index", new {
+            pageIndex = PageIndex,
+            currentFilter = CurrentFilter,
+            sortOrder = CurrentOrder
+        });
 
-        public override IActionResult OnGetCreate(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return base.OnGetCreate(pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnPostCreateAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            ModelState.Remove(nameof(currentFilter));
-            ModelState.Remove(nameof(sortOrder));
-            return await base.OnPostCreateAsync(pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnGetEditAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return await base.OnGetEditAsync(id, pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnPostEditAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            ModelState.Remove(nameof(currentFilter));
-            ModelState.Remove(nameof(sortOrder));
-            return await base.OnPostEditAsync(pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnGetDetailsAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return await base.OnGetDetailsAsync(id, pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnGetDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return await base.OnGetDeleteAsync(id, pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnPostDeleteAsync(string id, int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return await base.OnPostDeleteAsync(id, pageIndex, currentFilter, sortOrder);
-        }
-        public override async Task<IActionResult> OnGetIndexAsync(int pageIndex = 0, string? currentFilter = null, string? sortOrder = null) {
-            PageIndex = pageIndex;
-            CurrentFilter = currentFilter;
-            CurrentSort = sortOrder;
-            return await base.OnGetIndexAsync(pageIndex, currentFilter, sortOrder);
-        }
+        public virtual string[] IndexColumns => Array.Empty<string>();
+        public object? GetValue(string name, TView v) =>
+            Safe.Run(() => {
+                var pi = v?.GetType()?.GetProperty(name);
+                return pi?.GetValue(v);
+            }, null);
+
+        public string? DisplayName(string name) => Safe.Run(() => {
+            var p = typeof(TView).GetProperty(name);
+            var a = p?.CustomAttributes?.FirstOrDefault(x => x.AttributeType == typeof(DisplayNameAttribute));
+            return a?.ConstructorArguments[0].Value?.ToString() ?? name;
+        }, name);
     }
 }
