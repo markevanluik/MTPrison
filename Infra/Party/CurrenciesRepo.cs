@@ -8,8 +8,7 @@ namespace MTPrison.Infra.Party {
 
         internal override IQueryable<CurrencyData> addFilter(IQueryable<CurrencyData> query) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return query;
-            return query.Where(
+            return string.IsNullOrWhiteSpace(y) ? query : query.Where(
                 x => x.Code.Contains(y)
                   || x.Name.Contains(y)
                   || x.NativeName.Contains(y));

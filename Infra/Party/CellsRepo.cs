@@ -8,8 +8,7 @@ namespace MTPrison.Infra.Party {
 
         internal override IQueryable<CellData> addFilter(IQueryable<CellData> query) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return query;
-            return query.Where(
+            return string.IsNullOrWhiteSpace(y) ? query : query.Where(
                 x => x.CellNumber.ToString().Contains(y)
                   || x.Capacity.ToString().Contains(y)
                   || x.Type.Contains(y)
