@@ -16,10 +16,10 @@ namespace MTPrison.Domain {
     }
     public interface ICrudRepo<T> : IBaseRepo<T> where T : UniqueEntity { }
     public interface IFilteredRepo<T> : ICrudRepo<T> where T : UniqueEntity {
-        public string CurrentFilter { get; set; }
+        public string? CurrentFilter { get; set; }
     }
     public interface IOrderedRepo<T> : IFilteredRepo<T> where T : UniqueEntity {
-        public string CurrentSort { get; set; }
+        public string? CurrentOrder { get; set; }
         public string SortOrder(string propertyName);
     }
     public interface IPagedRepo<T> : IOrderedRepo<T> where T : UniqueEntity {
