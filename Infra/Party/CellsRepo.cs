@@ -9,10 +9,13 @@ namespace MTPrison.Infra.Party {
         internal override IQueryable<CellData> addFilter(IQueryable<CellData> query) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? query : query.Where(
-                x => x.CellNumber.ToString().Contains(y)
-                  || x.Capacity.ToString().Contains(y)
-                  || x.Type.Contains(y)
-                  || x.Section.Contains(y));
+                x => contains(x.CellNumber.ToString(), y)
+                  || contains(x.Capacity.ToString(), y)
+                  || contains(x.Type, y)
+                  || contains(x.Section, y)
+                  || contains(x.Country, y)
+                  || contains(x.Inspection.ToString(), y)
+                  || contains(x.Gender.ToString(), y));
         }
     }
 }
