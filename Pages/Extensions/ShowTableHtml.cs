@@ -13,10 +13,11 @@ namespace MTPrison.Pages.Extensions {
         private static List<object> htmlStrings<TModel, TView>(IHtmlHelper<TModel> html, IList<TView>? items)
             where TModel : IIndexModel<TView> where TView : UniqueView {
             var m = html.ViewData.Model;
-            var l = new List<object>();
-            l.Add(new HtmlString("<table class=\"table\">"));
-            l.Add(new HtmlString("<thead>"));
-            l.Add(new HtmlString("<tr>"));
+            var l = new List<object> {
+                new HtmlString("<table class=\"table\">"),
+                new HtmlString("<thead>"),
+                new HtmlString("<tr>")
+            };
             foreach (var name in m.IndexColumns) {
                 l.Add(new HtmlString("<td>"));
                 l.Add(html.MyTabHdr(m.DisplayName(name)));
