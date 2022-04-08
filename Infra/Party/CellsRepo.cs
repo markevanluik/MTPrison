@@ -13,7 +13,7 @@ namespace MTPrison.Infra.Party {
                   || x.Capacity.ToString().Contains(y)
                   || x.Type.Contains(y)
                   || x.Section.Contains(y)
-                  || x.Country.Contains(y)
+                  || x.CountryId.Contains(y)
                   || x.Inspection.ToString().Contains(y));
                   //|| contains(x.Gender.ToString(), y));
         }

@@ -15,14 +15,14 @@ namespace MTPrison.Pages.Party {
             nameof(CellView.Capacity),
             nameof(CellView.Type),
             nameof(CellView.Section),
-            nameof(CellView.Country),
+            nameof(CellView.CountryId),
             nameof(CellView.Inspection),
             nameof(CellView.Gender)
         };
         public override object? GetValue(string name, CellView v) {
             var r = base.GetValue(name, v);
             return name switch {
-                nameof(v.Country) => name is nameof(v.Country) ? CountryName(r as string) : r,
+                nameof(v.CountryId) => name is nameof(v.CountryId) ? CountryName(r as string) : r,
                 nameof(v.Inspection) => name is nameof(v.Inspection) ? ShortDate((DateTime)r) : r,
                 _ => name is nameof(v.Gender) ? GenderDescription((IsoGender)r) : r
             };

@@ -9,7 +9,7 @@ namespace MTPrison.Domain.Party {
         public int Capacity => getValue(Data?.Capacity);
         public string? Type => getValue(Data?.Type);
         public string? Section => getValue(Data?.Section);
-        public string? Country => getValue(Data?.Country);
+        public string? Country => getValue(Data?.CountryId);
         public DateTime? Inspection => getValue(Data?.Inspection);
         public IsoGender? Gender => getValue(Data?.Gender);
 

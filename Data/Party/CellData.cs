@@ -5,7 +5,7 @@ namespace MTPrison.Data.Party {
         public int Capacity { get; set; }
         public string? Type { get; set; }
         public string? Section { get; set; }
-        public string? Country { get; set; }
+        public string? CountryId { get; set; }
         public DateTime? Inspection { get; set; }
         public IsoGender? Gender { get; set; }
 

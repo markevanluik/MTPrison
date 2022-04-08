@@ -9,7 +9,7 @@ namespace MTPrison.Infra.Initializers {
             Capacity = capacity,
             Type = type,
             Section = section,
-            Country = country,
+            CountryId = country,
             Inspection = date,
             Gender = gender
 

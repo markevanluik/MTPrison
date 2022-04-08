@@ -9,7 +9,7 @@ namespace MTPrison.Facade.Party {
         [DisplayName("Capacity")] [Range(1, 1000)] public int Capacity { get; set; }
         [DisplayName("Type")] [Required] public string? Type { get; set; }
         [DisplayName("Section")] [Required] public string? Section { get; set; }
-        [DisplayName("Country")] public string? Country { get; set; }
+        [DisplayName("Country")] public string? CountryId { get; set; }
         [DisplayName("Inspection"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:d}")] public DateTime Inspection { get; set; }
         [DisplayName("Gender")] public IsoGender? Gender { get; set; }
 
