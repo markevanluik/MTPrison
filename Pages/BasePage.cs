@@ -6,20 +6,19 @@ using MTPrison.Facade;
 
 namespace MTPrison.Pages {
     public abstract class BasePage<TView, TEntity, TRepo> : PageModel
-        where TView : UniqueView
+        where TView : UniqueView, new()
         where TEntity : UniqueEntity
         where TRepo : IBaseRepo<TEntity> {
-        [BindProperty] public TView? Item { get; set; }
+        [BindProperty] public TView Item { get; set; } // <- avoid = new TView() for now, it will give ugly default values in Id field when Create New in Browser
         protected readonly TRepo repo;
-        public BasePage(TRepo r) => repo = r;
+        // adding ? [BindProperty] public TView? Item  will fix this null, but then @Create/@Edit Id's gets possible nullable..
+        public BasePage(TRepo r) => repo = r;   
         protected abstract IActionResult redirectToIndex();
         public string ItemId => Item?.Id ?? string.Empty;
-        public IList<TView>? Items { get; set; }
-
+        public IList<TView>? Items { get; set; } = new List<TView>();
         protected abstract TView toView(TEntity? entity);
         protected abstract TEntity toObject(TView? item);
         protected abstract IActionResult getCreate();
-
         protected abstract void setAttributes(int idx, string? filter, string? order);
         protected virtual async Task<IActionResult> perform(Func<Task<IActionResult>> f, int idx, string? filter, string? order, bool removeKeys = false) {
             setAttributes(idx, filter, order);

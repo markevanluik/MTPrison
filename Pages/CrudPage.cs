@@ -4,11 +4,10 @@ using MTPrison.Facade;
 
 namespace MTPrison.Pages {
     public abstract class CrudPage<TView, TEntity, TRepo> : BasePage<TView, TEntity, TRepo>
-        where TView : UniqueView
+        where TView : UniqueView, new()
         where TEntity : UniqueEntity
         where TRepo : ICrudRepo<TEntity> {
         protected CrudPage(TRepo r) : base(r) { }
-
         protected override IActionResult getCreate() => Page();
         protected virtual async Task<IActionResult> getItemPage(string id) {
             Item = await getItem(id);

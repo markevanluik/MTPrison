@@ -7,7 +7,7 @@ using MTPrison.Facade;
 namespace MTPrison.Pages {
     public abstract class PagedPage<TView, TEntity, TRepo> : OrderedPage<TView, TEntity, TRepo>,
         IPageModel, IIndexModel<TView>
-        where TView : UniqueView
+        where TView : UniqueView, new()
         where TEntity : UniqueEntity
         where TRepo : IPagedRepo<TEntity> {
         protected PagedPage(TRepo r) : base(r) { }
@@ -30,7 +30,7 @@ namespace MTPrison.Pages {
         });
 
         public virtual string[] IndexColumns => Array.Empty<string>();
-        public object? GetValue(string name, TView v) =>
+        public virtual object? GetValue(string name, TView v) =>
             Safe.Run(() => {
                 var pi = v?.GetType()?.GetProperty(name);
                 return pi?.GetValue(v);
