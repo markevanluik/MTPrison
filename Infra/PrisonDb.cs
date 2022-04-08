@@ -5,9 +5,9 @@ namespace MTPrison.Infra {
     public sealed class PrisonDb : DbContext {
         public PrisonDb(DbContextOptions<PrisonDb> options) : base(options) { }
         public DbSet<PrisonerData>? Prisoners { get; set; }
-        public DbSet<CellData>? Cells { get; set; }
+        public DbSet<CellData>? Cells { get; internal set; }
         public DbSet<CountryData>? Countries { get; set; }
-        public DbSet<CurrencyData> Currencies { get; set; }
+        public DbSet<CurrencyData>? Currencies { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder b) {
             base.OnModelCreating(b);
