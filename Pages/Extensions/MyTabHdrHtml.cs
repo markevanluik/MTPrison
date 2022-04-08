@@ -9,6 +9,7 @@ namespace MTPrison.Pages.Extensions {
             return new HtmlContentBuilder(s);
         }
         private static List<object> htmlStrings(string name, IPageModel? m) {
+            name ??= "Unspeficided";
             var l = new List<object> {
                 new HtmlString($"<a style=\"text-decoration:none;\""),
                 new HtmlString($"href=\"/{pageName(m)}?"),
