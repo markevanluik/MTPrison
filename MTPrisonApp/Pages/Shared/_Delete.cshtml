@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("sPage", string.Empty) ?? "Unspecified";
+    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty)?? "Unspecified";
     ViewData["Title"] = "Delete";
     Layout = "_Layout";
     var itemId = Model?.ItemId?? string.Empty;
@@ -13,16 +13,16 @@
     <h4>@ViewData["SubTitle"]</h4>
     <hr />
 
-    @RenderBody()    
+    @RenderBody()
     
     <form method="post">
         <input type="hidden" asp-for-id="@itemId" />
         <input type="submit" value="Delete" handler="Delete" class="btn btn-danger" />&nbsp;
         <a asp-page="Index"
            asp-page-handler="Index"
-           asp-route-order="@Model.CurrentOrder"
-           asp-route-idx="@Model.PageIndex"
-           asp-route-filter="@Model.CurrentFilter"
+           asp-route-order="@Model?.CurrentOrder"
+           asp-route-idx="@Model?.PageIndex"
+           asp-route-filter="@Model?.CurrentFilter"
         >Back to List</a>
     </form>
 </div>
