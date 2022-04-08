@@ -8,9 +8,10 @@ namespace MTPrison.Infra {
     public abstract class OrderedRepo<TDomain, TData> : FilteredRepo<TDomain, TData>
         where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
         protected OrderedRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
+
         public string? CurrentOrder { get; set; }
         public static string DescendingString => "_desc";
-
+        // sql query
         protected internal override IQueryable<TData> createSql() => addSort(base.createSql());
         internal IQueryable<TData> addSort(IQueryable<TData> query) {
             if (string.IsNullOrWhiteSpace(CurrentOrder)) return query;

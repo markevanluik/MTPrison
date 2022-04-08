@@ -16,8 +16,7 @@ namespace MTPrison.Pages.Extensions {
             var l = new List<object> {
                 new HtmlString("<table class=\"table\">"),
                 new HtmlString("<thead>"),
-                new HtmlString("<tr>")
-            };
+                new HtmlString("<tr>")};
             foreach (var name in m.IndexColumns) {
                 l.Add(new HtmlString("<td>"));
                 l.Add(html.MyTabHdr(m.DisplayName(name)));

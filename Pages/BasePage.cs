@@ -11,8 +11,7 @@ namespace MTPrison.Pages {
         where TRepo : IBaseRepo<TEntity> {
         [BindProperty] public TView Item { get; set; } // <- avoid = new TView() for now, it will give ugly default values in Id field when Create New in Browser
         protected readonly TRepo repo;
-        // adding ? [BindProperty] public TView? Item  will fix this null, but then @Create/@Edit Id's gets possible nullable..
-        public BasePage(TRepo r) => repo = r;   
+        public BasePage(TRepo r) => repo = r;   // adding ? [BindProperty] public TView? Item  will fix it, but then @Create/@Edit Id's gets possible nullable..
         protected abstract IActionResult redirectToIndex();
         public string ItemId => Item?.Id ?? string.Empty;
         public IList<TView>? Items { get; set; } = new List<TView>();

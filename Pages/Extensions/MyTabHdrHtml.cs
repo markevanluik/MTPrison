@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace MTPrison.Pages.Extensions {
     public static class MyTabHdrHtml {
         public static IHtmlContent MyTabHdr<TModel>(
-            this IHtmlHelper<TModel> html, string name) {
+            this IHtmlHelper<TModel> html, string? name) {
             var s = htmlStrings(name, html.ViewData.Model as IPageModel);
             return new HtmlContentBuilder(s);
         }
-        private static List<object> htmlStrings(string name, IPageModel? m) {
+        private static List<object> htmlStrings(string? name, IPageModel? m) {
             name ??= "Unspeficided";
             var l = new List<object> {
                 new HtmlString($"<a style=\"text-decoration:none;\""),

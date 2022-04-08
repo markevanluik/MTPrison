@@ -6,7 +6,7 @@ namespace MTPrison.Infra {
     // TODO To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
     public abstract class CrudRepo<TDomain, TData> : BaseRepo<TDomain, TData>
-        where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
+     where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
         protected CrudRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
 
         protected abstract TDomain toDomain(TData d);
