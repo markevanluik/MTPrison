@@ -10,20 +10,20 @@ namespace MTPrison.Infra.Initializers {
                 var l = new List<CountryCurrencyData>();
                 foreach (CultureInfo cul in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
                     var c = new RegionInfo(new CultureInfo(cul.Name, false).LCID);
-                    var id = c.ThreeLetterISORegionName;
-                    if (!isCorrectIsoCode(id)) continue;
-                    if (l.FirstOrDefault(x => x.Id == id) is not null) continue;
-                    var data = createCountry(id, id, c.ISOCurrencySymbol, c.ISOCurrencySymbol, c.CurrencySymbol, c.CurrencyNativeName);
+                    var coId = c.ThreeLetterISORegionName;
+                    if (!isCorrectIsoCode(coId)) continue;
+                    if (l.FirstOrDefault(x => x.Id == coId) is not null) continue;
+                    var data = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.CurrencyNativeName);
                     l.Add(data);
                 }
                 return l;
             }
         }
-        internal static CountryCurrencyData createCountry(string id, string coId, string cuId, string code, string name, string nativeName) => new() {
-            Id = id,
+        internal static CountryCurrencyData createCountry(string coId, string cuId, string name, string nativeName) => new() {
+            Id = coId,
             CountryId = coId,
             CurrencyId = cuId,
-            Code = code,
+            Code = cuId,
             Name = name,
             NativeName = nativeName
         };
