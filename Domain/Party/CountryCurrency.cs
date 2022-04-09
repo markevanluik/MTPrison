@@ -10,8 +10,7 @@ namespace MTPrison.Domain.Party {
         public string CountryId => getValue(Data?.CountryId);
         public string CurrencyId => getValue(Data?.CurrencyId);
 
-        //Later
-        //public Country? Country => GetRepo.Instance<ICountriesRepo>()?.Get(CountryId);
-        //public Currency? Currency => GetRepo.Instance<ICurrenciesRepo>()?.Get(CurrencyId);
+        public Country? Country => GetRepo.Instance<ICountriesRepo>()?.Get(CountryId);
+        public Currency? Currency => GetRepo.Instance<ICurrenciesRepo>()?.Get(CurrencyId);
     }
 }
