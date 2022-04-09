@@ -1,8 +1,0 @@
-﻿@model MTPrison.Pages.Party.CountryCurrenciesPage
-@using MTPrison.Pages.Extensions
-
-@Html.MyDropDownFor(m => m.Item.CountryId, Model.Countries)
-@Html.MyDropDownFor(m => m.Item.CurrencyId, Model.Currencies)
-@Html.MyEditorFor(m => m.Item.Code)
-@Html.MyEditorFor(m => m.Item.Name)
-@Html.MyEditorFor(m => m.Item.NativeName)

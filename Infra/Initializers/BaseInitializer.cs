@@ -26,8 +26,6 @@ namespace MTPrison.Infra.Initializers {
             new CellsInitializer(db).Init();
             new CountriesInitializer(db).Init();
             new CurrenciesInitializer(db).Init();
-            new PrisonerCellsInitializer(db).Init();
-            new CountryCurrenciesInitializer(db).Init();
 
         }
     }

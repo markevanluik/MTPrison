@@ -5,6 +5,7 @@ namespace MTPrison.Infra.Party {
     public class CellsRepo : Repo<Cell, CellData>, ICellsRepo {
         public CellsRepo(PrisonDb? db) : base(db, db?.Cells) { }
         protected override Cell toDomain(CellData d) => new(d);
+
         internal override IQueryable<CellData> addFilter(IQueryable<CellData> query) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? query : query.Where(
@@ -14,6 +15,7 @@ namespace MTPrison.Infra.Party {
                   || x.Section.Contains(y)
                   || x.CountryId.Contains(y)
                   || x.Inspection.ToString().Contains(y));
+                  //|| contains(x.Gender.ToString(), y));
         }
     }
 }
