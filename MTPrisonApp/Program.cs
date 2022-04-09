@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MTPrison.Domain;
 using MTPrison.Domain.Party;
 using MTPrison.Infra;
 using MTPrison.Infra.Initializers;
@@ -29,6 +30,7 @@ builder.Services.AddTransient<ICountryCurrenciesRepo, CountryCurrenciesRepo>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope()) {
+    GetRepo.SetService(app.Services);
     var db = scope.ServiceProvider.GetService<PrisonDb>();
     db?.Database?.EnsureCreated();
     PrisonDbInitializer.Init(db);
