@@ -23,6 +23,8 @@ builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
 builder.Services.AddTransient<ICellsRepo, CellsRepo>();
 builder.Services.AddTransient<ICountriesRepo, CountriesRepo>();
 builder.Services.AddTransient<ICurrenciesRepo, CurrenciesRepo>();
+builder.Services.AddTransient<IPrisonerCellsRepo, PrisonerCellsRepo>();
+builder.Services.AddTransient<ICountryCurrenciesRepo, CountryCurrenciesRepo>();
 
 var app = builder.Build();
 
