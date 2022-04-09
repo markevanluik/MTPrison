@@ -1,0 +1,8 @@
+﻿@model MTPrison.Pages.Party.PrisonerCellsPage
+@using MTPrison.Pages.Extensions
+
+@Html.MyViewerFor(m => m.Item.PrisonerId, Model.PrisonerName(Model.Item.PrisonerId))
+@Html.MyViewerFor(m => m.Item.CellId, Model.CellName(Model.Item.CellId))
+@Html.MyViewerFor(m => m.Item.Code)
+@Html.MyViewerFor(m => m.Item.Name)
+@Html.MyViewerFor(m => m.Item.NativeName)
