@@ -13,18 +13,20 @@ namespace MTPrison.Infra.Initializers {
                     var coId = c.ThreeLetterISORegionName;
                     if (!isCorrectIsoCode(coId)) continue;
                     if (l.FirstOrDefault(x => x.Id == coId) is not null) continue;
-                    var data = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.CurrencyNativeName);
+                    var data = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
                     l.Add(data);
                 }
                 return l;
             }
         }
-        internal static CountryCurrencyData createCountry(string coId, string cuId, string name, string nativeName) => new() {
+        internal static CountryCurrencyData createCountry(string coId, string cuId, string symbol, string coName, string cuName, string nativeName) => new() {
             Id = coId,
             CountryId = coId,
             CurrencyId = cuId,
             Code = cuId,
-            Name = name,
+            Name = symbol,
+            CountryName = coName,
+            CurrencyName = cuName,
             NativeName = nativeName
         };
     }

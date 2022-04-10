@@ -16,8 +16,8 @@ namespace MTPrison.Pages.Party {
         public override string[] IndexColumns { get; } = new[] {
             nameof(CountryCurrencyView.Code),
             nameof(CountryCurrencyView.Name),
-            nameof(CountryCurrencyView.CountryId),
-            nameof(CountryCurrencyView.CurrencyId),
+            nameof(CountryCurrencyView.CountryName),
+            nameof(CountryCurrencyView.CurrencyName),
             nameof(CountryCurrencyView.NativeName)
         };
         public IEnumerable<SelectListItem> Countries
