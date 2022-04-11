@@ -235,6 +235,15 @@ namespace MTPrisonApp.Migrations
                     b.Property<int>("CellNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("CountryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Inspection")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
 

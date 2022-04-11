@@ -1,85 +1,11 @@
 ﻿@page
 @model MTPrison.Pages.Party.PrisonersPage
+@using MTPrison.Pages.Extensions
 
 @{
     Layout = "_Index";
 }
-<style>
-    a { text-decoration: none; }
-    </style>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-order="@Model.SortOrder(nameof(Model.Item.FullName))"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.FullName)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-order="@Model.SortOrder(nameof(Model.Item.DoB))"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.DoB)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-order="@Model.SortOrder(nameof(Model.Item.Offense))"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.Offense)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-order="@Model.SortOrder(nameof(Model.Item.DateOfRelease))"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.DateOfRelease)</a>
-            </th>
-            <th>
-                <a asp-page="./Index"
-                   asp-page-handler="Index"
-                   asp-route-order="@Model.SortOrder(nameof(Model.Item.DateOfImprisonment))"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                   style="color:darkslategrey">@nameof(Model.Item.DateOfImprisonment)</a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Items) {
-        <tr>
-            <td> @Html.DisplayFor(modelItem => item.FullName) </td>
-            <td> @Html.DisplayFor(modelItem => item.DoB) </td>
-            <td> @Html.DisplayFor(modelItem => item.Offense) </td>
-            <td> @Html.DisplayFor(modelItem => item.DateOfRelease) </td>
-            <td> @Html.DisplayFor(modelItem => item.DateOfImprisonment) </td>
-            <td>
-                <a asp-page="./Edit" asp-page-handler="Edit" asp-route-id="@item.Id"
-                   asp-route-order="@Model.CurrentOrder"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                >Edit</a>&nbsp;
-                <a asp-page="./Details" asp-page-handler="Details" asp-route-id="@item.Id"
-                   asp-route-order="@Model.CurrentOrder"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                >Details</a>&nbsp;
-                <a asp-page="./Delete" asp-page-handler="Delete" asp-route-id="@item.Id"
-                   asp-route-order="@Model.CurrentOrder"
-                   asp-route-idx="@Model.PageIndex"
-                   asp-route-filter="@Model.CurrentFilter"
-                >Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<body>
+    @Html.ShowTable(Model.Items)
+</body>

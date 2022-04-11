@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MTPrisonApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220329145822_initial")]
+    [Migration("20220409102145_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,6 +236,15 @@ namespace MTPrisonApp.Migrations
 
                     b.Property<int>("CellNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("CountryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Inspection")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
