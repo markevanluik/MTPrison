@@ -11,5 +11,6 @@ namespace MTPrison.Pages.Party {
             nameof(CurrencyView.Name),
             nameof(CurrencyView.NativeName)
         };
+        public List<Country?> Countries => toObject(Item).Countries;
     }
 }

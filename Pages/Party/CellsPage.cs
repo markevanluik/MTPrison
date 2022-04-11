@@ -19,24 +19,23 @@ namespace MTPrison.Pages.Party {
             nameof(CellView.Inspection),
             nameof(CellView.Gender)
         };
-        public override object? GetValue(string name, CellView v) {
-            var r = base.GetValue(name, v);
-            return name switch {
-                nameof(v.CountryId) => name is nameof(v.CountryId) ? CountryName(r as string) : r,
-                nameof(v.Inspection) => name is nameof(v.Inspection) ? ShortDate((DateTime)r) : r,
-                _ => name is nameof(v.Gender) ? GenderDescription((IsoGender)r) : r
-            };
-        }
-
         // avoid static at the moment
+        public IEnumerable<SelectListItem> Countries
+            => countries.GetAll<string>()?.Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
+        public IEnumerable<SelectListItem> Genders => Enum.GetValues<IsoGender>()
+            .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
+
         public string CountryName(string? countryId = null)
             => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
         public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
         public string GenderDescription(IsoGender? g) => (g ?? IsoGender.NotApplicable).Description();
 
-        public IEnumerable<SelectListItem> Countries
-            => countries.GetAll<string>()?.Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
-        public IEnumerable<SelectListItem> Genders => Enum.GetValues<IsoGender>()
-            .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
+        public override object? GetValue(string name, CellView v) {
+            var r = base.GetValue(name, v);
+            return name == nameof(v.CountryId) ? CountryName(r as string)
+                 : name == nameof(v.Inspection) ? ShortDate((DateTime)r)
+                 : name == nameof(v.Gender) ? GenderDescription((IsoGender)r)
+                 : r;
+        }
     }
 }

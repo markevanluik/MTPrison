@@ -1,0 +1,11 @@
+﻿@page
+@model MTPrison.Pages.Party.PrisonerCellsPage
+@using MTPrison.Pages.Extensions
+
+@{
+    Layout = "_Create";
+}
+<body>
+    @Html.MyEditorFor(m => m.Item.Id)
+    <partial name="_EditPrisonerCell"/>
+</body>
