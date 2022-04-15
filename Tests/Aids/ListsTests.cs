@@ -1,39 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
+using MTPrison.Data.Party;
 using System.Collections.Generic;
 
 namespace MTPrison.Tests.Aids {
     [TestClass] public class ListsTests : IsTypeTested {
-        private List<dynamic>? list;
-
-        [TestInitialize] public void Init() {
-            list = new List<dynamic>();
-        }
-
-        [TestMethod] public void GetFirstTest() {
-            areEqual(null, Lists.GetFirst(list));
-
-            list?.Add(1);
-            areEqual(1, list.GetFirst());
-        }
+        private List<int> list = new();
+        [TestInitialize] public void Init() => list = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        [TestMethod] public void GetFirstTest() => areEqual(1, Lists.GetFirst(list));
         [TestMethod] public void RemoveTest() {
-            areEqual(0, list.Remove(x => x == 1));
-
-            list?.Add(1); list?.Add(1); list?.Add(3);
-            areEqual(2, list.Remove(x => x == 1));
-            areEqual(3, list.GetFirst());
+            var cnt = Lists.Remove(list, x => x < 4);
+            areEqual(3, cnt);
+            areEqual(4, Lists.GetFirst(list));
         }
         [TestMethod] public void IsEmptyTest() {
-            isTrue(list.IsEmpty());
-
-            list?.Add(1);
-            isFalse(list.IsEmpty());
+            List<CountryData>? countries = null;
+            isFalse(Lists.IsEmpty(list));
+            isTrue(Lists.IsEmpty(countries));
+            isTrue(Lists.IsEmpty(new List<string>()));
         }
         [TestMethod] public void ContainsItemTest() {
-            isFalse(list.ContainsItem(x => x == 1));
-
-            list?.Add(2); list?.Add(3); list?.Add(5);
-            isTrue(list.ContainsItem(x => x == 5));
+            isTrue(Lists.ContainsItem(list, x => x < 2));
+            isFalse(Lists.ContainsItem(list, x => x > 6));
         }
     }
 }

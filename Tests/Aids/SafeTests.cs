@@ -1,18 +1,25 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
+using System;
 
 namespace MTPrison.Tests.Aids {
     [TestClass] public class SafeTests : IsTypeTested {
-        [TestMethod] public void RunTest() {
-            Safe.Run(() => ThrowException());
-            isTrue(Safe.Run(() => ThrowException("message")) == null);
-            isTrue(Safe.Run(() => ThrowException("message"), string.Empty) == string.Empty);
+        private int expected;
+        private int def;
+        [TestInitialize] public void Init() {
+            expected = GetRandom.Int32();
+            def = GetRandom.Int32();
         }
-        private static void ThrowException() {
-            throw new System.Exception();
+
+        [TestMethod] public void RunFuncTest() {
+            var actual = Safe.Run(() => expected, def);
+            areEqual(expected, actual);
         }
-        private static string ThrowException(string s) {
-            throw new System.Exception(s);
+        [TestMethod] public void RunFuncExceptionTest() {
+            var actual = Safe.Run(() => throw new Exception(), def);
+            areEqual(def, actual);
         }
+        [TestMethod] public void RunActionTest() => Safe.Run(() => throw new Exception());
+        [TestMethod] public void RunTest() { }
     }
 }

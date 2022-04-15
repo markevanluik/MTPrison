@@ -5,10 +5,9 @@ using System.Reflection;
 namespace MTPrison.Tests.Aids {
     [TestClass] public class MethodsTests : IsTypeTested {
         [TestMethod] public void HasAttributeTest() {
-            MethodInfo? info = typeof(MethodsTests).Method("JustAMethod");
-            isTrue(info.HasAttribute<TestMethodAttribute>());
+            var mi = GetType().GetMethod(nameof(HasAttributeTest));
+            isTrue(mi.HasAttribute<TestMethodAttribute>());
+            isFalse(mi.HasAttribute<TestInitializeAttribute>());
         }
-        [TestMethod] public static bool JustAMethod() => true;
-
     }
 }

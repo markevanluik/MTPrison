@@ -1,45 +1,48 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using MTPrison.Aids;
+using MTPrison.Data.Party;
+using System.Linq;
 
 namespace MTPrison.Tests.Aids {
     [TestClass] public class GetAssemblyTests : IsTypeTested {
+        private string? name;
         private Assembly? assembly;
-        private List<Type>? assemblyList;
-        private Type? type;
-        [TestMethod] public void ByNameTest() {
-            assembly = GetAssembly.ByName("No.Business.Here");
-            Assert.IsNull(assembly);
+        private string[] typeNames = Array.Empty<string>();
 
-            assembly = GetAssembly.ByName("MTPrison.Aids");
-            isNotNull(assembly);
+        [TestInitialize] public void Init() {
+            name = $"{nameof(MTPrison)}.{nameof(MTPrison.Aids)}";
+            assembly = GetAssembly.ByName(name);
+            typeNames = new string[] {nameof(Chars), nameof(Enums), nameof(Lists),
+            nameof(Strings), nameof(Safe), nameof(Types)};
         }
-        [TestMethod] public void OfTypeTest() {
-            assembly = GetAssembly.OfType(this);
+        [TestCleanup] public void Clean() {
             isNotNull(assembly);
-            areEqual("MTPrison.Tests", assembly?.FullName?.Split(',')[0]);
+            areEqual(name, assembly.GetName().Name);
+        }
+
+        [TestMethod] public void ByNameTest() { }
+
+        [TestMethod] public void OfTypeTest() {
+            name = $"{nameof(MTPrison)}.{nameof(MTPrison.Data)}";
+            var obj = new CountryData();
+            assembly = GetAssembly.OfType(obj);
         }
         [TestMethod] public void TypesTest() {
-            assembly = GetAssembly.ByName("No.Business.Here");
-            assemblyList = GetAssembly.Types(assembly);
-            Assert.IsNull(assemblyList);
-
-            assembly = GetAssembly.ByName("MTPrison.Aids");
-            assemblyList = GetAssembly.Types(assembly);
-            isNotNull(assemblyList);
+            var list = GetAssembly.Types(assembly);
+            isTrue((typeNames.Length) <= (list?.Count ?? -1));
+            foreach (var n in typeNames) {
+                areEqual(list?.FirstOrDefault(x => x.Name == n)?.Name, n);
+                isNull(list?.FirstOrDefault(x => x.Name == GetRandom.String()));
+            }
         }
         [TestMethod] public void TypeTest() {
-            assembly = GetAssembly.ByName("MTPrison.Aids");
-            type = assembly?.Type("NotAType");
-            Assert.IsNull(type);
-
-            assembly = GetAssembly.ByName("MTPrison.Aids");
-            type = assembly?.Type("GetAssembly");
-            isNotNull(type);
-            areEqual(type?.FullName, "MTPrison.Aids.GetAssembly");
-
+            var n = randomTypeName;
+            var obj = GetAssembly.Type(assembly, n);
+            isNotNull(obj);
+            areEqual(n, obj.Name);
         }
+        private string randomTypeName => typeNames[GetRandom.Int32(0, typeNames.Length)];
     }
 }

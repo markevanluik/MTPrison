@@ -1,45 +1,77 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
+using MTPrison.Data;
+using MTPrison.Data.Party;
 using System;
+using System.Linq;
 
 namespace MTPrison.Tests.Aids {
     [TestClass] public class TypesTests : IsTypeTested {
+        private Type type = typeof(object);
+        private string? nameSpace;
+        private string? fullName;
+        private string? name;
+        private string? randomStr;
+        [TestInitialize] public void Init() {
+            type = typeof(CountryData);
+            nameSpace = type.Namespace;
+            fullName = type.FullName;
+            name = type.Name;
+            randomStr = GetRandom.String();
+        }
         [TestMethod] public void BelongsToTest() {
-            isFalse(GetType().BelongsTo("Not.A.Namespace"));
-            isTrue(GetType().BelongsTo("MTPrison.Tests"));
+            isTrue(type.BelongsTo(nameSpace));
+            isFalse(type.BelongsTo(randomStr));
         }
         [TestMethod] public void NameIsTest() {
-            isFalse(GetType().NameIs("Not.A.Type.Fullname"));
-            isTrue(GetType().NameIs("MTPrison.Tests.Aids.TypesTests"));
+            isTrue(type.NameIs(fullName));
+            isFalse(type.NameIs(randomStr));
         }
         [TestMethod] public void NameEndsTest() {
-            isFalse(GetType().NameEnds("Not.A.Type.NameEnd"));
-            isTrue(GetType().NameEnds(".TypesTests"));
+            isTrue(type.NameEnds(name));
+            isFalse(type.NameEnds(randomStr));
         }
         [TestMethod] public void NameStartsTest() {
-            isFalse(GetType().NameStarts("Not.A.Type.NameStart"));
-            isTrue(GetType().NameStarts("MTPrison."));
+            isTrue(type.NameStarts(nameSpace));
+            isFalse(type.NameStarts(randomStr));
         }
         [TestMethod] public void IsRealTypeTest() {
-            isTrue(GetType().IsRealType());
+            isTrue(type.IsRealType());
+            isTrue(typeof(NamedData).IsRealType());
+            var a = GetAssembly.OfType(this);
+            var allTypes = (a?.GetTypes() ?? Array.Empty<Type>()).ToList();
+            var realTypes = allTypes?.FindAll(t => t.IsRealType());
+            isNotNull(realTypes);
+            isTrue(realTypes.Count < (allTypes?.Count ?? 0));
+            isTrue(realTypes.Count > 0);
         }
         [TestMethod] public void GetNameTest() {
-            areEqual("TypesTests", GetType().GetName());
+            areEqual(name, type.GetName());
+            areNotEqual(randomStr, type.GetName());
         }
+        // if adding/removing properties from NamedData, this needs changing
         [TestMethod] public void DeclaredMembersTest() {
-            isTrue(Types.DeclaredMembers(null) != null);
-            isTrue(GetType().DeclaredMembers()?.Count > 0);
+            areEqual(1, type?.DeclaredMembers()?.Count);
+            var l = typeof(NamedData)?.DeclaredMembers();
+            areEqual(9, l?.Count);
         }
         [TestMethod] public void IsInheritedTest() {
-            isFalse(Types.IsInherited(null, GetType()));
+            Type? nullType = null;
+            isTrue(type.IsInherited(typeof(object)));
+            isTrue(type.IsInherited(typeof(NamedData)));
+            isFalse(type.IsInherited(nullType));
+            isFalse(type.IsInherited(typeof(CurrencyData)));
         }
         [TestMethod] public void HasAttributeTest() {
+            isFalse(type.HasAttribute<TestClassAttribute>());
             isTrue(GetType().HasAttribute<TestClassAttribute>());
-            isFalse(GetType().HasAttribute<SerializableAttribute>());
+            isFalse(type.HasAttribute<TestMethodAttribute>());
+            isFalse(GetType().HasAttribute<TestMethodAttribute>());
         }
         [TestMethod] public void MethodTest() {
-            isTrue(GetType().Method("NotAMethod") == null);
-            isTrue(GetType().Method("MethodTest")?.Name.Equals("MethodTest"));
+            var n = nameof(MethodTest);
+            var m = GetType().Method(n);
+            areEqual(n, m?.Name);
         }
     }
 }
