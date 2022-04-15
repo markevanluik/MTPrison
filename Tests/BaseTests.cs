@@ -22,7 +22,7 @@ namespace MTPrison.Tests {
             areEqual(canWrite, !isReadOnly);
             return canWrite;
         }
-        private static T random<T>() => GetRandom.Value<T>();
+        private static T? random<T>() => GetRandom.Value<T>();
         private static string getCallingMember(string memberName) {
             var s = new StackTrace();
             var isNext = false;

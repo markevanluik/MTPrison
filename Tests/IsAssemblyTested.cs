@@ -17,6 +17,7 @@ namespace MTPrison.Tests {
             testingAssembly = getAssembly(this);
             testingTypes = getTypes(testingAssembly);
             namespaceOfTest = getNamespace(this);
+            //removeNotInNamespace();
             namespaceOfType = removeTestsTagFrom(namespaceOfTest);
             assemblyToBeTested = getAssembly(namespaceOfType);
             typesToBeTested = getTypes(assemblyToBeTested);
@@ -25,6 +26,8 @@ namespace MTPrison.Tests {
             if (allAreTested()) return;
             reportNotAllIsTested();
         }
+        //Aids CharTest says not all tested with this at the moment
+        //private void removeNotInNamespace() => testingTypes.Remove(x => !Types.NameStarts(x, namespaceOfType));
         private static string? removeTestsTagFrom(string? s) => s?.Remove("Tests.");
         private static string? getNamespace(object o) => GetNamespace.OfType(o);
         private static Assembly? getAssembly(object o) => GetAssembly.OfType(o);
