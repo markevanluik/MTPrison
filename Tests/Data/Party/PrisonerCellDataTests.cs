@@ -1,0 +1,10 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MTPrison.Data.Party;
+
+namespace MTPrison.Tests.Data.Party {
+    [TestClass]
+    public class PrisonerCellDataTests : SealedClassTests<PrisonerCellData> {
+        [TestMethod] public void PrisonerIdTest() => isProperty<string>();
+        [TestMethod] public void CellIdTest() => isProperty<string>();
+    }
+}
