@@ -4,9 +4,7 @@ namespace MTPrison.Aids {
     public static class GetRandom {
         private static void minFirst<T>(ref T min, ref T max) where T : IComparable<T> {
             if (min.CompareTo(max) < 0) return;
-            var v = min;
-            min = max;
-            max = v;
+            (max, min) = (min, max);
         }
         public static int Int32(int? min = null, int? max = null) {
             var minVal = min ?? -1000;
@@ -74,7 +72,7 @@ namespace MTPrison.Aids {
             return null;
         }
 
-        private static T tryGetObject<T>() {
+        private static T? tryGetObject<T>() {
             var o = tryCreate<T>();
             foreach (var pi in o?.GetType()?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
                 if (!pi.CanWrite) continue;
@@ -83,10 +81,8 @@ namespace MTPrison.Aids {
             }
             return o;
         }
-
-        private static T tryCreate<T>() {
+        private static T? tryCreate<T>() => Safe.Run(() => {
             var c = typeof(T).GetConstructor(Array.Empty<Type>());
-            return (T) c?.Invoke(null);
-        }
+            return (c?.Invoke(null) is T t) ? t : default; });
     }
 }
