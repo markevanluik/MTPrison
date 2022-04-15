@@ -12,6 +12,8 @@ namespace MTPrison.Infra.Party {
                 x => x.Id.Contains(y)
                   || x.CountryName.Contains(y)
                   || x.CurrencyName.Contains(y)
+                  || x.CountryId.Contains(y)
+                  || x.CurrencyId.Contains(y)
                   || x.Code.Contains(y)
                   || x.Name.Contains(y)
                   || x.NativeName.Contains(y));

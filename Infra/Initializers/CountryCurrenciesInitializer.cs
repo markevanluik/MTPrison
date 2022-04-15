@@ -1,4 +1,5 @@
-﻿using MTPrison.Data.Party;
+﻿using MTPrison.Data;
+using MTPrison.Data.Party;
 using System.Globalization;
 
 namespace MTPrison.Infra.Initializers {
@@ -20,7 +21,7 @@ namespace MTPrison.Infra.Initializers {
             }
         }
         internal static CountryCurrencyData createCountry(string coId, string cuId, string symbol, string coName, string cuName, string nativeName) => new() {
-            Id = coId,
+            Id = UniqueData.NewId,
             CountryId = coId,
             CurrencyId = cuId,
             Code = cuId,
