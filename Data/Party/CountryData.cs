@@ -1,4 +1,4 @@
 ﻿
 namespace MTPrison.Data.Party {
-    public class CountryData : NamedData { }
+    public sealed class CountryData : NamedData { }
 }

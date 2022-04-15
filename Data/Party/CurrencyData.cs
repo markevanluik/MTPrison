@@ -1,4 +1,4 @@
 ﻿
 namespace MTPrison.Data.Party {
-    public class CurrencyData : NamedData { }
+    public sealed class CurrencyData : NamedData { }
 }
