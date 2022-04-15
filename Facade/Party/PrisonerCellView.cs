@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MTPrison.Facade.Party {
     public class PrisonerCellView : NamedView {
         [Required, DisplayName("Prisoner")] public string PrisonerId { get; set; } = string.Empty;
-        [Required, DisplayName("Cell")] public string CellId { get; set; } = string.Empty;
+        [Required, DisplayName("Cell type")] public string CellId { get; set; } = string.Empty;
 
         [DisplayName("Interests")] public new string? Code { get; set; }
         [DisplayName("Put a name")] public new string? Name { get; set; }
