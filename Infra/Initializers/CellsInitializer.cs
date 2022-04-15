@@ -3,7 +3,7 @@
 namespace MTPrison.Infra.Initializers {
     public sealed class CellsInitializer : BaseInitializer<CellData> {
         public CellsInitializer(PrisonDb? db) : base(db, db?.Cells) { }
-        internal static CellData createCell(string id, int cellNumber, int capacity, string type, string section, string country, DateTime date, IsoGender gender) => new() {
+        internal static CellData createCell(string id, int cellNumber, int capacity, CellType type, string section, string country, DateTime date) => new() {
             Id = id,
             CellNumber = cellNumber,
             Capacity = capacity,
@@ -11,15 +11,14 @@ namespace MTPrison.Infra.Initializers {
             Section = section,
             CountryId = country,
             Inspection = date,
-            Gender = gender
 
         };
 
         protected override IEnumerable<CellData> getEntities => new[] {
-            createCell("52345", 1, 3, "Deluxe", "C", "USA", new DateTime(2022, 09, 10), IsoGender.Female),
-            createCell("62345", 21, 2, "Duo", "B", "GBR", new DateTime(2023, 08, 07), IsoGender.Male),
-            createCell("72345", 31, 1, "Solitary", "A", "FRA", new DateTime(2024, 12, 24), IsoGender.Male),
-            createCell("82345", 32, 1, "Solitary", "A", "ESP", new DateTime(2025, 01, 01), IsoGender.NotKnown)
+            createCell("52345", 1, 3, CellType.Deluxe, "C", "USA", new DateTime(2022, 09, 10)),
+            createCell("62345", 21, 2, CellType.Duo, "B", "GBR", new DateTime(2023, 08, 07)),
+            createCell("72345", 31, 1, CellType.Solitary, "A", "FRA", new DateTime(2024, 12, 24)),
+            createCell("82345", 32, 1, CellType.Solitary, "A", "ESP", new DateTime(2025, 01, 01))
         };
     }
 }

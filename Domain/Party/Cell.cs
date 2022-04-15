@@ -7,11 +7,10 @@ namespace MTPrison.Domain.Party {
         public Cell(CellData d) : base(d) { }
         public int CellNumber => getValue(Data?.CellNumber);
         public int Capacity => getValue(Data?.Capacity);
-        public string? Type => getValue(Data?.Type);
+        public CellType? Type => getValue(Data?.Type);
         public string? Section => getValue(Data?.Section);
         public string? Country => getValue(Data?.CountryId);
         public DateTime? Inspection => getValue(Data?.Inspection);
-        public IsoGender? Gender => getValue(Data?.Gender);
 
         //public List<Prisoner> Occupants { get; set; }
     }

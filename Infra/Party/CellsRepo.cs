@@ -10,7 +10,7 @@ namespace MTPrison.Infra.Party {
             return string.IsNullOrWhiteSpace(y) ? query : query.Where(
                 x => x.CellNumber.ToString().Contains(y)
                   || x.Capacity.ToString().Contains(y)
-                  || x.Type.Contains(y)
+                  || x.Type.ToString().Contains(y)
                   || x.Section.Contains(y)
                   || x.CountryId.Contains(y)
                   || x.Inspection.ToString().Contains(y));

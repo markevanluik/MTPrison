@@ -3,8 +3,7 @@
 
 @Html.MyEditorFor(m => m.Item.CellNumber)
 @Html.MyEditorFor(m => m.Item.Capacity)
-@Html.MyEditorFor(m => m.Item.Type)
+@Html.MyDropDownFor(m => m.Item.Type, Model.Types)
 @Html.MyEditorFor(m => m.Item.Section)
 @Html.MyDropDownFor(m => m.Item.CountryId, Model.Countries)
 @Html.MyEditorFor(m => m.Item.Inspection)
-@Html.MyDropDownFor(m => m.Item.Gender, Model.Genders)

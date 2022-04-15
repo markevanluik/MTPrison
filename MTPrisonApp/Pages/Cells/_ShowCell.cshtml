@@ -3,8 +3,7 @@
 
 @Html.MyViewerFor(m => m.Item.CellNumber)
 @Html.MyViewerFor(m => m.Item.Capacity)
-@Html.MyViewerFor(m => m.Item.Type)
+@Html.MyViewerFor(m => m.Item.Type, Model.CellTypeDescription(Model.Item.Type)))
 @Html.MyViewerFor(m => m.Item.Section)
 @Html.MyViewerFor(m => m.Item.CountryId, Model.CountryName(Model.Item.CountryId))
 @Html.MyViewerFor(m => m.Item.Inspection,Model.ShortDate(Model.Item.Inspection))
-@Html.MyViewerFor(m => m.Item.Gender, Model.GenderDescription(Model.Item.Gender))

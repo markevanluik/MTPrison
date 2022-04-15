@@ -10,6 +10,7 @@ namespace MTPrison.Domain {
         protected static DateTime getValue(DateTime? v) => v ?? defaultDate;
         protected static int getValue(int? v) => v ?? defaultInt;
         protected static IsoGender getValue(IsoGender? v) => v ?? IsoGender.NotApplicable;
+        protected static CellType getValue(CellType? v) => v ?? CellType.NotApplicable;
     }
     public abstract class UniqueEntity<TData> : UniqueEntity where TData : UniqueData, new() {
         private readonly TData data;
