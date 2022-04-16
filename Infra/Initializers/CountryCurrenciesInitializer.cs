@@ -20,8 +20,9 @@ namespace MTPrison.Infra.Initializers {
                 return l;
             }
         }
+        // very small chance but if first migration/page run fails.., increase randomness
         internal static CountryCurrencyData createCountry(string coId, string cuId, string symbol, string coName, string cuName, string nativeName) => new() {
-            Id = UniqueData.NewId,
+            Id = coId + cuId + UniqueData.NewId[..5],
             CountryId = coId,
             CurrencyId = cuId,
             Code = cuId,
