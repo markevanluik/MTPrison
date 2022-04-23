@@ -32,8 +32,8 @@ namespace MTPrison.Pages.Party {
         public override object? GetValue(string name, CellView v) {
             var r = base.GetValue(name, v);
             return name == nameof(v.CountryId) ? CountryName(r as string)
-                 : name == nameof(v.Type) ? CellTypeDescription((CellType)r)
-                 : name == nameof(v.Inspection) ? ShortDate((DateTime)r)
+                 : name == nameof(v.Type) ? CellTypeDescription((CellType?)r)
+                 : name == nameof(v.Inspection) ? ShortDate((DateTime?)r)
                  : r;
         }
     }

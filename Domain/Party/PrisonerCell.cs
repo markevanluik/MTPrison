@@ -3,7 +3,7 @@
 namespace MTPrison.Domain.Party {
 
     public interface IPrisonerCellsRepo : IRepo<PrisonerCell> { }
-    public class PrisonerCell : NamedEntity<PrisonerCellData> {
+    public sealed class PrisonerCell : NamedEntity<PrisonerCellData> {
 
         public PrisonerCell() : this(new()) { }
         public PrisonerCell(PrisonerCellData d) : base(d) { }

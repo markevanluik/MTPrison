@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MTPrison.Tests.Pages {
-    [TestClass] public class BasePageTests : IsTypeTested {
+    [TestClass] public class BasePageTests : TypeTests {
         [TestMethod] public void ItemTest() => isInconclusive();
         [TestMethod] public void ItemsTest() => isInconclusive();
         [TestMethod] public void ItemIdTest() => isInconclusive();

@@ -1,6 +1,7 @@
 ﻿using MTPrison.Data;
 using MTPrison.Data.Party;
 using System.Globalization;
+using System.Reflection;
 
 namespace MTPrison.Infra.Initializers {
     public sealed class CountryCurrenciesInitializer : BaseInitializer<CountryCurrencyData> {
@@ -14,7 +15,7 @@ namespace MTPrison.Infra.Initializers {
                     if (!isCorrectIsoCode(coId)) continue;
                     if (l.FirstOrDefault(x => x.Id == coId) is not null) continue;
                     var data = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
-                    addUniqueDataToList(data);
+                    addUniqueDataToList(data, nameof(data.Id));
                 }
                 return l;
             }
@@ -29,18 +30,20 @@ namespace MTPrison.Infra.Initializers {
             CurrencyName = cuName,
             NativeName = nativeName
         };
-        private void addUniqueDataToList(CountryCurrencyData d) {
+        private void addUniqueDataToList(dynamic data, string id) {
             bool locked = false;
-            foreach (var i in l) {
-                if (i.CountryId == d.CountryId &&
-                    i.CurrencyId == d.CurrencyId &&
-                    i.Code == d.Code &&
-                    i.Name == d.Name &&
-                    i.CountryName == d.CountryName &&
-                    i.CurrencyName == d.CurrencyName &&
-                    i.NativeName == d.NativeName) locked = true;
-            }
-            if (!locked) l.Add(d);
+            PropertyInfo[] prop = data.GetType().GetProperties();
+            foreach (var line in l) {
+                int count = 0, sum = 0;
+                foreach (var pi in prop) {
+                    if (pi.Name == id) continue;
+                    string d = Convert.ToString(pi.GetValue(data)) ?? string.Empty;
+                    string ln = Convert.ToString(pi.GetValue(line)) ?? string.Empty;
+                    sum++;
+                    if (d == ln) count++;
+                }
+                if (count == sum) { locked = true; break; } }
+            if (!locked) l.Add(data);
         }
     }
 }

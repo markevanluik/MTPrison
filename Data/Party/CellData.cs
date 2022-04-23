@@ -9,7 +9,6 @@ namespace MTPrison.Data.Party {
         public string? CountryId { get; set; }
         public DateTime? Inspection { get; set; }
     }
-
     public enum CellType {
         [Description("Deluxe")] Deluxe = 0,
         [Description("Duo")] Duo = 1,
