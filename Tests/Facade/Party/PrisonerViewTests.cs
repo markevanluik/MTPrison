@@ -1,10 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MTPrison.Facade;
 using MTPrison.Facade.Party;
 using System;
 
 namespace MTPrison.Tests.Facade.Party {
     [TestClass]
-    public class PrisonerViewTests : SealedClassTests<PrisonerView> {
+    public class PrisonerViewTests : SealedClassTests<PrisonerView, UniqueView> {
         [TestMethod] public void FirstNameTest() => isProperty<string?>();
         [TestMethod] public void LastNameTest() => isProperty<string?>();
         [TestMethod] public void OffenseTest() => isProperty<string?>();

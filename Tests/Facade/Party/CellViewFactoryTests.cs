@@ -2,11 +2,12 @@
 using MTPrison.Aids;
 using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
+using MTPrison.Facade;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Tests.Facade.Party {
     [TestClass]
-    public class CellViewFactoryTests : SealedClassTests<CellViewFactory> {
+    public class CellViewFactoryTests : SealedClassTests<CellViewFactory, BaseViewFactory<CellView, Cell, CellData>> {
         [TestMethod] public void CreateTest() { }
 
         [TestMethod] public void CreateViewTest() {

@@ -2,10 +2,11 @@
 using MTPrison.Aids;
 using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
+using MTPrison.Facade;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Tests.Facade.Party {
-    [TestClass] public class PrisonerViewFactoryTests : SealedClassTests<PrisonerViewFactory> { 
+    [TestClass] public class PrisonerViewFactoryTests : SealedClassTests<PrisonerViewFactory, BaseViewFactory<PrisonerView, Prisoner, PrisonerData>> {
         [TestMethod] public void CreateTest() { }
         [TestMethod] public void CreateViewTest() {
             var d = GetRandom.Value<PrisonerData>();
