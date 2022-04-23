@@ -8,4 +8,8 @@
     <AssemblyName>$(SolutionName.Replace(" ", "_")).$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>
