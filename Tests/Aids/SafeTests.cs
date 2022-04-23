@@ -3,7 +3,7 @@ using MTPrison.Aids;
 using System;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass] public class SafeTests : IsTypeTested {
+    [TestClass] public class SafeTests : TypeTests {
         private int expected;
         private int def;
         [TestInitialize] public void Init() {

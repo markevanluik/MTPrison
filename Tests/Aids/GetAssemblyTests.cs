@@ -6,7 +6,7 @@ using MTPrison.Data.Party;
 using System.Linq;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass] public class GetAssemblyTests : IsTypeTested {
+    [TestClass] public class GetAssemblyTests : TypeTests {
         private string? name;
         private Assembly? assembly;
         private string[] typeNames = Array.Empty<string>();

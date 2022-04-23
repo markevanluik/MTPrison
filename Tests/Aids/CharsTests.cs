@@ -2,7 +2,7 @@
 using MTPrison.Aids;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass] public class CharsTests : IsTypeTested {
+    [TestClass] public class CharsTests : TypeTests {
         private char letter;
         private char digit;
         [TestInitialize] public void Init() {
@@ -11,15 +11,15 @@ namespace MTPrison.Tests.Aids {
         }
         [TestMethod] public void IsNameCharTest() {
             isTrue(Chars.IsNameChar(letter));
-            isFalse(Chars.IsNameChar(digit));
+            isTrue(Chars.IsNameChar(digit));
             isFalse(Chars.IsNameChar('.'));
             isFalse(Chars.IsNameChar('_'));
-            isFalse(Chars.IsNameChar('`'));
+            isTrue(Chars.IsNameChar('`'));
             isFalse(Chars.IsNameChar(':'));
         }
         [TestMethod] public void IsFullNameCharTest() {
             isTrue(Chars.IsFullNameChar(letter));
-            isFalse(Chars.IsFullNameChar(digit));
+            isTrue(Chars.IsFullNameChar(digit));
             isTrue(Chars.IsFullNameChar('.'));
             isTrue(Chars.IsFullNameChar('`'));
             isFalse(Chars.IsFullNameChar('_'));

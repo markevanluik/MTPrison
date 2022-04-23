@@ -4,7 +4,7 @@ using MTPrison.Data.Party;
 using System.Collections.Generic;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass] public class ListsTests : IsTypeTested {
+    [TestClass] public class ListsTests : TypeTests {
         private List<int> list = new();
         [TestInitialize] public void Init() => list = new List<int>() { 1, 2, 3, 4, 5, 6 };
         [TestMethod] public void GetFirstTest() => areEqual(1, Lists.GetFirst(list));

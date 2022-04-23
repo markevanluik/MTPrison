@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 namespace MTPrison.Tests.Aids {
-    [TestClass] public class GetRandomTests : IsTypeTested {
+    [TestClass] public class GetRandomTests : TypeTests {
         private void test<T>(T min, T max) where T : IComparable<T> {
             var x = GetRandom.Value(min, max);
             var y = GetRandom.Value(min, max);
@@ -22,6 +22,16 @@ namespace MTPrison.Tests.Aids {
             isTrue(x <= (min.CompareTo(max) < 0 ? max : min));
             isTrue(y <= (min.CompareTo(max) < 0 ? max : min));
             areNotEqual(x, y);
+        }
+        private void test<T>(Func<T> f, int count = 5) {
+            var x = f();
+            var y = f();
+            int i = 0;
+            while (x.Equals(y)) {
+                y = f();
+                if (i == count) areNotEqual(x, y);
+                i++;
+            }
         }
 
         [DataRow(-1000, 1000)]
@@ -53,16 +63,8 @@ namespace MTPrison.Tests.Aids {
         [DataRow('1', 'P')]
         [DataRow('A', 'z')]
         [TestMethod] public void CharTest(char min, char max) => test(min, max);
-        [TestMethod] public void BoolTest() {
-            var x = GetRandom.Bool();
-            var y = GetRandom.Bool();
-            var i = 0;
-            while (x == y) {
-                y = GetRandom.Bool();
-                if (i == 5) areNotEqual(x, y);
-                i++;
-            }
-        }
+        [TestMethod] public void BoolTest() => test(() => GetRandom.Bool());
+
         [DynamicData(nameof(DateTimeValues), DynamicDataSourceType.Property)]
         [TestMethod] public void DateTimeTest(DateTime min, DateTime max) => test(min, max);
         private static IEnumerable<object[]> DateTimeValues => new List<object[]>()
@@ -90,5 +92,29 @@ namespace MTPrison.Tests.Aids {
             areNotEqual(x.DateOfImprisonment, y.DateOfImprisonment, nameof(x.DateOfImprisonment));
             areNotEqual(x.DateOfRelease, y.DateOfRelease, nameof(x.DateOfRelease));
         }
+        [TestMethod] public void EnumOfGenericTest() => test(() => GetRandom.EnumOf<IsoGender>());
+
+        [DataRow(typeof(IsoGender))]
+        [TestMethod] public void EnumOfTest(Type t) => test(() => GetRandom.EnumOf(t));
+
+
+        [DataRow(typeof(bool?), false)]
+        [DataRow(typeof(int), false)]
+        [DataRow(typeof(decimal?), false)]
+        [DataRow(typeof(string), false)]
+        [DataRow(typeof(IsoGender?), false)]
+        [DataRow(typeof(IsoGender), true)]
+        [DataRow(typeof(DateTime), false)]
+        [TestMethod] public void IsEnumTest(Type t, bool expected)
+            => areEqual(expected, GetRandom.isEnum(t));
+
+        [DataRow(typeof(bool?), typeof(bool))]
+        [DataRow(typeof(int?), typeof(int))]
+        [DataRow(typeof(decimal?), typeof(decimal))]
+        [DataRow(typeof(string), typeof(string))]
+        [DataRow(typeof(IsoGender?), typeof(IsoGender))]
+        [DataRow(typeof(DateTime?), typeof(DateTime))]
+        [TestMethod] public void GetUnderlyingTypeTest(Type nullable, Type expected)
+            => areEqual(expected, GetRandom.getUnderlyingType(nullable));
     }
 }
