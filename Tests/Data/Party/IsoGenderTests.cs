@@ -3,7 +3,7 @@ using MTPrison.Data.Party;
 using MTPrison.Aids;
 
 namespace MTPrison.Tests.Data.Party {
-    [TestClass] public class IsoGenderTests : IsTypeTested {
+    [TestClass] public class IsoGenderTests : TypeTests {
         [TestMethod] public void MaleTest() => doTest(IsoGender.Male, 1, "Male");
         [TestMethod] public void FemaleTest() => doTest(IsoGender.Female, 2, "Female");
         [TestMethod] public void NotKnownTest() => doTest(IsoGender.NotKnown, 0, "Not known");
