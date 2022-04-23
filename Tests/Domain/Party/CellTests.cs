@@ -1,13 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MTPrison.Aids;
+using MTPrison.Data.Party;
+using MTPrison.Domain;
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Tests.Domain.Party {
-    [TestClass] public class ICellsRepoTests : IsTypeTested { }
-    [TestClass] public class CellTests : SealedClassTests<Cell> {
-        [TestMethod] public void IdTest() => isProperty<string?>(null, true);
-        [TestMethod] public void CellNumberTest() => isProperty<int?>(null, true);
-        [TestMethod] public void CapacityTest() => isProperty<int?>(null, true);
-        [TestMethod] public void TypeTest() => isProperty<string?>(null, true);
-        [TestMethod] public void SectionTest() => isProperty<string?>(null, true);
+    [TestClass] public class ICellsRepoTests : TypeTests { }
+    [TestClass] public class CellTests : SealedClassTests<Cell, UniqueEntity<CellData>> {
+        protected override Cell createObj() => new(GetRandom.Value<CellData>());
+        [TestMethod] public void CellNumberTest() => isReadOnly(obj.Data.CellNumber);
+        [TestMethod] public void CapacityTest() => isReadOnly(obj.Data.Capacity);
+        [TestMethod] public void TypeTest() => isReadOnly(obj.Data.Type);
+        [TestMethod] public void SectionTest() => isReadOnly(obj.Data.Section);
+        [TestMethod] public void CountryTest() => isReadOnly(obj.Data.CountryId);
+        [TestMethod] public void InspectionTest() => isReadOnly(obj.Data.Inspection);
     }
 }
