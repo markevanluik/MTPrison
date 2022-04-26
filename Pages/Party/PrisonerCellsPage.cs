@@ -25,7 +25,7 @@ namespace MTPrison.Pages.Party {
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll<string>()?
             .Select(x => new SelectListItem(x.Type.ToString(), x.Id)) ?? new List<SelectListItem>();
-        public IEnumerable<SelectListItem> CellsEdit
+        public IEnumerable<SelectListItem> UniqueCells
             => cells?.GetAll<string>()?
             .GroupBy(t => t.Type)
             .Select(f => f.FirstOrDefault())
