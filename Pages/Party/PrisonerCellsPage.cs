@@ -25,6 +25,11 @@ namespace MTPrison.Pages.Party {
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll<string>()?
             .Select(x => new SelectListItem(x.Type.ToString(), x.Id)) ?? new List<SelectListItem>();
+        public IEnumerable<SelectListItem> CellsEdit
+            => cells?.GetAll<string>()?
+            .GroupBy(t => t.Type)
+            .Select(f => f.FirstOrDefault())
+            .Select(x => new SelectListItem(x?.Type.ToString(), x?.Id)) ?? new List<SelectListItem>();
         public string PrisonerName(string? prisonerId = null)
             => Prisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? "Unspecified";
         public string CellName(string? cellId = null)
