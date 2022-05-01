@@ -21,7 +21,7 @@ namespace MTPrison.Pages.Party {
         };
         public IEnumerable<SelectListItem> Prisoners
             => prisoners?.GetAll<string>()?
-            .Select(x => new SelectListItem(x.FullName(), x.Id)) ?? new List<SelectListItem>();
+            .Select(x => new SelectListItem(x.FullName, x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll<string>()?
             .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();

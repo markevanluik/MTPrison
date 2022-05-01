@@ -17,7 +17,7 @@ namespace MTPrison.Facade.Party {
         protected override Prisoner toEntity(PrisonerData d) => new(d);
         public override PrisonerView Create(Prisoner? e) {
             var v = base.Create(e);
-            v.FullName = e?.FullName();
+            v.FullName = e?.FullName;
             return v;
         }
     }
