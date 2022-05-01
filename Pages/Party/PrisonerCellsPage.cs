@@ -17,18 +17,19 @@ namespace MTPrison.Pages.Party {
             nameof(PrisonerCellView.CellId),
             nameof(PrisonerCellView.Code),
             nameof(PrisonerCellView.Name),
+            nameof(PrisonerCellView.NativeName)
         };
         public IEnumerable<SelectListItem> Prisoners
             => prisoners?.GetAll<string>()?
             .Select(x => new SelectListItem(x.FullName(), x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll<string>()?
-            .Select(x => new SelectListItem(x.Type.ToString(), x.Id)) ?? new List<SelectListItem>();
+            .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> UniqueCells
             => cells?.GetAll<string>()?
-            .GroupBy(t => t.Type)
+            .GroupBy(t => t.CellNumber)
             .Select(f => f.FirstOrDefault())
-            .Select(x => new SelectListItem(x?.Type.ToString(), x?.Id)) ?? new List<SelectListItem>();
+            .Select(x => new SelectListItem(x?.CellNumber.ToString(), x?.Id)) ?? new List<SelectListItem>();
         public string PrisonerName(string? prisonerId = null)
             => Prisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? "Unspecified";
         public string CellName(string? cellId = null)
