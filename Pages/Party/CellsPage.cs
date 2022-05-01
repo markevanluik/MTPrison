@@ -14,26 +14,23 @@ namespace MTPrison.Pages.Party {
             nameof(CellView.CellNumber),
             nameof(CellView.Capacity),
             nameof(CellView.Type),
-            nameof(CellView.Section),
-            nameof(CellView.CountryId),
-            nameof(CellView.Inspection)
+            nameof(CellView.Section)
         };
         // avoid static at the moment
-        public IEnumerable<SelectListItem> Countries
-            => countries.GetAll<string>()?.Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
+        //public IEnumerable<SelectListItem> Countries
+        //    => countries.GetAll<string>()?.Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Types => Enum.GetValues<CellType>()
             .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
 
-        public string CountryName(string? countryId = null)
-            => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
-        public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
-        public string CellTypeDescription(CellType? g) => (g ?? CellType.NotApplicable).Description();
+        //public string CountryName(string? countryId = null)
+        //    => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
+        //public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
+        public string CellTypeDescription(CellType? g) => (g ?? CellType.Standard).Description();
 
         public override object? GetValue(string name, CellView v) {
             var r = base.GetValue(name, v);
-            return name == nameof(v.CountryId) ? CountryName(r as string)
-                 : name == nameof(v.Type) ? CellTypeDescription((CellType?)r)
-                 : name == nameof(v.Inspection) ? ShortDate((DateTime?)r)
+            return name == nameof(v.Type) ? CellTypeDescription((CellType?)r)
+                 //: name == nameof(v.Inspection) ? ShortDate((DateTime?)r)
                  : r;
         }
     }

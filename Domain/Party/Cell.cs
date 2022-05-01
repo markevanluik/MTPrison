@@ -9,9 +9,5 @@ namespace MTPrison.Domain.Party {
         public int Capacity => getValue(Data?.Capacity);
         public CellType? Type => getValue(Data?.Type);
         public string? Section => getValue(Data?.Section);
-        public string? Country => getValue(Data?.CountryId);
-        public DateTime? Inspection => getValue(Data?.Inspection);
-
-        //public List<Prisoner> Occupants { get; set; }
     }
 }

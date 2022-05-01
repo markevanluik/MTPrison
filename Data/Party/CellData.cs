@@ -6,13 +6,12 @@ namespace MTPrison.Data.Party {
         public int Capacity { get; set; }
         public CellType? Type { get; set; }
         public string? Section { get; set; }
-        public string? CountryId { get; set; }
-        public DateTime? Inspection { get; set; }
     }
     public enum CellType {
-        [Description("Deluxe")] Deluxe = 0,
+        [Description("Solitary")] Solitary = 0,
         [Description("Duo")] Duo = 1,
-        [Description("Solitary")] Solitary = 2,
-        [Description("Not applicable")] NotApplicable = 9
+        [Description("Quad")] Quad = 2,
+        [Description("Deluxe")] Deluxe = 3,
+        [Description("Standard")] Standard = 9
     }
 }
