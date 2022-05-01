@@ -11,9 +11,7 @@ namespace MTPrison.Infra.Party {
                 x => x.CellNumber.ToString().Contains(y)
                   || x.Capacity.ToString().Contains(y)
                   || x.Type.ToString().Contains(y)
-                  || x.Section.Contains(y)
-                  || x.CountryId.Contains(y)
-                  || x.Inspection.ToString().Contains(y));
+                  || x.Section.Contains(y));
         }
     }
 }
