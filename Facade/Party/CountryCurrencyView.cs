@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MTPrison.Facade.Party {
-    public class CountryCurrencyView : IsoNamedView {
+    public sealed class CountryCurrencyView : IsoNamedView {
         [Required] public string CountryId { get; set; } = string.Empty;
         [Required] public string CurrencyId { get; set; } = string.Empty;
         [DisplayName("Country")] public string? CountryName { get; set; } = string.Empty;
