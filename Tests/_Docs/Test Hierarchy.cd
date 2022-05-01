@@ -21,13 +21,6 @@
       <FileName>HostTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MTPrison.Tests.TestHost&lt;TProgram&gt;">
-    <Position X="3" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAIAAAAAAAEAAAAAAAAAAAAEAAAAAAA=</HashCode>
-      <FileName>TestHost.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MTPrison.Tests.TypeTests">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -36,21 +29,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MTPrison.Tests.BaseTests&lt;TClass, TBaseClass&gt;">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAABIAABAAAAABABAAAAIAESAAQIAgAAAAA=</HashCode>
       <FileName>BaseTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MTPrison.Tests.AbstractClassTests&lt;TClass, TBaseClass&gt;">
-    <Position X="10.75" Y="0.5" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AbstractClassTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MTPrison.Tests.SealedClassTests&lt;TClass, TBaseClass&gt;">
-    <Position X="10.75" Y="3" Width="1.5" />
+    <Position X="10.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>SealedClassTests.cs</FileName>
