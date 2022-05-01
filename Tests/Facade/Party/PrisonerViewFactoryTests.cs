@@ -14,14 +14,14 @@ namespace MTPrison.Tests.Facade.Party {
             var v = new PrisonerViewFactory().Create(e);
             isNotNull(v);
             arePropertiesEqual(v, e, nameof(v.FullName));
-            areEqual(v.FullName, e.FullName());
+            areEqual(v.FullName, e.FullName);
         }
         [TestMethod] public void CreateEntityTest() {
             var v = GetRandom.Value<PrisonerView>();
             var e = new PrisonerViewFactory().Create(v);
             isNotNull(e);
-            arePropertiesEqual(e, v);
-            areNotEqual(e.FullName(), v?.FullName);
+            arePropertiesEqual(e, v, nameof(v.FullName));
+            areNotEqual(e.FullName, v?.FullName);
         }
     }
 }

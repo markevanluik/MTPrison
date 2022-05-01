@@ -14,7 +14,7 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void DoBTest() => isReadOnly(obj.Data.DoB);
         [TestMethod] public void DateOfReleaseTest() => isReadOnly(obj.Data.DateOfRelease);
         [TestMethod] public void DateOfImprisonmentTest() => isReadOnly(obj.Data.DateOfImprisonment);
-        [TestMethod] public void FullNameTest() => areEqual($"{obj.Data.FirstName} {obj.Data.LastName}", obj.FullName());
+        [TestMethod] public void FullNameTest() => areEqual($"{obj.Data.FirstName} {obj.Data.LastName}", obj.FullName);
 
         [TestMethod] public void PrisonerCellsTest()
             => itemsTest<IPrisonerCellsRepo, PrisonerCell, PrisonerCellData>(
