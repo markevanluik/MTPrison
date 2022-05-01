@@ -12,9 +12,9 @@ namespace MTPrison.Pages.Party {
         protected override CellView toView(Cell? entity) => new CellViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(CellView.CellNumber),
+            nameof(CellView.Section),
             nameof(CellView.Capacity),
-            nameof(CellView.Type),
-            nameof(CellView.Section)
+            nameof(CellView.Type)
         };
         // avoid static at the moment
         //public IEnumerable<SelectListItem> Countries
@@ -33,5 +33,7 @@ namespace MTPrison.Pages.Party {
                  //: name == nameof(v.Inspection) ? ShortDate((DateTime?)r)
                  : r;
         }
+
+        public List<Prisoner?> Prisoners => toObject(Item).Prisoners;
     }
 }

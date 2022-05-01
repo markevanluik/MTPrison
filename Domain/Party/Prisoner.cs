@@ -12,5 +12,16 @@ namespace MTPrison.Domain.Party {
         public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
         public string FullName() => $"{FirstName} {LastName}";
+
+        public List<PrisonerCell> PrisonerCells
+            => GetRepo.Instance<IPrisonerCellsRepo>()?
+            .GetAll(x => x.PrisonerId)?
+            .Where(x => x.PrisonerId == Id)?
+            .ToList() ?? new List<PrisonerCell>();
+
+        public List<Cell?> Cells
+            => PrisonerCells
+            .Select(x => x.Cell)
+            .ToList() ?? new List<Cell?>();
     }
 }

@@ -16,8 +16,9 @@ namespace MTPrison.Pages.Party {
             nameof(PrisonerView.DateOfImprisonment),
             nameof(PrisonerView.DateOfRelease),
         };
+
+
+        // this is only for Prisoner Details showing cells
+        public List<Cell?> Cells => toObject(Item).Cells;
     }
 }
-
-
-

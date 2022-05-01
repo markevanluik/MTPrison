@@ -1,10 +1,46 @@
 ﻿@page
+@using MTPrison.Facade.Party
 @model MTPrison.Pages.Party.CellsPage
 
 @{
     Layout = "_Details";
+
+    var columns = new[] { 
+        nameof(PrisonerView.FullName)
+        , nameof(PrisonerView.DoB)
+        , nameof(PrisonerView.Offense)
+        , nameof(PrisonerView.DateOfImprisonment)
+        , nameof(PrisonerView.DateOfRelease)
+    };
+    object? getValue<T>(string propertyname, T item) {
+        var pi = typeof(T).GetProperty(propertyname);
+        return pi?.GetValue(item);
+    }
 }
 
-<body>
-    <partial name="_ShowCell"/>
-</body>
+<Body>
+    <partial name= "_ShowCell"/>
+
+<br>
+
+    <h4>Prisoners</h4>
+    <table class="table">
+    <thead>
+    <tr>
+        @foreach (var name in columns) { <td> @Html.Raw(name) </td> }
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Prisoners) {
+            <tr>
+                @foreach (var name in columns) {
+                    <td>
+                    @Html.Raw(getValue(name, item))
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+    </table>
+
+</Body>

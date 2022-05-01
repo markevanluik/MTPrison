@@ -9,9 +9,9 @@ namespace MTPrison.Infra.Party {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? query : query.Where(
                 x => x.CellNumber.ToString().Contains(y)
+                  || x.Section.Contains(y)
                   || x.Capacity.ToString().Contains(y)
-                  || x.Type.ToString().Contains(y)
-                  || x.Section.Contains(y));
+                  || x.Type.ToString().Contains(y));
         }
     }
 }

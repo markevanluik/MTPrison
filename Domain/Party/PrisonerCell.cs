@@ -10,5 +10,8 @@ namespace MTPrison.Domain.Party {
 
         public string PrisonerId => getValue(Data?.PrisonerId);
         public string CellId => getValue(Data?.CellId);
+
+        public Prisoner? Prisoner => GetRepo.Instance<IPrisonersRepo>()?.Get(PrisonerId);
+        public Cell? Cell => GetRepo.Instance<ICellsRepo>()?.Get(CellId);
     }
 }
