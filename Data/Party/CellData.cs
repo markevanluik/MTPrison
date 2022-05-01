@@ -3,9 +3,9 @@
 namespace MTPrison.Data.Party {
     public sealed class CellData : UniqueData {
         public int CellNumber { get; set; }
+        public string? Section { get; set; }
         public int Capacity { get; set; }
         public CellType? Type { get; set; }
-        public string? Section { get; set; }
     }
     public enum CellType {
         [Description("Solitary")] Solitary = 0,
