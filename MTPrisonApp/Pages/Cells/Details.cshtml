@@ -14,6 +14,8 @@
     };
     object? getValue<T>(string propertyname, T item) {
         var pi = typeof(T).GetProperty(propertyname);
+        var obj = pi?.GetValue(item);
+        if (obj?.GetType() == typeof(DateTime)) return ((DateTime)obj).ToShortDateString();
         return pi?.GetValue(item);
     }
 }
