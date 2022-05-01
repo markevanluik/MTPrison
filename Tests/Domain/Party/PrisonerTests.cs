@@ -3,7 +3,6 @@ using MTPrison.Aids;
 using MTPrison.Data.Party;
 using MTPrison.Domain;
 using MTPrison.Domain.Party;
-using System;
 
 namespace MTPrison.Tests.Domain.Party {
     [TestClass] public class IPrisonersRepoTests : TypeTests { }
@@ -15,6 +14,6 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void DoBTest() => isReadOnly(obj.Data.DoB);
         [TestMethod] public void DateOfReleaseTest() => isReadOnly(obj.Data.DateOfRelease);
         [TestMethod] public void DateOfImprisonmentTest() => isReadOnly(obj.Data.DateOfImprisonment);
-        [TestMethod] public void FullNameTest() => isInconclusive();
+        [TestMethod] public void FullNameTest() => areEqual($"{obj.Data.FirstName} {obj.Data.LastName}", obj.FullName());
     }
 }

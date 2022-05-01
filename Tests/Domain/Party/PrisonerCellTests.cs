@@ -10,8 +10,5 @@ namespace MTPrison.Tests.Domain.Party {
         protected override PrisonerCell createObj() => new(GetRandom.Value<PrisonerCellData>());
         [TestMethod] public void PrisonerIdTest() => isReadOnly(obj.Data.PrisonerId);
         [TestMethod] public void CellIdTest() => isReadOnly(obj.Data.CellId);
-        [TestMethod] public void CodeTest() => isReadOnly(obj.Data.Code);
-        [TestMethod] public void NameTest() => isReadOnly(obj.Data.Name);
-        [TestMethod] public void NativeNameTest() => isReadOnly(obj.Data.NativeName);
     }
 }

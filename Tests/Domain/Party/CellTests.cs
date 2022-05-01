@@ -12,7 +12,5 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void CapacityTest() => isReadOnly(obj.Data.Capacity);
         [TestMethod] public void TypeTest() => isReadOnly(obj.Data.Type);
         [TestMethod] public void SectionTest() => isReadOnly(obj.Data.Section);
-        [TestMethod] public void CountryTest() => isReadOnly(obj.Data.CountryId);
-        [TestMethod] public void InspectionTest() => isReadOnly(obj.Data.Inspection);
     }
 }

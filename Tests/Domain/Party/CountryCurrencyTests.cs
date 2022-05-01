@@ -16,7 +16,9 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void NameTest() => isReadOnly(obj.Data.Name);
         [TestMethod] public void NativeNameTest() => isReadOnly(obj.Data.NativeName);
 
-        [TestMethod] public void CountryTest() => GetRepo.Instance<ICountriesRepo>()?.Get(obj.Data.CountryId);
-        [TestMethod] public void CurrencyTest() => GetRepo.Instance<ICurrenciesRepo>()?.Get(obj.Data.CurrencyId);
+        [TestMethod] public void CountryTest() => itemTest<ICountriesRepo, Country, CountryData>(
+            obj.CountryId, d => new Country(d), () => obj.Country);
+        [TestMethod] public void CurrencyTest() => itemTest<ICurrenciesRepo, Currency, CurrencyData>(
+            obj.CurrencyId, d => new Currency(d), () => obj.Currency);
     }
 }

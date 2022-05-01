@@ -8,10 +8,12 @@ namespace MTPrison.Tests.Domain.Party {
     [TestClass] public class ICurrenciesRepoTests : TypeTests { }
     [TestClass] public class CurrencyTests : SealedClassTests<Currency, NamedEntity<CurrencyData>> {
         protected override Currency createObj() => new(GetRandom.Value<CurrencyData>());
-        [TestMethod] public void CodeTest() => isReadOnly(obj.Data.Code);
-        [TestMethod] public void NameTest() => isReadOnly(obj.Data.Name);
-        [TestMethod] public void NativeNameTest() => isReadOnly(obj.Data.NativeName);
-        [TestMethod] public void CountryCurrenciesTest() => isInconclusive();
-        [TestMethod] public void CountriesTest() => isInconclusive();
+        [TestMethod] public void CountryCurrenciesTest()
+            => itemsTest<ICountryCurrenciesRepo, CountryCurrency, CountryCurrencyData>(
+                d => d.CurrencyId = obj.Id, d => new CountryCurrency(d), () => obj.CountryCurrencies);
+
+        [TestMethod] public void CountriesTest() => relatedItemsTest<ICountriesRepo, CountryCurrency, Country, CountryData>
+            (CountryCurrenciesTest, () => obj.CountryCurrencies, () => obj.Countries,
+            x => x.CountryId, d => new Country(d), c => c?.Data, x => x?.Country?.Data);
     }
 }
