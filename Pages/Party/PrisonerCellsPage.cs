@@ -13,11 +13,10 @@ namespace MTPrison.Pages.Party {
         protected override PrisonerCell toObject(PrisonerCellView? item) => new PrisonerCellViewFactory().Create(item);
         protected override PrisonerCellView toView(PrisonerCell? entity) => new PrisonerCellViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
-            nameof(PrisonerCellView.Code),
-            nameof(PrisonerCellView.Name),
             nameof(PrisonerCellView.PrisonerId),
             nameof(PrisonerCellView.CellId),
-            nameof(PrisonerCellView.NativeName)
+            nameof(PrisonerCellView.Code),
+            nameof(PrisonerCellView.Name),
         };
         public IEnumerable<SelectListItem> Prisoners
             => prisoners?.GetAll<string>()?
