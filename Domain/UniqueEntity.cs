@@ -10,13 +10,15 @@ namespace MTPrison.Domain {
         protected static DateTime getValue(DateTime? v) => v ?? defaultDate;
         protected static int getValue(int? v) => v ?? defaultInt;
         protected static IsoGender getValue(IsoGender? v) => v ?? IsoGender.NotApplicable;
-        protected static CellType getValue(CellType? v) => v ?? CellType.NotApplicable;
+        protected static CellType getValue(CellType? v) => v ?? CellType.Standard;
+        public abstract string Id { get; }
     }
+
     public abstract class UniqueEntity<TData> : UniqueEntity where TData : UniqueData, new() {
         private readonly TData data;
         public TData Data => data;
         public UniqueEntity() : this(new TData()) { }
         public UniqueEntity(TData d) => data = d;
-        public string Id => getValue(Data?.Id);
+        public override string Id => getValue(Data?.Id);
     }
 }
