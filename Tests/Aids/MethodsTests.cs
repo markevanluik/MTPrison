@@ -9,5 +9,10 @@ namespace MTPrison.Tests.Aids {
             isTrue(mi.HasAttribute<TestMethodAttribute>());
             isFalse(mi.HasAttribute<TestInitializeAttribute>());
         }
+        [TestMethod] public void GetAttributeTest() {
+            var mi = GetType().GetMethod(nameof(GetAttributeTest));
+            isNotNull(mi.GetAttribute<TestMethodAttribute>());
+            isNull(mi.GetAttribute<TestInitializeAttribute>());
+        }
     }
 }
