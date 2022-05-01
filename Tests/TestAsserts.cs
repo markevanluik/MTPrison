@@ -26,5 +26,17 @@ namespace MTPrison.Tests {
                 areEqual(piExpected.GetValue(expected), piActual.GetValue(actual));
             }
         }
+        protected static void areEqualProperties(object? a, object? b) {
+            isNotNull(a);
+            isNotNull(b);
+            var tA = a.GetType();
+            var tB = b.GetType();
+            foreach (var piA in tA?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
+                var vA = piA.GetValue(a);
+                var piB = tB?.GetProperty(piA.Name);
+                var vB = piB?.GetValue(b);
+                areEqual(vA, vB, $"for property {piA.Name}.");
+            }
+        }
     }
 }
