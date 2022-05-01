@@ -15,5 +15,12 @@ namespace MTPrison.Tests.Domain.Party {
         [TestMethod] public void DateOfReleaseTest() => isReadOnly(obj.Data.DateOfRelease);
         [TestMethod] public void DateOfImprisonmentTest() => isReadOnly(obj.Data.DateOfImprisonment);
         [TestMethod] public void FullNameTest() => areEqual($"{obj.Data.FirstName} {obj.Data.LastName}", obj.FullName());
+
+        [TestMethod] public void PrisonerCellsTest()
+            => itemsTest<IPrisonerCellsRepo, PrisonerCell, PrisonerCellData>(
+            d => d.PrisonerId = obj.Id, d => new PrisonerCell(d), () => obj.PrisonerCells);
+        [TestMethod] public void CellsTest() => relatedItemsTest<ICellsRepo, PrisonerCell, Cell, CellData>
+            (PrisonerCellsTest, () => obj.PrisonerCells, () => obj.Cells,
+            x => x.CellId, d => new Cell(d), c => c?.Data, x => x?.Cell?.Data);
     }
 }
