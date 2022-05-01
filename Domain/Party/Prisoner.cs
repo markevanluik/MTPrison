@@ -11,7 +11,7 @@ namespace MTPrison.Domain.Party {
         public DateTime DoB => getValue(Data?.DoB);
         public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
-        public string FullName() => $"{FirstName} {LastName}";
+        public string FullName => $"{FirstName} {LastName}";
 
         public List<PrisonerCell> PrisonerCells
             => GetRepo.Instance<IPrisonerCellsRepo>()?
