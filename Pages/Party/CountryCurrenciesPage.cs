@@ -21,10 +21,10 @@ namespace MTPrison.Pages.Party {
             nameof(CountryCurrencyView.NativeName)
         };
         public IEnumerable<SelectListItem> Countries
-            => countries?.GetAll<string>()?
+            => countries?.GetAll()?
             .Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Currencies
-            => currencies?.GetAll<string>()?
+            => currencies?.GetAll()?
             .Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
         public string CountryName(string? countryId = null)
             => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";

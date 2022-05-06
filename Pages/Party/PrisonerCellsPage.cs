@@ -20,13 +20,13 @@ namespace MTPrison.Pages.Party {
             nameof(PrisonerCellView.NativeName)
         };
         public IEnumerable<SelectListItem> Prisoners
-            => prisoners?.GetAll<string>()?
+            => prisoners?.GetAll()?
             .Select(x => new SelectListItem(x.FullName, x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> Cells
-            => cells?.GetAll<string>()?
+            => cells?.GetAll()?
             .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();
         public IEnumerable<SelectListItem> UniqueCells
-            => cells?.GetAll<string>()?
+            => cells?.GetAll()?
             .GroupBy(t => t.CellNumber)
             .Select(f => f.FirstOrDefault())
             .Select(x => new SelectListItem(x?.CellNumber.ToString(), x?.Id)) ?? new List<SelectListItem>();
