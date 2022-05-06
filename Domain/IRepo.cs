@@ -4,7 +4,7 @@ namespace MTPrison.Domain {
         //CRUD
         bool Add(T obj);
         List<T> Get();
-        List<T> GetAll<TKey>(Func<T, TKey>? orderBy = null);
+        List<T> GetAll(Func<T, dynamic>? orderBy = null);
         T Get(string id);
         bool Update(T obj);
         bool Delete(string id);
