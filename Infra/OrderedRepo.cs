@@ -8,7 +8,6 @@ namespace MTPrison.Infra {
     public abstract class OrderedRepo<TDomain, TData> : FilteredRepo<TDomain, TData>
         where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
         protected OrderedRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
-
         public string? CurrentOrder { get; set; }
         public static string DescendingString => "_desc";
         // sql query
@@ -16,9 +15,9 @@ namespace MTPrison.Infra {
         internal IQueryable<TData> addSort(IQueryable<TData> query) {
             if (string.IsNullOrWhiteSpace(CurrentOrder)) return query;
             var e = lambdaExpression;
-            if (e is null) return query;
-            if (isDescending) return query.OrderByDescending(e);
-            return query.OrderBy(e);
+            return e == null ? query
+                : isDescending ? query.OrderByDescending(e)
+                : (IQueryable<TData>)query.OrderBy(e);
         }
         internal bool isDescending => CurrentOrder?.EndsWith(DescendingString) ?? false;
         internal bool isSameProperty(string s) => !string.IsNullOrEmpty(s) && (CurrentOrder?.StartsWith(s) ?? false);
