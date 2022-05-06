@@ -19,7 +19,16 @@ builder.Services.AddDbContext<PrisonDb>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
+
+builder.Services.AddRazorPages(o => {
+    //o.Conventions.AuthorizePage("/Countries/Create");
+    //o.Conventions.AuthorizePage("/Countries/Edit");
+    //o.Conventions.AuthorizePage("/Countries/Delete");
+    //o.Conventions.AuthorizePage("/Currencies/Create");
+    //o.Conventions.AuthorizePage("/Currencies/Edit");
+    //o.Conventions.AuthorizePage("/Currencies/Delete");
+});
+
 builder.Services.AddTransient<IPrisonersRepo, PrisonersRepo>();
 builder.Services.AddTransient<ICellsRepo, CellsRepo>();
 builder.Services.AddTransient<ICountriesRepo, CountriesRepo>();
