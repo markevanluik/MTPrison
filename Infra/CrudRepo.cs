@@ -6,15 +6,15 @@ namespace MTPrison.Infra {
     // TODO To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
     public abstract class CrudRepo<TDomain, TData> : BaseRepo<TDomain, TData>
-     where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
+        where TDomain : UniqueEntity<TData>, new() where TData : UniqueData, new() {
         protected CrudRepo(DbContext? c, DbSet<TData>? s) : base(c, s) { }
 
-        protected abstract TDomain toDomain(TData d);
+        protected internal abstract TDomain toDomain(TData d);
         public override bool Add(TDomain obj) => AddAsync(obj).GetAwaiter().GetResult();
         public override bool Delete(string id) => DeleteAsync(id).GetAwaiter().GetResult();
         public override List<TDomain> Get() => GetAsync().GetAwaiter().GetResult();
         public override TDomain Get(string id) => GetAsync(id).GetAwaiter().GetResult();
-        public override List<TDomain> GetAll<TKey>(Func<TDomain, TKey>? orderBy) {
+        public override List<TDomain> GetAll(Func<TDomain, dynamic>? orderBy = null) {
             var r = new List<TDomain>();
             if (set is null) return r;
             foreach (var d in set) r.Add(toDomain(d));
@@ -59,9 +59,11 @@ namespace MTPrison.Infra {
         }
         public override async Task<bool> UpdateAsync(TDomain obj) {
             try {
+                if (db is null) return false;
+                db.ChangeTracker.Clear();
                 var d = obj.Data;
-                if (db is not null) db.Attach(d).State = EntityState.Modified;
-                _ = (db is null) ? 0 : await db.SaveChangesAsync();
+                db.Attach(d).State = EntityState.Modified;
+                _ = await db.SaveChangesAsync();
                 return true;
             } catch { return false; }
         }

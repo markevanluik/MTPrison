@@ -4,9 +4,9 @@ using MTPrison.Data.Party;
 namespace MTPrison.Infra {
     public sealed class PrisonDb : DbContext {
         public PrisonDb(DbContextOptions<PrisonDb> options) : base(options) { }
-        public DbSet<PrisonerData>? Prisoners { get; set; }
+        public DbSet<PrisonerData>? Prisoners { get; internal set; }
         public DbSet<CellData>? Cells { get; internal set; }
-        public DbSet<CountryData>? Countries { get; set; }
+        public DbSet<CountryData>? Countries { get; internal set; }
         public DbSet<CurrencyData>? Currencies { get; internal set; }
         public DbSet<PrisonerCellData>? PrisonerCells { get; internal set; }
         public DbSet<CountryCurrencyData>? CountryCurrencies { get; internal set; }
