@@ -13,17 +13,17 @@ namespace MTPrison.Tests {
         protected static void areEqual(object? expected, object? actual, string? msg = null) => Assert.AreEqual(expected, actual, msg ?? string.Empty);
         protected static void areNotEqual(object? expected, object? actual, string? msg = null) => Assert.AreNotEqual(expected, actual, msg ?? string.Empty);
         protected static void isInstanceOfType(object o, Type expectedType, string? msg = null) => Assert.IsInstanceOfType(o, expectedType, msg ?? string.Empty);
-        protected static void arePropertiesEqual(dynamic? expected, dynamic? actual, params string[]? excluded) {
-            bool isExcluded;
-            var tExpected = expected?.GetType();
-            foreach (var piExpected in tExpected?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
-                isExcluded = false;
-                foreach (var s in excluded ?? Array.Empty<string>())
-                    if (piExpected.Name == s) isExcluded = true;
-                if (isExcluded) continue;
-                var piActual = actual?.GetType().GetProperty(piExpected.Name);
-                if (piActual is null) continue;
-                areEqual(piExpected.GetValue(expected), piActual.GetValue(actual));
+        protected static void arePropertiesEqual(dynamic? expected, dynamic? actual, params string[] excluded) {
+            var prop = expected?.GetType().GetProperties() ?? Array.Empty<PropertyInfo>();
+            foreach (PropertyInfo pi in prop) {
+                bool canExclude = false;
+                foreach (var s in excluded)
+                    if (pi.Name == s) canExclude = true;
+                if (canExclude) continue;
+                var exp = pi.GetValue(expected);
+                var act = actual?.GetType().GetProperty(pi.Name)?.GetValue(actual);
+                if (act is null) continue;
+                areEqual(exp, act);
             }
         }
         protected static void areEqualProperties(object? a, object? b) {

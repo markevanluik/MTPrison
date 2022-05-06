@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTPrison.Aids;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -9,6 +10,10 @@ namespace MTPrison.Tests {
     public abstract class BaseTests<TClass, TBaseClass> : TypeTests where TClass : class where TBaseClass : class {
 
         protected TClass obj;
+        private readonly BindingFlags allFlags = BindingFlags.Public
+            | BindingFlags.NonPublic
+            | BindingFlags.Instance
+            | BindingFlags.Static;
         protected abstract TClass createObj();
         protected BaseTests() => obj = createObj();
 
@@ -33,7 +38,7 @@ namespace MTPrison.Tests {
 
         protected PropertyInfo? getPropertyInfo(string callingMethod) {
             var memberName = getCallingMember(callingMethod).Replace("Test", string.Empty);
-            return obj.GetType().GetProperty(memberName);
+            return obj.GetType().GetProperty(memberName, allFlags);
         }
         protected object? getProperty<T>(ref T? value, bool isReadOnly, string callingMethod) {
             var propertyInfo = getPropertyInfo(callingMethod);
@@ -66,6 +71,11 @@ namespace MTPrison.Tests {
             }
             return string.Empty;
         }
+        protected void isAbstractMethod(string name, params Type[] args) {
+            var mi = typeof(TClass).GetMethod(name, args);
+            areEqual(true, mi?.IsAbstract, name);
+        }
+
         [TestMethod] public void BaseClassTest() => areEqual(typeof(TClass).BaseType, typeof(TBaseClass));
     }
 }

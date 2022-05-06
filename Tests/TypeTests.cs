@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 namespace MTPrison.Tests {
-    public class TypeTests : HostTests {
+    public abstract class TypeTests : HostTests {
         private string? nameOfTest;
         private string? nameOfType;
         private string? namespaceOfTest;
@@ -31,6 +31,7 @@ namespace MTPrison.Tests {
             removeTested();
             if (allAreTested()) return;
             reportAllNotTested();
+
         }
 
         private static string? getName(object o) => Types.GetName(o?.GetType());

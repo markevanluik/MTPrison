@@ -9,10 +9,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 
 namespace MTPrison.Tests {
-    public class HostTests : TestAsserts {
-        internal static TestHost<Program> host;
+    public abstract class HostTests : TestAsserts {
+        internal static readonly TestHost<Program> host;
         internal static readonly HttpClient client;
-
         [TestInitialize]
         public virtual void TestInitialize() {
             (GetRepo.Instance<ICellsRepo>() as CellsRepo)?.clear();
@@ -22,12 +21,13 @@ namespace MTPrison.Tests {
             (GetRepo.Instance<IPrisonerCellsRepo>() as PrisonerCellsRepo)?.clear();
             (GetRepo.Instance<ICountryCurrenciesRepo>() as CountryCurrenciesRepo)?.clear();
         }
+
         static HostTests() {
             host = new TestHost<Program>();
             client = host.CreateClient();
         }
-
         protected virtual object? isReadOnly<T>(string? callingMethod = null) => null;
+
         protected void itemTest<TRepo, TObj, TData>(string id, Func<TData, TObj> toObj, Func<TObj?> getObj)
             where TRepo : class, IRepo<TObj> where TObj : UniqueEntity {
 
@@ -78,6 +78,7 @@ namespace MTPrison.Tests {
                 areEqualProperties(d, y);
             }
         }
+
         protected void relatedItemsTest<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
             Func<List<TRelatedItem>> relatedItems,
