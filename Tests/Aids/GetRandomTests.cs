@@ -37,8 +37,8 @@ namespace MTPrison.Tests.Aids {
         [DataRow(-1000, 1000)]
         [DataRow(-1000, 0)]
         [DataRow(0, 1000)]
-        [DataRow(int.MaxValue - 100, int.MaxValue)]
-        [DataRow(int.MinValue, int.MinValue + 100)]
+        [DataRow(int.MaxValue - 1000, int.MaxValue)]
+        [DataRow(int.MinValue, int.MinValue + 1000)]
         [DataRow(1000, -1000)]
         [TestMethod] public void Int32Test(int min, int max) => test(min, max);
 
@@ -53,27 +53,27 @@ namespace MTPrison.Tests.Aids {
         [DataRow(-1000.0, 1000.0)]
         [DataRow(-1000.0, 0.0)]
         [DataRow(0.0, 1000.0)]
-        [DataRow(double.MaxValue - 1.0E+308, double.MaxValue)]
-        [DataRow(double.MinValue, double.MinValue + 1.0E+308)]
+        [DataRow(double.MaxValue - 1.0E308, double.MaxValue)]
+        [DataRow(double.MinValue, double.MinValue + 1.0E308)]
         [DataRow(1000.0, -1000.0)]
         [TestMethod] public void DoubleTest(double min, double max) => test(min, max);
 
         [DataRow(char.MinValue, char.MaxValue)]
         [DataRow('a', 'z')]
-        [DataRow('1', 'P')]
+        [DataRow('1', 'p')]
         [DataRow('A', 'z')]
         [TestMethod] public void CharTest(char min, char max) => test(min, max);
+
         [TestMethod] public void BoolTest() => test(() => GetRandom.Bool());
 
         [DynamicData(nameof(DateTimeValues), DynamicDataSourceType.Property)]
         [TestMethod] public void DateTimeTest(DateTime min, DateTime max) => test(min, max);
-        private static IEnumerable<object[]> DateTimeValues => new List<object[]>()
-            {
-                 new object[]{ DateTime.Now.AddYears(-100), DateTime.Now.AddYears(100) },
-                 new object[]{ DateTime.Now.AddYears(100), DateTime.Now.AddYears(-100) },
-                 new object[]{ DateTime.MaxValue.AddYears(-100), DateTime.MaxValue },
-                 new object[]{ DateTime.MinValue, DateTime.MinValue.AddYears(100) }
-            };
+        private static IEnumerable<object[]> DateTimeValues => new List<object[]>() {
+            new object[] {DateTime.Now.AddYears(-100), DateTime.Now.AddYears(100)},
+            new object[] {DateTime.Now.AddYears(100), DateTime.Now.AddYears(-100)},
+            new object[] {DateTime.MaxValue.AddYears(-100), DateTime.MaxValue},
+            new object[] {DateTime.MinValue, DateTime.MinValue.AddYears(100)}
+        };
         [TestMethod] public void StringTest() {
             var x = GetRandom.Value<string>();
             var y = GetRandom.Value<string>();
@@ -96,7 +96,6 @@ namespace MTPrison.Tests.Aids {
 
         [DataRow(typeof(IsoGender))]
         [TestMethod] public void EnumOfTest(Type t) => test(() => GetRandom.EnumOf(t));
-
 
         [DataRow(typeof(bool?), false)]
         [DataRow(typeof(int), false)]
