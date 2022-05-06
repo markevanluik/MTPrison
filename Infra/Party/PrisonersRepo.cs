@@ -2,16 +2,19 @@
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Infra.Party {
-    public class PrisonersRepo : Repo<Prisoner, PrisonerData>, IPrisonersRepo {
+    public sealed class PrisonersRepo : Repo<Prisoner, PrisonerData>, IPrisonersRepo {
         public PrisonersRepo(PrisonDb? db) : base(db, db?.Prisoners) { }
-        protected override Prisoner toDomain(PrisonerData d) => new(d);
+        protected internal override Prisoner toDomain(PrisonerData d) => new(d);
         internal override IQueryable<PrisonerData> addFilter(IQueryable<PrisonerData> query) {
             var y = CurrentFilter;
-            if (string.IsNullOrWhiteSpace(y)) return query;
-            return query.Where(
-                x => x.FirstName.ToString().Contains(y)
-                  || x.LastName.ToString().Contains(y)
-                  || x.Offense.Contains(y));
+            return string.IsNullOrWhiteSpace(y) ? query : query.Where(
+                x => x.Id.Contains(y)
+                  || x.FirstName.Contains(y)
+                  || x.LastName.Contains(y)
+                  || x.Offense.Contains(y)
+                  || x.DoB.ToString().Contains(y)
+                  || x.DateOfRelease.ToString().Contains(y)
+                  || x.DateOfImprisonment.ToString().Contains(y));
         }
     }
 }

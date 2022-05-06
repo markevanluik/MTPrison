@@ -2,9 +2,9 @@
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Infra.Party {
-    public class CountryCurrenciesRepo : Repo<CountryCurrency, CountryCurrencyData>, ICountryCurrenciesRepo {
+    public sealed class CountryCurrenciesRepo : Repo<CountryCurrency, CountryCurrencyData>, ICountryCurrenciesRepo {
         public CountryCurrenciesRepo(PrisonDb? db) : base(db, db?.CountryCurrencies) { }
-        protected override CountryCurrency toDomain(CountryCurrencyData d) => new(d);
+        protected internal override CountryCurrency toDomain(CountryCurrencyData d) => new(d);
 
         internal override IQueryable<CountryCurrencyData> addFilter(IQueryable<CountryCurrencyData> query) {
             var y = CurrentFilter;

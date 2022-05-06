@@ -2,9 +2,9 @@
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Infra.Party {
-    public class PrisonerCellsRepo : Repo<PrisonerCell, PrisonerCellData>, IPrisonerCellsRepo {
+    public sealed class PrisonerCellsRepo : Repo<PrisonerCell, PrisonerCellData>, IPrisonerCellsRepo {
         public PrisonerCellsRepo(PrisonDb? db) : base(db, db?.PrisonerCells) { }
-        protected override PrisonerCell toDomain(PrisonerCellData d) => new(d);
+        protected internal override PrisonerCell toDomain(PrisonerCellData d) => new(d);
         internal override IQueryable<PrisonerCellData> addFilter(IQueryable<PrisonerCellData> query) {
             var y = CurrentFilter;
             return string.IsNullOrWhiteSpace(y) ? query : query.Where(
