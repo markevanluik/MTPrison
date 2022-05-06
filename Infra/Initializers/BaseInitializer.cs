@@ -19,16 +19,4 @@ namespace MTPrison.Infra.Initializers {
 
         internal static bool isCorrectIsoCode(string id) => !string.IsNullOrWhiteSpace(id) && char.IsLetter(id[0]);
     }
-
-    public static class PrisonDbInitializer {
-        public static void Init(PrisonDb? db) {
-            new PrisonersInitializer(db).Init();
-            new CellsInitializer(db).Init();
-            new CountriesInitializer(db).Init();
-            new CurrenciesInitializer(db).Init();
-            new PrisonerCellsInitializer(db).Init();
-            new CountryCurrenciesInitializer(db).Init();
-
-        }
-    }
 }
