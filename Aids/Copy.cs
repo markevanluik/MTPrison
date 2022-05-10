@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MTPrison.Core {
+namespace MTPrison.Aids {
     public static class Copy {
         public static void Properties(object? from, object? to) {
             var tFrom = from?.GetType();
