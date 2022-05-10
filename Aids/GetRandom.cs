@@ -22,9 +22,9 @@ namespace MTPrison.Aids {
             var minVal = min ?? -1000.0;
             var maxVal = max ?? 1000.0;
             minFirst(ref minVal, ref maxVal);
-            return minVal + Random.Shared.NextDouble() * (maxVal - minVal);
-        }
+            return minVal + (Random.Shared.NextDouble() * (maxVal - minVal));
 
+        }
         public static char Char(char min = char.MinValue, char max = char.MaxValue) => (char)Int32(min, max);
         public static bool Bool() => Int32() % 2 == 0;
         public static DateTime DateTime(DateTime? min = null, DateTime? max = null) {
@@ -34,7 +34,7 @@ namespace MTPrison.Aids {
             var v = Int64(minVal, maxVal);
             return System.DateTime.MinValue.AddTicks(v);
         }
-        public static string String(ushort minLength = 5, ushort maxLength = 30) {
+        public static string String(ushort minLength = 4, ushort maxLength = 30) {
             var s = string.Empty;
             var length = Int32(minLength, maxLength);
             for (var i = 0; i < length; i++) s += Char('a', 'z');
@@ -43,6 +43,7 @@ namespace MTPrison.Aids {
         public static dynamic? Value<T>(T? min = default, T? max = default) {
             var t = getUnderlyingType(typeof(T));
             if (isEnum(t)) return EnumOf<T>();
+            else if (t == typeof(byte[])) return ConcurrencyToken.ToByteArray(String(8, 8));
             else if (t == typeof(bool)) return Bool();
             else if (t == typeof(int)) return Int32(Convert.ToInt32(min), Convert.ToInt32(max));
             else if (t == typeof(long)) return Int64(Convert.ToInt64(min), Convert.ToInt64(max));
@@ -55,6 +56,7 @@ namespace MTPrison.Aids {
         public static dynamic? Value(Type t) {
             t = getUnderlyingType(t);
             if (isEnum(t)) return EnumOf(t);
+            else if (t == typeof(byte[])) return ConcurrencyToken.ToByteArray(String(8, 8));
             else if (t == typeof(bool)) return Bool();
             else if (t == typeof(int)) return Int32();
             else if (t == typeof(long)) return Int64();
@@ -74,9 +76,9 @@ namespace MTPrison.Aids {
             return o;
         }
         private static T? tryCreate<T>() => Safe.Run(() => {
-            var c = typeof(T).GetConstructor(Array.Empty<Type>());
-            return (c?.Invoke(null) is T t) ? t : default;
-        });
+                var c = typeof(T).GetConstructor(Array.Empty<Type>());
+                return (c?.Invoke(null) is T t) ? t : default;
+            });
         public static dynamic? EnumOf<T>() => EnumOf(typeof(T));
         public static dynamic? EnumOf(Type t) {
             if (!t.IsEnum) return null;
