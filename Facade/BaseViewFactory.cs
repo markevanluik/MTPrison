@@ -1,6 +1,6 @@
-﻿using MTPrison.Data;
+﻿using MTPrison.Core;
+using MTPrison.Data;
 using MTPrison.Domain;
-using System.Reflection;
 
 namespace MTPrison.Facade {
     public abstract class BaseViewFactory<TView, TEntity, TData>
@@ -19,14 +19,6 @@ namespace MTPrison.Facade {
             copy(d, v);
             return v;
         }
-        protected virtual void copy(object? from, object? to) {
-            var tFrom = from?.GetType();
-            var tTo = to?.GetType();
-            foreach (var piFrom in tFrom?.GetProperties() ?? Array.Empty<PropertyInfo>()) {
-                var v = piFrom.GetValue(from, null);
-                var piTo = tTo?.GetProperty(piFrom.Name);
-                piTo?.SetValue(to, v, null);
-            }
-        }
+        protected virtual void copy(object? from, object? to) => Copy.Properties(from, to);
     }
 }
