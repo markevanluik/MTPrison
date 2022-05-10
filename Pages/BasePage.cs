@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MTPrison.Aids;
+using MTPrison.Core;
 using MTPrison.Domain;
 using MTPrison.Facade;
 
@@ -12,12 +13,16 @@ namespace MTPrison.Pages {
         [BindProperty] public TView Item { get; set; } // <- avoid = new TView() for now, it will give ugly default values in Id field when Create New in Browser
         protected readonly TRepo repo;
         public BasePage(TRepo r) => repo = r;   // adding ? [BindProperty] public TView? Item  will fix it, but then @Create/@Edit Id's gets possible nullable..
-        protected abstract IActionResult redirectToIndex();
         public string ItemId => Item?.Id ?? string.Empty;
+        public string Token => ConcurrencyToken.ToStr(Item?.Token);
+        public string? ErrorMessage { get; set; }
         public IList<TView>? Items { get; set; } = new List<TView>();
         protected abstract TView toView(TEntity? entity);
         protected abstract TEntity toObject(TView? item);
         protected abstract IActionResult getCreate();
+        protected abstract IActionResult redirectToIndex();
+        protected abstract IActionResult redirectToEdit(TView v);
+        protected abstract IActionResult redirectToDelete(string id);
         protected abstract void setAttributes(int idx, string? filter, string? order);
         protected virtual async Task<IActionResult> perform(Func<Task<IActionResult>> f, int idx, string? filter, string? order, bool removeKeys = false) {
             setAttributes(idx, filter, order);
@@ -29,7 +34,7 @@ namespace MTPrison.Pages {
         protected abstract Task<IActionResult> postEditAsync();
         protected abstract Task<IActionResult> getDetailsAsync(string id);
         protected abstract Task<IActionResult> getDeleteAsync(string id);
-        protected abstract Task<IActionResult> postDeleteAsync(string id);
+        protected abstract Task<IActionResult> postDeleteAsync(string id, string? token = null);
         protected abstract Task<IActionResult> getIndexAsync();
         internal virtual void removeKey(params string[] keys) {
             foreach (var key in keys ?? Array.Empty<string>()) {
@@ -50,8 +55,8 @@ namespace MTPrison.Pages {
             => await perform(() => postEditAsync(), idx, filter, order, true);
         public async Task<IActionResult> OnGetEditAsync(string id, int idx = 0, string? filter = null, string? order = null)
             => await perform(() => getEditAsync(id), idx, filter, order);
-        public async Task<IActionResult> OnPostDeleteAsync(string id, int idx = 0, string? filter = null, string? order = null)
-            => await perform(() => postDeleteAsync(id), idx, filter, order);
+        public async Task<IActionResult> OnPostDeleteAsync(string id, int idx = 0, string? filter = null, string? order = null, string? token = null)
+            => await perform(() => postDeleteAsync(id, token), idx, filter, order);
         public async Task<IActionResult> OnGetIndexAsync(int idx = 0, string? filter = null, string? order = null)
             => await perform(() => getIndexAsync(), idx, filter, order);
     }
