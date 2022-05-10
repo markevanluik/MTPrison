@@ -50,6 +50,7 @@ namespace MTPrison.Tests.Infra.Party {
             var s = q.Expression.ToString();
             isNotNull(q);
             foreach (var p in typeof(TData).GetProperties()) {
+                if (p.Name == nameof(UniqueData.Token)) continue;
                 if (p.PropertyType == typeof(string)) isTrue(s.Contains(contains(p.Name)), $"{p.Name} property no where to be found");
                 else isTrue(s.Contains(toStrContains(p.Name)), $"{p.Name} property no where to be found");
             }

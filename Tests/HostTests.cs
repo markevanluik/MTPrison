@@ -46,7 +46,7 @@ namespace MTPrison.Tests {
             }
             r.PageSize = 30;
             areEqual(count, r.Get().Count);
-            areEqualProperties(d, getObj());
+            areEqualProperties(d, getObj(), nameof(UniqueData.Token));
         }
         protected void itemsTest<TRepo, TObj, TData>(Action<TData> setId, Func<TData, TObj> toObj, Func<List<TObj>> getList)
             where TRepo : class, IRepo<TObj>
@@ -75,10 +75,9 @@ namespace MTPrison.Tests {
             foreach (var d in list) {
                 var y = getList().Find(x => x.Id == d.Id);
                 isNotNull(y);
-                areEqualProperties(d, y);
+                areEqualProperties(d, y, nameof(UniqueData.Token));
             }
         }
-
         protected void relatedItemsTest<TRepo, TRelatedItem, TItem, TData>
             (Action relatedTest,
             Func<List<TRelatedItem>> relatedItems,
@@ -102,7 +101,7 @@ namespace MTPrison.Tests {
             areEqual(l.Count, c.Count);
             foreach (var e in l) {
                 var a = c.Find(x => x?.Id == detailId(e));
-                arePropertiesEqual(toData(a), relatedToData(e));
+                arePropertiesEqual(toData(a), relatedToData(e), nameof(UniqueData.Token));
             }
         }
     }
