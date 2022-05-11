@@ -2,7 +2,7 @@
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
-    public class PrisonersPage : PagedPage<PrisonerView, Prisoner, IPrisonersRepo> {
+    public sealed class PrisonersPage : PagedPage<PrisonerView, Prisoner, IPrisonersRepo> {
         public PrisonersPage(IPrisonersRepo r) : base(r) { }
         protected override Prisoner toObject(PrisonerView? item) => new PrisonerViewFactory().Create(item);
         protected override PrisonerView toView(Prisoner? entity) => new PrisonerViewFactory().Create(entity);
@@ -25,6 +25,6 @@ namespace MTPrison.Pages.Party {
         }
 
         // this is only for Prisoner Details showing cells
-        public List<Cell?> Cells => toObject(Item).Cells;
+        public Lazy<List<Cell?>> Cells => toObject(Item).Cells;
     }
 }

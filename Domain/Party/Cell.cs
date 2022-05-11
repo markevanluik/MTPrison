@@ -10,15 +10,22 @@ namespace MTPrison.Domain.Party {
         public int Capacity => getValue(Data?.Capacity);
         public CellType? Type => getValue(Data?.Type);
 
-        public List<PrisonerCell> PrisonerCells
-            => GetRepo.Instance<IPrisonerCellsRepo>()?
-            .GetAll(x => x.CellId)?
-            .Where(x => x.CellId == Id)?
-            .ToList() ?? new List<PrisonerCell>();
-
-        public List<Prisoner?> Prisoners
-            => PrisonerCells
-            .Select(x => x.Prisoner)
-            .ToList() ?? new List<Prisoner?>();
+        public Lazy<List<PrisonerCell>> PrisonerCells {
+            get {
+                var l = GetRepo.Instance<IPrisonerCellsRepo>()?
+                    .GetAll(x => x.CellId)?
+                    .Where(x => x.CellId == Id)?
+                    .ToList() ?? new List<PrisonerCell>();
+                return new Lazy<List<PrisonerCell>>(l);
+            }
+        }
+        public Lazy<List<Prisoner?>> Prisoners {
+            get {
+                var l = PrisonerCells.Value
+                    .Select(x => x.Prisoner)
+                    .ToList() ?? new List<Prisoner?>();
+                return new Lazy<List<Prisoner?>>(l);
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
-    public class CountryCurrenciesPage : PagedPage<CountryCurrencyView, CountryCurrency, ICountryCurrenciesRepo> {
+    public sealed class CountryCurrenciesPage : PagedPage<CountryCurrencyView, CountryCurrency, ICountryCurrenciesRepo> {
 
         private readonly ICountriesRepo countries;
         private readonly ICurrenciesRepo currencies;

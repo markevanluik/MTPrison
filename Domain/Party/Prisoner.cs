@@ -13,15 +13,22 @@ namespace MTPrison.Domain.Party {
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
         public string FullName => $"{FirstName} {LastName}";
 
-        public List<PrisonerCell> PrisonerCells
-            => GetRepo.Instance<IPrisonerCellsRepo>()?
-            .GetAll(x => x.PrisonerId)?
-            .Where(x => x.PrisonerId == Id)?
-            .ToList() ?? new List<PrisonerCell>();
-
-        public List<Cell?> Cells
-            => PrisonerCells
-            .Select(x => x.Cell)
-            .ToList() ?? new List<Cell?>();
+        public Lazy<List<PrisonerCell>> PrisonerCells {
+            get {
+                var l = GetRepo.Instance<IPrisonerCellsRepo>()?
+                    .GetAll(x => x.PrisonerId)?
+                    .Where(x => x.PrisonerId == Id)?
+                    .ToList() ?? new List<PrisonerCell>();
+                return new Lazy<List<PrisonerCell>>(l);
+            }
+        }
+        public Lazy<List<Cell?>> Cells {
+            get {
+                var l = PrisonerCells.Value
+                    .Select(x => x.Cell)
+                    .ToList() ?? new List<Cell?>();
+                return new Lazy<List<Cell?>>(l);
+            }
+        }
     }
 }

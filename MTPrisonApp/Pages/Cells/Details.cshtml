@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Prisoners) {
+        @foreach (var item in Model.Prisoners.Value) {
             <tr>
                 @foreach (var name in columns) {
                     <td>

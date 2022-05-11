@@ -5,7 +5,7 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
-    public class CellsPage : PagedPage<CellView, Cell, ICellsRepo> {
+    public sealed class CellsPage : PagedPage<CellView, Cell, ICellsRepo> {
         private readonly ICountriesRepo countries;
         public CellsPage(ICellsRepo r, ICountriesRepo c) : base(r) => countries = c;
         protected override Cell toObject(CellView? item) => new CellViewFactory().Create(item);
@@ -34,6 +34,6 @@ namespace MTPrison.Pages.Party {
                  : r;
         }
 
-        public List<Prisoner?> Prisoners => toObject(Item).Prisoners;
+        public Lazy<List<Prisoner?>> Prisoners => toObject(Item).Prisoners;
     }
 }

@@ -2,7 +2,7 @@
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
-    public class CountriesPage : PagedPage<CountryView, Country, ICountriesRepo> {
+    public sealed class CountriesPage : PagedPage<CountryView, Country, ICountriesRepo> {
         public CountriesPage(ICountriesRepo r) : base(r) { }
         protected override Country toObject(CountryView? item) => new CountryViewFactory().Create(item);
         protected override CountryView toView(Country? entity) => new CountryViewFactory().Create(entity);
@@ -11,6 +11,6 @@ namespace MTPrison.Pages.Party {
             nameof(CountryView.Name),
             nameof(CountryView.NativeName)
         };
-        public List<Currency?> Currencies => toObject(Item).Currencies;
+        public Lazy<List<Currency?>> Currencies => toObject(Item).Currencies;
     }
 }

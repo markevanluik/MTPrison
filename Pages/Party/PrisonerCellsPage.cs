@@ -3,7 +3,7 @@ using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
-    public class PrisonerCellsPage : PagedPage<PrisonerCellView, PrisonerCell, IPrisonerCellsRepo> {
+    public sealed class PrisonerCellsPage : PagedPage<PrisonerCellView, PrisonerCell, IPrisonerCellsRepo> {
         private readonly IPrisonersRepo prisoners;
         private readonly ICellsRepo cells;
         public PrisonerCellsPage(IPrisonerCellsRepo r, IPrisonersRepo pr, ICellsRepo ce) : base(r) {
