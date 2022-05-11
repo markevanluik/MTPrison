@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MTPrison.Aids;
-using MTPrison.Aids;
 using MTPrison.Domain;
 using MTPrison.Facade;
 

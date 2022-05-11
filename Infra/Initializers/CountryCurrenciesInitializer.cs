@@ -14,8 +14,8 @@ namespace MTPrison.Infra.Initializers {
                     var coId = c.ThreeLetterISORegionName;
                     if (!isCorrectIsoCode(coId)) continue;
                     if (l.FirstOrDefault(x => x.Id == coId) is not null) continue;
-                    var data = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
-                    addUniqueDataToList(data, nameof(data.Id));
+                    var obj = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
+                    addUniqueObjToList(obj, nameof(obj.Id), nameof(obj.Token));
                 }
                 return l;
             }
@@ -30,20 +30,20 @@ namespace MTPrison.Infra.Initializers {
             CurrencyName = cuName,
             NativeName = nativeName
         };
-        private void addUniqueDataToList(dynamic data, string id) {
+        internal void addUniqueObjToList(dynamic obj, params string[] exlude) {
             bool locked = false;
-            PropertyInfo[] prop = data.GetType().GetProperties();
+            PropertyInfo[] prop = obj.GetType().GetProperties();
             foreach (var line in l) {
-                int count = 0, sum = 0;
+                int match = 0, len = prop.Length - exlude.Length;
                 foreach (var pi in prop) {
-                    if (pi.Name == id) continue;
-                    string d = Convert.ToString(pi.GetValue(data)) ?? string.Empty;
+                    if (exlude.Contains(pi.Name)) continue;
+                    string o = Convert.ToString(pi.GetValue(obj)) ?? string.Empty;
                     string ln = Convert.ToString(pi.GetValue(line)) ?? string.Empty;
-                    sum++;
-                    if (d == ln) count++;
+                    if (o == ln) match++;
                 }
-                if (count == sum) { locked = true; break; } }
-            if (!locked) l.Add(data);
+                if (match == len) { locked = true; break; }
+            }
+            if (!locked) l.Add(obj);
         }
     }
 }

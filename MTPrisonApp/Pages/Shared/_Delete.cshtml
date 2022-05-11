@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty)?? "Unspecified";
     ViewData["Title"] = "Delete";
+    ViewData["SubTitle"] = Model?.GetType()?.Name?.Replace("Page", string.Empty)?? "Unspecified";
     Layout = "_Layout";
     var itemId = Model?.ItemId?? string.Empty;
     var token = Model?.Token?? string.Empty;
