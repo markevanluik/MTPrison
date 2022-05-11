@@ -10,10 +10,10 @@ namespace MTPrison.Tests.Domain.Party {
         protected override Currency createObj() => new(GetRandom.Value<CurrencyData>());
         [TestMethod] public void CountryCurrenciesTest()
             => itemsTest<ICountryCurrenciesRepo, CountryCurrency, CountryCurrencyData>(
-                d => d.CurrencyId = obj.Id, d => new CountryCurrency(d), () => obj.CountryCurrencies);
+                d => d.CurrencyId = obj.Id, d => new CountryCurrency(d), () => obj.CountryCurrencies.Value);
 
         [TestMethod] public void CountriesTest() => relatedItemsTest<ICountriesRepo, CountryCurrency, Country, CountryData>
-            (CountryCurrenciesTest, () => obj.CountryCurrencies, () => obj.Countries,
+            (CountryCurrenciesTest, () => obj.CountryCurrencies.Value, () => obj.Countries.Value,
             x => x.CountryId, d => new Country(d), c => c?.Data, x => x?.Country?.Data);
     }
 }

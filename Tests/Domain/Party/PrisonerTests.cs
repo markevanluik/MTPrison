@@ -18,9 +18,9 @@ namespace MTPrison.Tests.Domain.Party {
 
         [TestMethod] public void PrisonerCellsTest()
             => itemsTest<IPrisonerCellsRepo, PrisonerCell, PrisonerCellData>(
-            d => d.PrisonerId = obj.Id, d => new PrisonerCell(d), () => obj.PrisonerCells);
+            d => d.PrisonerId = obj.Id, d => new PrisonerCell(d), () => obj.PrisonerCells.Value);
         [TestMethod] public void CellsTest() => relatedItemsTest<ICellsRepo, PrisonerCell, Cell, CellData>
-            (PrisonerCellsTest, () => obj.PrisonerCells, () => obj.Cells,
+            (PrisonerCellsTest, () => obj.PrisonerCells.Value, () => obj.Cells.Value,
             x => x.CellId, d => new Cell(d), c => c?.Data, x => x?.Cell?.Data);
     }
 }
