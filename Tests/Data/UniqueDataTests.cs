@@ -13,5 +13,6 @@ namespace MTPrison.Tests.Data {
             isFalse(pi?.CanWrite);
         }
         [TestMethod] public void IdTest() => isProperty<string>();
+        [TestMethod] public void TokenTest() => isProperty<byte[]>();
     }
 }

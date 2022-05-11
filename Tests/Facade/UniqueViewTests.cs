@@ -6,5 +6,6 @@ namespace MTPrison.Tests.Facade {
         private class testClass : UniqueView { }
         protected override UniqueView createObj() => new testClass();
         [TestMethod] public void IdTest() => isRequired<string>();
+        [TestMethod] public void TokenTest() => isRequired<byte[]>();
     }
 }
