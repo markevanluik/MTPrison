@@ -13,7 +13,7 @@ namespace MTPrison.Tests.Facade.Party {
         [TestMethod] public void TypeTest() => isRequired<CellType>("Type");
         [TestMethod] public void SectionTest() => isProperty("Section");
         [TestMethod] public void CheckCellNrTest() {
-            CellData ? d = GetRandom.Value<CellData>();
+            CellData? d = new();
             isNotNull(d);
             d.CellNumber = 1;
             var e = new Cell(d);
