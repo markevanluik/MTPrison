@@ -7,10 +7,10 @@ using System.ComponentModel.DataAnnotations;
 namespace MTPrison.Facade.Party {
     public sealed class CellView : UniqueView {
 
-        [Required, DisplayName("Cell Number"), Range(1, 1000), Compare(nameof(CheckCellNr), ErrorMessage ="This {0} is already in use.")]
+        [Required, DisplayName("Cell Number"), Range(1, 10000), Compare(nameof(CheckCellNr), ErrorMessage ="This {0} is already in use.")]
         public int CellNumber { get; set; }
         [Required, DisplayName("Section")] public string? Section { get; set; }
-        [DisplayName("Capacity"), Range(1, 500)] public int Capacity { get; set; }
+        [DisplayName("Capacity"), Range(1, 1000)] public int Capacity { get; set; }
         [Required, DisplayName("Type")] public CellType? Type { get; set; }
         public int CheckCellNr {
             get {
