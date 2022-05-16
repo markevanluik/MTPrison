@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MTPrison.Aids;
 using MTPrison.Data.Party;
 using MTPrison.Domain;
 using MTPrison.Domain.Party;
@@ -16,15 +15,15 @@ namespace MTPrison.Tests.Facade.Party {
             CellData? d = new();
             isNotNull(d);
             d.CellNumber = 1;
-            var e = new Cell(d);
-            var v = new CellViewFactory().Create(e);
-            areEqual(v.CheckCellNr, e.CellNumber);
+            var c = new Cell(d);
+            var v = new CellViewFactory().Create(c);
+            areEqual(v.CheckCellNr, c.CellNumber);
 
-            var l = GetRepo.Instance<ICellsRepo>();
-            isNotNull(l);
-            l?.Add(e);
-            v = new CellViewFactory().Create(e);
-            areNotEqual(v.CheckCellNr, e.CellNumber);
+            // check after adding to repo
+            var r = GetRepo.Instance<ICellsRepo>();
+            r?.Add(c);
+            v = new CellViewFactory().Create(c);
+            areNotEqual(v.CheckCellNr, c.CellNumber);
             areEqual(v.CheckCellNr, -1);
         }
     }
