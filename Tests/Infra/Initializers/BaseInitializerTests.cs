@@ -8,14 +8,21 @@ using System.Collections.Generic;
 
 namespace MTPrison.Tests.Infra.Initializers {
     [TestClass] public class BaseInitializerTests : AbstractClassTests<BaseInitializer<PrisonerData>, object> {
-
+        private PrisonDb? db;
+        private DbSet<PrisonerData>? set;
         private class testClass : BaseInitializer<PrisonerData> {
             public testClass(DbContext? c, DbSet<PrisonerData>? s) : base(c, s) { }
-            protected override IEnumerable<PrisonerData> getEntities => throw new System.NotImplementedException();
+            protected override IEnumerable<PrisonerData> getEntities { get { isNotNull(set); return set; } }
         }
-        protected override PrisonersInitializer createObj() {
-            var db = GetRepo.Instance<PrisonDb>();
-            return new PrisonersInitializer(db);
+        protected override BaseInitializer<PrisonerData> createObj() {
+            db = GetRepo.Instance<PrisonDb>();
+            set = db?.Prisoners;
+            return new testClass(db, set);
+        }
+        [TestMethod] public void InitTest() { // iffy
+            obj.Init();
+            areEqual(db, obj.db);
+            areEqual(set, obj.set);
         }
     }
 }
