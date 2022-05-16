@@ -14,7 +14,6 @@ namespace MTPrison.Pages.Party {
             nameof(PrisonerView.DateOfRelease),
         };
 
-        // avoid static at the moment
         public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
         public override object? GetValue(string name, PrisonerView v) {
             var r = base.GetValue(name, v);
@@ -24,7 +23,6 @@ namespace MTPrison.Pages.Party {
                  : r;
         }
 
-        // this is only for Prisoner Details showing cells
         public Lazy<List<Cell?>> Cells => toObject(Item).Cells;
     }
 }

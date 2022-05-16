@@ -6,8 +6,7 @@ using MTPrison.Facade.Party;
 
 namespace MTPrison.Pages.Party {
     public sealed class CellsPage : PagedPage<CellView, Cell, ICellsRepo> {
-        private readonly ICountriesRepo countries;
-        public CellsPage(ICellsRepo r, ICountriesRepo c) : base(r) => countries = c;
+        public CellsPage(ICellsRepo r) : base(r) { }
         protected override Cell toObject(CellView? item) => new CellViewFactory().Create(item);
         protected override CellView toView(Cell? entity) => new CellViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
@@ -16,22 +15,15 @@ namespace MTPrison.Pages.Party {
             nameof(CellView.Capacity),
             nameof(CellView.Type)
         };
-        // avoid static at the moment
-        //public IEnumerable<SelectListItem> Countries
-        //    => countries.GetAll<string>()?.Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
+
         public IEnumerable<SelectListItem> Types => Enum.GetValues<CellType>()
             .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
 
-        //public string CountryName(string? countryId = null)
-        //    => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
-        //public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
         public string CellTypeDescription(CellType? g) => (g ?? CellType.Standard).Description();
 
         public override object? GetValue(string name, CellView v) {
             var r = base.GetValue(name, v);
-            return name == nameof(v.Type) ? CellTypeDescription((CellType?)r)
-                 //: name == nameof(v.Inspection) ? ShortDate((DateTime?)r)
-                 : r;
+            return name == nameof(v.Type) ? CellTypeDescription((CellType?)r) : r;
         }
 
         public Lazy<List<Prisoner?>> Prisoners => toObject(Item).Prisoners;
