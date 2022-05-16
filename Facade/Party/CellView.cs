@@ -16,8 +16,7 @@ namespace MTPrison.Facade.Party {
             get {
                 var l = GetRepo.Instance<ICellsRepo>()?
                     .GetAll(x => x.Id)?
-                    .Where(x => x.CellNumber == CellNumber)?
-                    .FirstOrDefault();
+                    .FirstOrDefault(x => x.CellNumber == CellNumber);
                 return l?.CellNumber == CellNumber ? -1 : CellNumber;
             }
         }
