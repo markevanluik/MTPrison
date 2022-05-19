@@ -5,7 +5,7 @@ using MTPrison.Domain.Party;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace MTPrison.Tests.ShopTickets {
+namespace MTPrison.Tests.MTPrisonApp.Pages {
 
     public abstract class PagesTests : HostTests { } // separate class for clean-code/tests -
     [TestClass] public class IndexPageTests : PagesTests {
