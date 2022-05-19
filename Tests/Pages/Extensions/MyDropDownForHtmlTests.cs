@@ -1,19 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using MTPrison.Aids;
+using MTPrison.Data.Party;
 using MTPrison.Pages.Extensions;
 using MTPrison.Pages.Party;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace MTPrison.Tests.Pages.Extensions {
-    [TestClass] public class MyViewerForHtmlTests : TypeTests {
-        [TestMethod] public void MyViewerForTest() {
+    [TestClass] public class MyDropDownForHtmlTests : TypeTests {
+        private static IEnumerable<SelectListItem> CellTypes => Enum.GetValues<IsoGender>()
+            .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
 
-            // mocker needs Moq from NuGet to> Tests, if install fails, restart VS with administrator rights..
-            var mocker = new Mock<IHtmlHelper<CountriesPage>>().Object;
-            var html = mocker.MyViewerFor(x => x.Item.Code);
+        [TestMethod] public void MyDropDownForTest() {
+
+            var mocker = new Mock<IHtmlHelper<CellsPage>>().Object;
+            var html = mocker.MyDropDownFor(m => m.Item.Type, CellTypes);
 
             var pi = html.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Entries");
             var obj = pi.GetValue(html, null);
