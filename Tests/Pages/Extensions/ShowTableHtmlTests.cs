@@ -21,7 +21,7 @@ namespace MTPrison.Tests.Pages.Extensions {
             //    new CellViewFactory().Create(c)
             //};
             //var mocker = new Mock<IHtmlHelper<CellsPage>>().Object;
-            //var html = mocker.ShowTable(l);
+            //var html = mocker.ShowTable(l);   // ViewData.Model object null issue
 
             //var pi = html.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Entries");
             //var obj = pi.GetValue(html, null);

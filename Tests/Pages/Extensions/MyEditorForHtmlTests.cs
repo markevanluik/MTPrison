@@ -11,7 +11,7 @@ namespace MTPrison.Tests.Pages.Extensions {
     [TestClass] public class MyEditorForHtmlTests : TypeTests {
         [TestMethod] public void MyEditorForTest() {
 
-            // mocker needs Moq from NuGet to> Tests, if install fails, restart VS with administrator rights..
+            // install Moq from NuGet, if install fails, restart VS with administrator rights and try again..
             var mocker = new Mock<IHtmlHelper<CountriesPage>>().Object;
             var html = mocker.MyEditorFor(x => x.Item.Code);
             

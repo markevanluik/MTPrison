@@ -12,9 +12,8 @@ namespace MTPrison.Tests.Pages.Extensions {
     [TestClass] public class MyTabHdrHtmlTests : TypeTests {
         [TestMethod] public void MyTabHdrTest() {
             //var c = new CountryView();
-            //string name = nameof(c.Code);
             //var mocker = new Mock<IHtmlHelper<CountriesPage>>().Object;
-            //var html = mocker.MyTabHdr(name);
+            //var html = mocker.MyTabHdr(nameof(c.Code));   // ViewData.Model object null issue
 
             //var pi = html.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Entries");
             //var obj = pi.GetValue(html, null);
@@ -28,7 +27,7 @@ namespace MTPrison.Tests.Pages.Extensions {
             //var obj2 = pi2.GetValue(obj, new object[] { 7 });
 
             //var s = Convert.ToString(obj2) ?? string.Empty;
-            //isTrue(s.Contains($">{name}</a>"));
+            //isTrue(s.Contains($">{nameof(c.Code)}</a>"));
 
             isInconclusive();
         }

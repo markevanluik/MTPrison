@@ -13,11 +13,11 @@ namespace MTPrison.Tests.Pages.Extensions {
     [TestClass] public class ItemButtonsHtmlTests : TypeTests {
         [TestMethod] public void ItemButtonsTest() {
 
-            //// mocker needs Moq from NuGet to> Tests, if install fails, restart VS with administrator rights..
+            //// install Moq from NuGet, if install fails, restart VS with administrator rights and try again..
             //var d = GetRandom.Value<CellData>();
             //string id = d?.Id ?? string.Empty;
             //var mocker = new Mock<IHtmlHelper<CountriesPage>>().Object;
-            //var html = mocker.ItemButtons(id);
+            //var html = mocker.ItemButtons(id);   // ViewData.Model object null issue
 
             //var pi = html.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Entries");
             //var obj = pi.GetValue(html, null);

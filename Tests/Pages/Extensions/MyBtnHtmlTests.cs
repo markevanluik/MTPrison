@@ -16,7 +16,7 @@ namespace MTPrison.Tests.Pages.Extensions {
             //var d = GetRandom.Value<CellData>();
             //string id = d?.Id ?? string.Empty;
             //var mocker = new Mock<IHtmlHelper<CellsPage>>().Object;
-            //var html = mocker.MyBtn("Edit", id);
+            //var html = mocker.MyBtn("Edit", id);   // ViewData.Model object null issue
 
             //var pi = html.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Entries");
             //var obj = pi.GetValue(html, null);

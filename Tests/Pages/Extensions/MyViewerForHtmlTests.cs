@@ -11,7 +11,6 @@ namespace MTPrison.Tests.Pages.Extensions {
     [TestClass] public class MyViewerForHtmlTests : TypeTests {
         [TestMethod] public void MyViewerForTest() {
 
-            // mocker needs Moq from NuGet to> Tests, if install fails, restart VS with administrator rights..
             var mocker = new Mock<IHtmlHelper<CountriesPage>>().Object;
             var html = mocker.MyViewerFor(x => x.Item.Code);
 
