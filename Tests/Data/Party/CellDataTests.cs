@@ -7,8 +7,8 @@ namespace MTPrison.Tests.Data.Party {
     [TestClass] public class CellDataTests : SealedClassTests<CellData, UniqueData> {
         [TestMethod] public void CellNumberTest() => isProperty<int>();
         [TestMethod] public void CapacityTest() => isProperty<int>();
-        [TestMethod] public void TypeTest() => isProperty<CellType?>();
-        [TestMethod] public void SectionTest() => isProperty<string?>();
+        [TestMethod] public void TypeTest() => isProperty<CellType>();
+        [TestMethod] public void SectionTest() => isProperty<string>();
     }
 
     [TestClass] public class CellTypeTests : TypeTests {
