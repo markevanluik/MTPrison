@@ -7,10 +7,10 @@ namespace MTPrison.Domain.Party {
         public Prisoner(PrisonerData d) : base(d) { }
         public string FirstName => getValue(Data?.FirstName);
         public string LastName => getValue(Data?.LastName);
-        public string Offense => getValue(Data?.Offense);
         public DateTime DoB => getValue(Data?.DoB);
-        public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
+        public string Offense => getValue(Data?.Offense);
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
+        public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
         public string FullName => $"{FirstName} {LastName}";
 
         public Lazy<List<PrisonerCell>> PrisonerCells {

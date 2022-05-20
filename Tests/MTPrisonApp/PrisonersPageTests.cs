@@ -37,8 +37,8 @@ namespace MTPrison.Tests.MTPrisonApp {
         private static void isNotNull(PrisonerData d) {
             isNotNull(d.FirstName);
             isNotNull(d.LastName);
-            isNotNull(d.Offense);
             isNotNull(d.DoB);
+            isNotNull(d.Offense);
             isNotNull(d.DateOfRelease);
             isNotNull(d.DateOfImprisonment);
         }

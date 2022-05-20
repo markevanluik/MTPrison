@@ -11,10 +11,10 @@ namespace MTPrison.Infra.Party {
                 x => x.Id.Contains(y)
                   || x.FirstName.Contains(y)
                   || x.LastName.Contains(y)
-                  || x.Offense.Contains(y)
                   || x.DoB.ToString().Contains(y)
-                  || x.DateOfRelease.ToString().Contains(y)
-                  || x.DateOfImprisonment.ToString().Contains(y));
+                  || x.Offense.Contains(y)
+                  || x.DateOfImprisonment.ToString().Contains(y)
+                  || x.DateOfRelease.ToString().Contains(y));
         }
     }
 }

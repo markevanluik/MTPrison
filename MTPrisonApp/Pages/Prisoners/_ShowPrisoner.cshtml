@@ -2,7 +2,7 @@
 @using MTPrison.Pages.Extensions
 
 @Html.MyViewerFor(m => m.Item.FullName)
-@Html.MyViewerFor(m => m.Item.Offense)
 @Html.MyViewerFor(m => m.Item.DoB, Model.ShortDate(Model.Item.DoB))
+@Html.MyViewerFor(m => m.Item.Offense)
 @Html.MyViewerFor(m => m.Item.DateOfImprisonment, Model.ShortDate(Model.Item.DateOfImprisonment))
 @Html.MyViewerFor(m => m.Item.DateOfRelease, Model.ShortDate(Model.Item.DateOfRelease))

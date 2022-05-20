@@ -8,8 +8,8 @@ namespace MTPrison.Pages.Party {
         protected override PrisonerView toView(Prisoner? entity) => new PrisonerViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
             nameof(PrisonerView.FullName),
-            nameof(PrisonerView.Offense),
             nameof(PrisonerView.DoB),
+            nameof(PrisonerView.Offense),
             nameof(PrisonerView.DateOfImprisonment),
             nameof(PrisonerView.DateOfRelease),
         };

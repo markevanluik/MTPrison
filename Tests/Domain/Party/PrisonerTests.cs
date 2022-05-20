@@ -10,10 +10,10 @@ namespace MTPrison.Tests.Domain.Party {
         protected override Prisoner createObj() => new(GetRandom.Value<PrisonerData>());
         [TestMethod] public void FirstNameTest() => isReadOnly(obj.Data.FirstName);
         [TestMethod] public void LastNameTest() => isReadOnly(obj.Data.LastName);
-        [TestMethod] public void OffenseTest() => isReadOnly(obj.Data.Offense);
         [TestMethod] public void DoBTest() => isReadOnly(obj.Data.DoB);
-        [TestMethod] public void DateOfReleaseTest() => isReadOnly(obj.Data.DateOfRelease);
+        [TestMethod] public void OffenseTest() => isReadOnly(obj.Data.Offense);
         [TestMethod] public void DateOfImprisonmentTest() => isReadOnly(obj.Data.DateOfImprisonment);
+        [TestMethod] public void DateOfReleaseTest() => isReadOnly(obj.Data.DateOfRelease);
         [TestMethod] public void FullNameTest() => areEqual($"{obj.Data.FirstName} {obj.Data.LastName}", obj.FullName);
 
         [TestMethod] public void PrisonerCellsTest()
