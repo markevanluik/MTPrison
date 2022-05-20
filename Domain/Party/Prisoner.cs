@@ -7,7 +7,8 @@ namespace MTPrison.Domain.Party {
         public Prisoner(PrisonerData d) : base(d) { }
         public string FirstName => getValue(Data?.FirstName);
         public string LastName => getValue(Data?.LastName);
-        public DateTime DoB => getValue(Data?.DoB);
+        public string SSN => getValue(Data?.SSN);
+        public string Country => getValue(Data?.Country);
         public string Offense => getValue(Data?.Offense);
         public DateTime DateOfImprisonment => getValue(Data?.DateOfImprisonment);
         public DateTime DateOfRelease => getValue(Data?.DateOfRelease);
@@ -30,5 +31,6 @@ namespace MTPrison.Domain.Party {
                 return new Lazy<List<Cell?>>(l);
             }
         }
+        public Country? Cntry => GetRepo.Instance<ICountriesRepo>()?.Get(Country);
     }
 }

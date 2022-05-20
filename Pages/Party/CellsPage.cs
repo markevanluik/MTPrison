@@ -7,6 +7,7 @@ using MTPrison.Facade.Party;
 namespace MTPrison.Pages.Party {
     public sealed class CellsPage : PagedPage<CellView, Cell, ICellsRepo> {
         public CellsPage(ICellsRepo r) : base(r) { }
+
         protected override Cell toObject(CellView? item) => new CellViewFactory().Create(item);
         protected override CellView toView(Cell? entity) => new CellViewFactory().Create(entity);
         public override string[] IndexColumns { get; } = new[] {
@@ -25,7 +26,6 @@ namespace MTPrison.Pages.Party {
             var r = base.GetValue(name, v);
             return name == nameof(v.Type) ? CellTypeDescription((CellType?)r) : r;
         }
-
         public Lazy<List<Prisoner?>> Prisoners => toObject(Item).Prisoners;
     }
 }

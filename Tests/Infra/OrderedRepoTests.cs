@@ -30,8 +30,8 @@ namespace MTPrison.Tests.Infra {
         [DataRow(nameof(Prisoner.FirstName), false)]
         [DataRow(nameof(Prisoner.LastName), true)]
         [DataRow(nameof(Prisoner.LastName), false)]
-        [DataRow(nameof(Prisoner.DoB), true)]
-        [DataRow(nameof(Prisoner.DoB), false)]
+        [DataRow(nameof(Prisoner.SSN), true)]
+        [DataRow(nameof(Prisoner.SSN), false)]
         [TestMethod] public void CreateSqlTest(string s, bool isDescending) {
             obj.CurrentOrder = (s is null) ? s : isDescending ? s + testClass.DescendingString : s;
             var q = obj.createSql();

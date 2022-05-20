@@ -96,7 +96,7 @@ namespace MTPrison.Tests.Infra {
         [DataRow(nameof(Prisoner.FirstName))]
         [DataRow(nameof(Prisoner.LastName))]
         [DataRow(nameof(Prisoner.Offense))]
-        [DataRow(nameof(Prisoner.DoB))]
+        [DataRow(nameof(Prisoner.SSN))]
         [DataRow(nameof(Prisoner.DateOfRelease))]
         [DataRow(nameof(Prisoner.DateOfImprisonment))]
         [DataRow(nameof(Prisoner.FullName))]
@@ -107,7 +107,7 @@ namespace MTPrison.Tests.Infra {
             else if (s is nameof(Prisoner.FirstName)) orderBy = x => x.FirstName;
             else if (s is nameof(Prisoner.LastName)) orderBy = x => x.LastName;
             else if (s is nameof(Prisoner.Offense)) orderBy = x => x.Offense;
-            else if (s is nameof(Prisoner.DoB)) orderBy = x => x.DoB;
+            else if (s is nameof(Prisoner.SSN)) orderBy = x => x.SSN;
             else if (s is nameof(Prisoner.DateOfRelease)) orderBy = x => x.DateOfRelease;
             else if (s is nameof(Prisoner.DateOfImprisonment)) orderBy = x => x.DateOfImprisonment;
             else if (s is nameof(Prisoner.FullName)) orderBy = x => x.FullName; // if problem .ToString() on combined data's maybe

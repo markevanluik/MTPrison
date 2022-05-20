@@ -88,7 +88,7 @@ namespace MTPrison.Tests.Aids {
             areNotEqual(x.FirstName, y.FirstName, nameof(x.FirstName));
             areNotEqual(x.LastName, y.LastName, nameof(x.LastName));
             areNotEqual(x.Offense, y.Offense, nameof(x.Offense));
-            areNotEqual(x.DoB, y.DoB, nameof(x.DoB));
+            areNotEqual(x.SSN, y.SSN, nameof(x.SSN));
             areNotEqual(x.DateOfImprisonment, y.DateOfImprisonment, nameof(x.DateOfImprisonment));
             areNotEqual(x.DateOfRelease, y.DateOfRelease, nameof(x.DateOfRelease));
         }

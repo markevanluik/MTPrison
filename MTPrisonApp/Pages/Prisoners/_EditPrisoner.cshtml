@@ -3,7 +3,8 @@
 
     @Html.MyEditorFor(m => m.Item.FirstName)
     @Html.MyEditorFor(m => m.Item.LastName)
-    @Html.MyEditorFor(m => m.Item.DoB)
+    @Html.MyEditorFor(m => m.Item.SSN)
+    @Html.MyDropDownFor(m => m.Item.Country, Model.Countries)
     @Html.MyEditorFor(m => m.Item.Offense)
     @Html.MyEditorFor(m => m.Item.DateOfImprisonment)
     @Html.MyEditorFor(m => m.Item.DateOfRelease)

@@ -7,7 +7,11 @@ namespace MTPrison.Facade.Party {
     public sealed class PrisonerView : UniqueView {
         [Required, DisplayName("First Name")] public string? FirstName { get; set; }
         [Required, DisplayName("Last Name")] public string? LastName { get; set; }
-        [DisplayName("Birth Date"), DataType(DataType.Date)] public DateTime DoB { get; set; }
+
+        [Required, DisplayName("Social Security Number"), RegularExpression(@"^[a-zA-Z0-9_-]*$", ErrorMessage = "Only regular letters & '-' sign allowed.")]
+        public string? SSN { get; set; }
+
+        [DisplayName("Country")] public string? Country { get; set; }
         [Required, DisplayName("Offense")] public string? Offense { get; set; }
         [DisplayName("Date Of Imprisonment"), DataType(DataType.Date)] public DateTime DateOfImprisonment { get; set; }
         [DisplayName("Date Of Release"), DataType(DataType.Date)] public DateTime DateOfRelease { get; set; }
