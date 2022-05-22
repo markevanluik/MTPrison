@@ -5,8 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 
 namespace MTPrison.Tests.MTPrisonApp {
-
-    public abstract class BasePageTests : HostTests { // base for clean-code/tests
+    public abstract class BasePageTests : HostTests {
         public static async Task GetIndexPageTest<TRepo, TEntity, TData>(string name, Func<TData, TEntity> toObj, string? id = null, TRepo? r = null)
             where TRepo : class, IRepo<TEntity>
             where TEntity : UniqueEntity {

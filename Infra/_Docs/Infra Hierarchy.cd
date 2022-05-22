@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTPrison.Infra.Repo&lt;TDomain, TData&gt;">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.PrisonDb">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAIAIAAAAAACAIAAQAAEAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PrisonDb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.PagedRepo&lt;TDomain, TData&gt;">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAgAACAAABEAAAAAAEACUAAAAAAAAAAAAEABAAAI=</HashCode>
+      <FileName>PagedRepo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.OrderedRepo&lt;TDomain, TData&gt;">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAEAAAAAAABAAACAQAAAAAAkAAAAAAAAAAJAAAA=</HashCode>
+      <FileName>OrderedRepo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.FilteredRepo&lt;TDomain, TData&gt;">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>FilteredRepo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.CrudRepo&lt;TDomain, TData&gt;">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAEAgBEAAAgAAgAAIABAAIA=</HashCode>
+      <FileName>CrudRepo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Infra.BaseRepo&lt;TDomain, TData&gt;">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEYAAAAAAAAQAABAAAQAAAEAAAEAAAgAAgAAIAAAAIA=</HashCode>
+      <FileName>BaseRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.CellsRepo">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CellsRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.CountriesRepo">
+    <Position X="7.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountriesRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.CountryCurrenciesRepo">
+    <Position X="11.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryCurrenciesRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.CurrenciesRepo">
+    <Position X="9.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CurrenciesRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.PrisonerCellsRepo">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonerCellsRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Infra.Party.PrisonersRepo">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonersRepo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

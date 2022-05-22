@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTPrison.Domain.UniqueEntity">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAACAAAAAAAAAAAAAAAAAQAAAAEAABEAA=</HashCode>
+      <FileName>UniqueEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.UniqueEntity&lt;TData&gt;">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAABAAA=</HashCode>
+      <FileName>UniqueEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.NamedEntity&lt;TData&gt;">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NamedEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.GetRepo">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQEAAAAAAAAA=</HashCode>
+      <FileName>GetRepo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.Party.Cell">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAACAgAAIAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Party\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.Party.Country">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAQACAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Country.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MTPrison.Domain.Party.CountryCurrency">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAgAAAAAAIAAAAAAACAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryCurrency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.Party.Currency">
+    <Position X="9.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.Party.Prisoner">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEEAAAAAAKAAAAIAAAAAAAIAIAAAAAAEgAAAAAg=</HashCode>
+      <FileName>Party\Prisoner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Domain.Party.PrisonerCell">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAACAABAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonerCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MTPrison.Domain.IBaseRepo&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAEAAAEAAAgAAgAAIAAAAIA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.ICrudRepo&lt;T&gt;">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.IFilteredRepo&lt;T&gt;">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.IOrderedRepo&lt;T&gt;">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.IPagedRepo&lt;T&gt;">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.IRepo&lt;T&gt;">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.ICellsRepo">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.ICountriesRepo" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Country.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.ICountryCurrenciesRepo" Collapsed="true">
+    <Position X="14" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryCurrency.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.ICurrenciesRepo" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.IPrisonersRepo" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\Prisoner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MTPrison.Domain.Party.IPrisonerCellsRepo" Collapsed="true">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonerCell.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

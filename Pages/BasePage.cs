@@ -9,9 +9,9 @@ namespace MTPrison.Pages {
         where TView : UniqueView, new()
         where TEntity : UniqueEntity
         where TRepo : IBaseRepo<TEntity> {
-        [BindProperty] public TView Item { get; set; } // <- avoid = new TView() for now, it will give ugly default values in Id field when Create New in Browser
+        [BindProperty] public TView Item { get; set; } // <- = new TView() will give default values for fields when Create New in Browser,
         protected readonly TRepo repo;
-        public BasePage(TRepo r) => repo = r;   // adding ? [BindProperty] public TView? Item  will fix it, but then @Create/@Edit Id's gets possible nullable..
+        public BasePage(TRepo r) => repo = r;
         public string ItemId => Item?.Id ?? string.Empty;
         public string Token => ConcurrencyToken.ToStr(Item?.Token);
         public string? ErrorMessage { get; set; }

@@ -27,6 +27,7 @@ namespace MTPrison.Tests.Aids {
             var x = f();
             var y = f();
             int i = 0;
+            if (x is not null)
             while (x.Equals(y)) {
                 y = f();
                 if (i == count) areNotEqual(x, y);
@@ -84,6 +85,7 @@ namespace MTPrison.Tests.Aids {
         [TestMethod] public void ValueTest() {
             var x = GetRandom.Value<PrisonerData>() as PrisonerData;
             var y = GetRandom.Value<PrisonerData>() as PrisonerData;
+            isNotNull(x); isNotNull(y);
             areNotEqual(x.Id, y.Id, nameof(x.Id));
             areNotEqual(x.FirstName, y.FirstName, nameof(x.FirstName));
             areNotEqual(x.LastName, y.LastName, nameof(x.LastName));

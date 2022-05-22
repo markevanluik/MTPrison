@@ -15,7 +15,7 @@ namespace MTPrison.Pages {
         }
         private string? fromCurrentOrder(string? value) {
             var isDesc = value?.Contains("_desc") ?? false;
-            var propertyName = value?.Replace("_desc", string.Empty);
+            var propertyName = value?.Replace("_desc", string.Empty) ?? string.Empty;
             var pi = typeof(TView).GetProperty(propertyName);
             var displayName = getDisplayName(pi);
             return isDesc ? displayName + "_desc" : displayName;

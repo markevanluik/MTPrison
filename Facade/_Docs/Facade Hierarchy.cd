@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTPrison.Facade.UniqueView">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>UniqueView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.NamedView">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NamedView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.IsoNamedView">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IsoNamedView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.BaseViewFactory&lt;TView, TEntity, TData&gt;">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEIAAAAAAAAABAA=</HashCode>
+      <FileName>BaseViewFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CellView">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAgAAAAAEAQAAAIAAAAA=</HashCode>
+      <FileName>Party\CellView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CellViewFactory">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\CellView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CountryCurrencyView">
+    <Position X="12.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAgAAAAAAIAAAAAQAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryCurrencyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CountryCurrencyViewFactory">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\CountryCurrencyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CountryView">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CountryViewFactory">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\CountryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CurrencyView">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CurrencyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.CurrencyViewFactory">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\CurrencyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.PrisonerCellView">
+    <Position X="12.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAgAAQAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonerCellView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.PrisonerCellViewFactory">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\PrisonerCellView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.PrisonerView">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEEAAAAAAKAAAAAAAAAAAAIAAAAAAAAAgAAAAAg=</HashCode>
+      <FileName>Party\PrisonerView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Facade.Party.PrisonerViewFactory">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAABAA=</HashCode>
+      <FileName>Party\PrisonerView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

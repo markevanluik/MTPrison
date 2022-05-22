@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MTPrison.Data.UniqueData">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>UniqueData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.NamedData">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NamedData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.CellData">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAgAAAAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Party\CellData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.PrisonerData">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEEAAAAAACAAAAAAAAAAAAIAAAAAAAAAgAAAAAg=</HashCode>
+      <FileName>Party\PrisonerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.PrisonerCellData">
+    <Position X="2" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Party\PrisonerCellData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.CurrencyData">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CurrencyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.CountryData">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MTPrison.Data.Party.CountryCurrencyData">
+    <Position X="8.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAgAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Party\CountryCurrencyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="MTPrison.Data.Party.CellType">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Party\CellData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MTPrison.Data.Party.IsoGender">
+    <Position X="10.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Party\IsoGender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

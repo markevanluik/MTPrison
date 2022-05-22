@@ -34,8 +34,8 @@ namespace MTPrison.Tests {
             isNotNull(c);
             isInstanceOfType(c, typeof(TObj));
             var r = GetRepo.Instance<TRepo>();
-            int cnt;
-            var d = addRandomItems(out cnt, toObj, id, r);
+            isNotNull(r);
+            var d = addRandomItems(out int cnt, toObj, id, r);
             r.PageSize = 30;
             areEqual(cnt, r.Get().Count);
             areEqualProperties(d, getObj(), nameof(UniqueData.Token));

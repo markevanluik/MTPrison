@@ -18,6 +18,7 @@ namespace MTPrison.Facade.Party {
         public override CountryCurrency Create(CountryCurrencyView? v) {
             var c = base.Create(v);
             var d = new CountryCurrencyData();
+            if (v is null) return toEntity(d);
             v.CountryName = c?.Country?.Name ?? string.Empty;
             v.CurrencyName = c?.Currency?.Name ?? string.Empty;
             copy(v, d);
