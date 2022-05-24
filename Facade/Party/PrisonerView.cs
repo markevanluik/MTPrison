@@ -8,7 +8,7 @@ namespace MTPrison.Facade.Party {
         [Required, DisplayName("First Name")] public string? FirstName { get; set; }
         [Required, DisplayName("Last Name")] public string? LastName { get; set; }
 
-        [Required, DisplayName("Social Security Number"), RegularExpression(@"^[a-zA-Z0-9_-]*$", ErrorMessage = "Only regular letters & '-' sign allowed.")]
+        [Required, DisplayName("Social Security Number"), StringLength(20), RegularExpression(@"^[0-9_-]*$", ErrorMessage = "Only numbers & '-' sign allowed.")]
         public string? SSN { get; set; }
 
         [DisplayName("Country")] public string? Country { get; set; }
