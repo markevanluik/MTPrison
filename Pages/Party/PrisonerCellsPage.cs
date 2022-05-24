@@ -26,9 +26,9 @@ namespace MTPrison.Pages.Party {
             => cells?.GetAll()?
             .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();
         public string PrisonerName(string? prisonerId = null)
-            => Prisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? "Unspecified";
+            => Prisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? "No Prisoner";
         public string CellName(string? cellId = null)
-            => Cells?.FirstOrDefault(x => x.Value == (cellId ?? string.Empty))?.Text ?? "Unspecified";
+            => Cells?.FirstOrDefault(x => x.Value == (cellId ?? string.Empty))?.Text ?? "No Cell";
 
         public override object? GetValue(string name, PrisonerCellView v) {
             var r = base.GetValue(name, v);

@@ -10,7 +10,7 @@ namespace MTPrison.Tests.MTPrisonApp {
         [TestMethod] public async Task PrisonerCellsEditPageTest() {
             (PrisonerCellData d, string html) = await GetEditPageTest<IPrisonerCellsRepo, PrisonerCell, PrisonerCellData>("PrisonerCells", x => new PrisonerCell(x));
             isNotNull(d);
-            isTrue(d, html);
+            isTrue(html.Contains(d.Code));
         }
         [TestMethod] public async Task PrisonerCellsDetailsPageTest() {
             (PrisonerCellData d, string html) = await GetDetailsPageTest<IPrisonerCellsRepo, PrisonerCell, PrisonerCellData>("PrisonerCells", x => new PrisonerCell(x));

@@ -38,18 +38,18 @@ namespace MTPrison.Tests.Pages.Party {
             var result = obj.PrisonerName(p.Id);
             areEqual(p.FullName, result);
             result = obj.PrisonerName("");
-            areEqual("Unspecified", result);
+            areEqual("No Prisoner", result);
             result = obj.PrisonerName(null);
-            areEqual("Unspecified", result);
+            areEqual("No Prisoner", result);
         }
         [TestMethod] public void CellNameTest() {
             isNotNull(c);
             var result = obj.CellName(c.Id);
             areEqual(c.CellNumber.ToString(), result);
             result = obj.CellName("");
-            areEqual("Unspecified", result);
+            areEqual("No Cell", result);
             result = obj.CellName(null);
-            areEqual("Unspecified", result);
+            areEqual("No Cell", result);
         }
         [TestMethod] public void GetValueTest() {
             isNotNull(pc);
@@ -57,7 +57,7 @@ namespace MTPrison.Tests.Pages.Party {
             var result = obj.GetValue(nameof(pc.Id), v);
             areEqual(pc.Id, result);
             result = obj.GetValue(nameof(pc.PrisonerId), v);
-            areEqual("Unspecified", result);
+            areEqual("No Prisoner", result);
         }
     }
 }

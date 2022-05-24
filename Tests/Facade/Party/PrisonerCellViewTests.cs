@@ -7,6 +7,7 @@ namespace MTPrison.Tests.Facade.Party {
         [TestMethod] public void PrisonerIdTest() => isRequired<string>("Prisoner");
         [TestMethod] public void CellIdTest() => isRequired<string>("Cell");
         [TestMethod] public void CodeTest() => isDisplayNamed<string>("Interests");
-        [TestMethod] public void NameTest() => isDisplayNamed<string>("Type");
+        [TestMethod] public void NameTest() => isDisplayNamed<string>("Date Of Imprisonment");
+        [TestMethod] public void NativeNameTest() => isDisplayNamed<string>("Date Of Release");
     }
 }

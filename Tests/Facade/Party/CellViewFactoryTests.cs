@@ -6,10 +6,8 @@ using MTPrison.Facade;
 using MTPrison.Facade.Party;
 
 namespace MTPrison.Tests.Facade.Party {
-    [TestClass]
-    public class CellViewFactoryTests : SealedClassTests<CellViewFactory, BaseViewFactory<CellView, Cell, CellData>> {
+    [TestClass] public class CellViewFactoryTests : SealedClassTests<CellViewFactory, BaseViewFactory<CellView, Cell, CellData>> {
         [TestMethod] public void CreateTest() { }
-
         [TestMethod] public void CreateViewTest() {
             var d = GetRandom.Value<CellData>();
             var e = new Cell(d);
