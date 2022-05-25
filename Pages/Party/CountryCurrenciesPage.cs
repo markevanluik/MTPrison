@@ -27,9 +27,9 @@ namespace MTPrison.Pages.Party {
             => currencies?.GetAll()?
             .Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
         public string CountryName(string? countryId = null)
-            => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
+            => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? $"No {nameof(Country)}";
         public string CurrencyName(string? currencyId = null)
-            => Currencies?.FirstOrDefault(x => x.Value == (currencyId ?? string.Empty))?.Text ?? "Unspecified";
+            => Currencies?.FirstOrDefault(x => x.Value == (currencyId ?? string.Empty))?.Text ?? $"No {nameof(Currency)}";
 
         public override object? GetValue(string name, CountryCurrencyView v) {
             var r = base.GetValue(name, v);

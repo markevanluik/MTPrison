@@ -37,7 +37,7 @@ namespace MTPrison.Tests.Pages.Party {
             var result = obj.CountryName(cntry.Id);
             areEqual(cntry.Name, result);
             result = obj.CountryName("jama");
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Country)}", result);
         }
         [TestMethod] public void ShortDateTest() {
             DateTime d = GetRandom.Value<DateTime>();
@@ -55,4 +55,3 @@ namespace MTPrison.Tests.Pages.Party {
         [TestMethod] public void CellsTest() => isReadOnly<Lazy<List<Cell?>>>();
     }
 }
-

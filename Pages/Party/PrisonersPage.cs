@@ -22,7 +22,7 @@ namespace MTPrison.Pages.Party {
             .Select(x => new SelectListItem(x.Name, x.Id)) ?? new List<SelectListItem>();
 
         public string CountryName(string? countryId = null)
-            => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? "Unspecified";
+            => Countries?.FirstOrDefault(x => x.Value == (countryId ?? string.Empty))?.Text ?? $"No {nameof(Country)}";
         public string ShortDate(DateTime? date) => (date ?? DateTime.MinValue).ToShortDateString();
 
         public override object? GetValue(string name, PrisonerView v) {

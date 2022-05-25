@@ -38,18 +38,18 @@ namespace MTPrison.Tests.Pages.Party {
             var result = obj.CountryName(cntry.Id);
             areEqual(cntry.Name, result);
             result = obj.CountryName("");
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Country)}", result);
             result = obj.CountryName(null);
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Country)}", result);
         }
         [TestMethod] public void CurrencyNameTest() {
             isNotNull(crncy);
             var result = obj.CurrencyName(crncy.Id);
             areEqual(crncy.Name, result);
             result = obj.CurrencyName("");
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Currency)}", result);
             result = obj.CurrencyName(null);
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Currency)}", result);
         }
         [TestMethod] public void GetValueTest() {
             isNotNull(cc);
@@ -57,7 +57,7 @@ namespace MTPrison.Tests.Pages.Party {
             var result = obj.GetValue(nameof(cc.Id), v);
             areEqual(cc.Id, result);
             result = obj.GetValue(nameof(cc.CountryId), v);
-            areEqual("Unspecified", result);
+            areEqual($"No {nameof(Country)}", result);
         }
     }
 }
