@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MTPrison.Domain;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
+using System.Linq;
 
 namespace MTPrison.Pages.Party {
     public sealed class PrisonerCellsPage : PagedPage<PrisonerCellView, PrisonerCell, IPrisonerCellsRepo> {
@@ -19,14 +21,23 @@ namespace MTPrison.Pages.Party {
             nameof(PrisonerCellView.Name),
             nameof(PrisonerCellView.NativeName)
         };
-        public IEnumerable<SelectListItem> Prisoners
-            => prisoners?.GetAll()?
-            .Select(x => new SelectListItem(x.FullName, x.Id)) ?? new List<SelectListItem>();
+        public IEnumerable<SelectListItem> UniquePrisoners {
+            get {
+                var pc = repo?
+                    .GetAll(x => x.Id)
+                    .Select(x => x.Prisoner);
+                var p = prisoners?.GetAll()?
+                    .GroupBy(g => g.FullName)
+                    .Select(f => f.FirstOrDefault())
+                    .Select(x => new SelectListItem(x?.FullName, x?.Id, true, pc.Any(z => z?.Id == x?.Id))) ?? new List<SelectListItem>();
+                return p;
+            }
+        }
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll()?
             .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();
         public string PrisonerName(string? prisonerId = null)
-            => Prisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? $"No {nameof(Prisoner)}";
+            => UniquePrisoners?.FirstOrDefault(x => x.Value == (prisonerId ?? string.Empty))?.Text ?? $"No {nameof(Prisoner)}";
         public string CellName(string? cellId = null)
             => Cells?.FirstOrDefault(x => x.Value == (cellId ?? string.Empty))?.Text ?? $"No {nameof(Cell)}";
 

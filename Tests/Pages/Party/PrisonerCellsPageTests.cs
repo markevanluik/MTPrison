@@ -31,7 +31,7 @@ namespace MTPrison.Tests.Pages.Party {
             ce?.Add(c);
         }
         [TestMethod] public void IndexColumnsTest() => isReadOnly<string[]>();
-        [TestMethod] public void PrisonersTest() => isReadOnly<SelectListItem>();
+        [TestMethod] public void UniquePrisonersTest() => isReadOnly<SelectListItem>();
         [TestMethod] public void CellsTest() => isReadOnly<SelectListItem>();
         [TestMethod] public void PrisonerNameTest() {
             isNotNull(p);

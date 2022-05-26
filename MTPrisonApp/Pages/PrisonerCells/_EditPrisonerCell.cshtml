@@ -1,6 +1,6 @@
 ﻿@model MTPrison.Pages.Party.PrisonerCellsPage
 @using MTPrison.Pages.Extensions
 
-@Html.MyDropDownFor(m => m.Item.PrisonerId, Model.Prisoners)
+@Html.MyDropDownFor(m => m.Item.PrisonerId, Model.UniquePrisoners)
 @Html.MyDropDownFor(m => m.Item.CellId, Model.Cells)
 @Html.MyEditorFor(m => m.Item.Code)
