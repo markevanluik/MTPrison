@@ -30,7 +30,6 @@ namespace MTPrison.Pages.Party {
                 Prisoner? s = new();
                 if (Item is not null) s = prisoners?.Get(Item.PrisonerId);
                 var l = prisoners?.GetAll()?
-                    .OrderBy(x => x.FullName)
                     .Select(x => new SelectListItem(x?.FullName, x?.Id, false, p.Any(e => e?.Id == x?.Id && s?.Id != x?.Id))) ?? new List<SelectListItem>();
                 return l;
             }
