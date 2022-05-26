@@ -8,6 +8,7 @@ namespace MTPrison.Pages.Party {
     public sealed class PrisonerCellsPage : PagedPage<PrisonerCellView, PrisonerCell, IPrisonerCellsRepo> {
         private readonly IPrisonersRepo prisoners;
         private readonly ICellsRepo cells;
+
         public PrisonerCellsPage(IPrisonerCellsRepo r, IPrisonersRepo pr, ICellsRepo ce) : base(r) {
             prisoners = pr;
             cells = ce;
@@ -26,9 +27,11 @@ namespace MTPrison.Pages.Party {
                 var p = repo?
                     .GetAll(x => x.Id)
                     .Select(x => x.Prisoner);
+                Prisoner? s = new();
+                if (Item is not null) s = prisoners?.Get(Item.PrisonerId);
                 var l = prisoners?.GetAll()?
-                    .OrderBy(g => g.FullName)
-                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, p.Any(e => e?.Id == x?.Id))) ?? new List<SelectListItem>();
+                    .OrderBy(x => x.FullName)
+                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, p.Any(e => e?.Id == x?.Id && s?.Id != x?.Id))) ?? new List<SelectListItem>();
                 return l;
             }
         }
