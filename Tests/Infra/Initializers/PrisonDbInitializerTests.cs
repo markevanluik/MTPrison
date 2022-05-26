@@ -10,7 +10,7 @@ namespace MTPrison.Tests.Infra.Initializers {
             isNotNull(db?.Prisoners);
             areEqual(db.Prisoners.Local.Count, 0);
             PrisonDbInitializer.Init(db);
-            areEqual(db.Prisoners.Local.Count, 4);
+            areEqual(db.Prisoners.Local.Count, 6);
 
         }
     }

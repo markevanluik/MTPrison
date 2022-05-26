@@ -23,14 +23,13 @@ namespace MTPrison.Pages.Party {
         };
         public IEnumerable<SelectListItem> UniquePrisoners {
             get {
-                var pc = repo?
+                var p = repo?
                     .GetAll(x => x.Id)
                     .Select(x => x.Prisoner);
-                var p = prisoners?.GetAll()?
-                    .GroupBy(g => g.FullName)
-                    .Select(f => f.FirstOrDefault())
-                    .Select(x => new SelectListItem(x?.FullName, x?.Id, true, pc.Any(z => z?.Id == x?.Id))) ?? new List<SelectListItem>();
-                return p;
+                var l = prisoners?.GetAll()?
+                    .OrderBy(g => g.FullName)
+                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, p.Any(e => e?.Id == x?.Id))) ?? new List<SelectListItem>();
+                return l;
             }
         }
         public IEnumerable<SelectListItem> Cells
