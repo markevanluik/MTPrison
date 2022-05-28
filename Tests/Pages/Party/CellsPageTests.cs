@@ -29,16 +29,6 @@ namespace MTPrison.Tests.Pages.Party {
         }
         [TestMethod] public void IndexColumnsTest() => isReadOnly<string[]>();
         [TestMethod] public void UniqueCellsTest() => isReadOnly<SelectListItem>();
-        [TestMethod] public void CellNrTest() {
-            isNotNull(c);
-            isNotNull(v);
-            var result = obj.CellNr(c.CellNumber.ToString());
-            areEqual(v.CellNumber.ToString(), result);
-            result = obj.CellNr("");
-            areEqual($"No {nameof(Cell)}", result);
-            result = obj.CellNr(null);
-            areEqual($"No {nameof(Cell)}", result);
-        }
         [TestMethod] public void TypesTest() => isReadOnly<SelectListItem>();
         [TestMethod] public void CellTypeDescriptionTest() {
             var result = obj.CellTypeDescription(CellType.Duo);
