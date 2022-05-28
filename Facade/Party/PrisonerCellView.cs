@@ -8,7 +8,7 @@ namespace MTPrison.Facade.Party {
         [Required, DisplayName("Prisoner")] public string PrisonerId { get; set; } = string.Empty;
         [Required, DisplayName("Cell")] public string CellId { get; set; } = string.Empty;
 
-        [DisplayName("Interests")] public new string? Code { get; set; }
+        [Required, DisplayName("Interests")] public new string? Code { get; set; }
         [DisplayName("Date Of Imprisonment")] public new string? Name { get; set; }
         [DisplayName("Date Of Release")] public new string? NativeName { get; set; }
     }

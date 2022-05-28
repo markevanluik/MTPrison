@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MTPrison.Domain;
 using MTPrison.Domain.Party;
 using MTPrison.Facade.Party;
-using System.Linq;
 
 namespace MTPrison.Pages.Party {
     public sealed class PrisonerCellsPage : PagedPage<PrisonerCellView, PrisonerCell, IPrisonerCellsRepo> {
@@ -24,13 +22,14 @@ namespace MTPrison.Pages.Party {
         };
         public IEnumerable<SelectListItem> UniquePrisoners {
             get {
-                var p = repo?
-                    .GetAll(x => x.Id)
+                var rp = repo
+                    .GetAll()
                     .Select(x => x.Prisoner);
-                Prisoner? s = new();
-                if (Item is not null) s = prisoners?.Get(Item.PrisonerId);
-                var l = prisoners?.GetAll()?
-                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, p.Any(e => e?.Id == x?.Id && s?.Id != x?.Id))) ?? new List<SelectListItem>();
+                Prisoner? p = new();
+                if (Item is not null) p = prisoners?.Get(Item.PrisonerId);
+                var l = prisoners?
+                    .GetAll()
+                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, x?.Id != p?.Id && rp.Any(e => e?.Id == x?.Id))) ?? new List<SelectListItem>();
                 return l;
             }
         }
