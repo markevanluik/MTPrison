@@ -1,7 +1,7 @@
 ﻿@model MTPrison.Pages.Party.CellsPage
 @using MTPrison.Pages.Extensions
 
-@Html.MyEditorFor(m => m.Item.CellNumber)
+@Html.MyDropDownFor(m => m.Item.CellNumber, Model.UniqueCells)
 @Html.MyEditorFor(m => m.Item.Section)
 @Html.MyEditorFor(m => m.Item.Capacity)
 @Html.MyDropDownFor(m => m.Item.Type, Model.Types)

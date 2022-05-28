@@ -6,7 +6,7 @@ namespace MTPrison.Domain.Party {
         public Cell() : this(new()) { }
         public Cell(CellData d) : base(d) { }
         public int CellNumber => getValue(Data?.CellNumber);
-        public string? Section => getValue(Data?.Section);
+        public string Section => getValue(Data?.Section);
         public int Capacity => getValue(Data?.Capacity);
         public CellType? Type => getValue(Data?.Type);
 

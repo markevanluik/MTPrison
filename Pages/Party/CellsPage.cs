@@ -16,15 +16,33 @@ namespace MTPrison.Pages.Party {
             nameof(CellView.Capacity),
             nameof(CellView.Type)
         };
+        public IEnumerable<SelectListItem> UniqueCells {
+            get {
+                Cell? s = new();
+                if (Item is not null) s = repo?.Get(Item.Id);
+                var l = repo?
+                    .GetAll(x => x.CellNumber)
+                    .Select(x => new SelectListItem(x.CellNumber.ToString(), x.CellNumber.ToString(), false, x.Id is not null && x.Id != s?.Id)) ?? new List<SelectListItem>();
+                var val = Convert.ToInt32(l.Last().Value);
+                var e = new SelectListItem {
+                    Value = (val + 1).ToString(),
+                    Text = (val + 1).ToString()
+                };
+                return l.Append(e);
+            }
+        }
+        public string CellNr(string? cellNr = null)
+            => UniqueCells?.FirstOrDefault(x => x.Value == (cellNr ?? string.Empty))?.Text ?? $"No {nameof(Cell)}";
 
         public IEnumerable<SelectListItem> Types => Enum.GetValues<CellType>()
             .Select(g => new SelectListItem(g.Description(), g.ToString())) ?? new List<SelectListItem>();
-
         public string CellTypeDescription(CellType? g) => (g ?? CellType.Standard).Description();
 
         public override object? GetValue(string name, CellView v) {
             var r = base.GetValue(name, v);
-            return name == nameof(v.Type) ? CellTypeDescription((CellType?)r) : r;
+            return name == nameof(v.Type) ? CellTypeDescription((CellType?)r)
+                 : name == nameof(v.CellNumber) ? CellNr(r?.ToString())
+                 : r;
         }
         public Lazy<List<Prisoner?>> Prisoners => toObject(Item).Prisoners;
     }
