@@ -31,6 +31,8 @@ namespace MTPrison.Pages.Party {
                 return l;
             }
         }
+        // removes greyed_out prisoners from DropDownList, optional_for: @_EditPrisonerCell
+        public IEnumerable<SelectListItem> RemoveGreyedOutPrisoners => UniquePrisoners.Where(x => !x.Disabled);
         public IEnumerable<SelectListItem> Cells
             => cells?.GetAll()?
             .Select(x => new SelectListItem(x.CellNumber.ToString(), x.Id)) ?? new List<SelectListItem>();
