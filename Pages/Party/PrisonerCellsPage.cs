@@ -22,14 +22,12 @@ namespace MTPrison.Pages.Party {
         };
         public IEnumerable<SelectListItem> UniquePrisoners {
             get {
-                var rp = repo
-                    .GetAll()
-                    .Select(x => x.Prisoner);
+                var ids = repo.GetAll().Select(x => x.PrisonerId);
                 Prisoner? p = new();
                 if (Item is not null) p = prisoners?.Get(Item.PrisonerId);
                 var l = prisoners?
                     .GetAll()
-                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, x?.Id != p?.Id && rp.Any(e => e?.Id == x?.Id))) ?? new List<SelectListItem>();
+                    .Select(x => new SelectListItem(x?.FullName, x?.Id, false, x?.Id != p?.Id && ids.Contains(x?.Id))) ?? new List<SelectListItem>();
                 return l;
             }
         }

@@ -18,11 +18,11 @@ namespace MTPrison.Pages.Party {
         };
         public IEnumerable<SelectListItem> UniqueCells {
             get {
-                Cell? s = new();
-                if (Item is not null) s = repo?.Get(Item.Id);
+                string? s = "";
+                if (Item is not null) s = repo?.Get(Item.Id).Id;
                 var l = repo?
                     .GetAll(x => x.CellNumber)
-                    .Select(x => new SelectListItem(x.CellNumber.ToString(), x.CellNumber.ToString(), false, x.Id is not null && x.Id != s?.Id)) ?? new List<SelectListItem>();
+                    .Select(x => new SelectListItem(x.CellNumber.ToString(), x.CellNumber.ToString(), false, x.Id is not null && x.Id != s)) ?? new List<SelectListItem>();
                 var val = Convert.ToInt32(l.Last().Value);
                 var e = new SelectListItem {
                     Value = (val + 1).ToString(),
