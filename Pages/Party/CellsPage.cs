@@ -27,10 +27,9 @@ namespace MTPrison.Pages.Party {
                 if (l.Any()) max = Convert.ToInt32(l.Max(x => int.Parse(x.Value)));
                  // unused Cellnumbers between (1..max) become available -> for Edit/Create
                 for (int i = 1; i <= max; i++) {
-                    if (l.All(x => x.Value != i.ToString())) {
-                        var e = new SelectListItem { Value = i.ToString(), Text = i.ToString() };
-                        l = l.Append(e);
-                    }
+                    if (l.Any(x => x.Value == i.ToString())) continue;
+                    var e = new SelectListItem { Value = i.ToString(), Text = i.ToString() };
+                    l = l.Append(e);
                 }//
                 var last = new SelectListItem { Value = (max + 1).ToString(), Text = (max + 1).ToString() };
                 l = l.Append(last);
