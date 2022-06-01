@@ -22,11 +22,18 @@ namespace MTPrison.Pages.Party {
                 if (Item is not null) id = repo?.Get(Item.Id).Id;
                 var l = repo?
                     .GetAll(x => x.CellNumber)
-                    .Select(x => new SelectListItem(x.CellNumber.ToString(), x.CellNumber.ToString(), false, x.Id is not null && x.Id != id)) ?? new List<SelectListItem>();
-                var val = 0;
-                if (l.Any()) val = Convert.ToInt32(l.Last().Value);
-                var e = new SelectListItem {Value = (val+1).ToString(), Text = (val+1).ToString()};
-                l = l.Append(e);
+                    .Select(x => new SelectListItem(x.CellNumber.ToString(), x.CellNumber.ToString(), false, x.Id != id)) ?? new List<SelectListItem>();
+                var max = 0;
+                if (l.Any()) max = Convert.ToInt32(l.Max(x => int.Parse(x.Value)));
+                 // unused Cellnumbers between (1..max) become available -> for Edit/Create
+                for (int i = 1; i <= max; i++) {
+                    if (l.All(x => x.Value != i.ToString())) {
+                        var e = new SelectListItem { Value = i.ToString(), Text = i.ToString() };
+                        l = l.Append(e);
+                    }
+                }//
+                var last = new SelectListItem { Value = (max + 1).ToString(), Text = (max + 1).ToString() };
+                l = l.Append(last);
                 return l.Where(x => !x.Disabled);
             }
         }
