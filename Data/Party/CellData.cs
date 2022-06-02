@@ -5,7 +5,7 @@ namespace MTPrison.Data.Party {
         public int CellNumber { get; set; }
         public string Section { get; set; } = string.Empty;
         public int Capacity { get; set; }
-        public CellType Type { get; set; }
+        public CellType Type { get; set; } = CellType.Standard;
     }
     public enum CellType {
         [Description("Solitary")] Solitary = 0,
