@@ -49,7 +49,7 @@ namespace MTPrison.Tests.Aids {
             areEqual(name, type.GetName());
             areNotEqual(randomStr, type.GetName());
         }
-        // if adding/removing properties from NamedData, this needs changing
+        // if adding/removing properties from NamedData, amount needs changing
         [TestMethod] public void DeclaredMembersTest() {
             areEqual(1, type?.DeclaredMembers()?.Count);
             var l = typeof(NamedData)?.DeclaredMembers();

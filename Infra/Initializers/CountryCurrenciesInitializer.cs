@@ -14,13 +14,13 @@ namespace MTPrison.Infra.Initializers {
                     var coId = c.ThreeLetterISORegionName;
                     if (!isCorrectIsoCode(coId)) continue;
                     if (l.FirstOrDefault(x => x.Id == coId) is not null) continue;
-                    var obj = createCountry(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
-                    addUniqueObjToList(obj, nameof(obj.Id), nameof(obj.Token));
+                    var obj = createCountryCurrency(coId, c.ISOCurrencySymbol, c.CurrencySymbol, c.EnglishName, c.CurrencyEnglishName, c.CurrencyNativeName);
+                    addUniqueToList(obj, nameof(obj.Id), nameof(obj.Token));
                 }
                 return l;
             }
         }
-        internal static CountryCurrencyData createCountry(string coId, string cuId, string symbol, string coName, string cuName, string nativeName) => new() {
+        internal static CountryCurrencyData createCountryCurrency(string coId, string cuId, string symbol, string coName, string cuName, string nativeName) => new() {
             Id = $"{coId}-{cuId}-{UniqueData.NewId[..5]}",
             CountryId = coId,
             CurrencyId = cuId,
@@ -30,7 +30,7 @@ namespace MTPrison.Infra.Initializers {
             CurrencyName = cuName,
             NativeName = nativeName
         };
-        internal void addUniqueObjToList(dynamic obj, params string[] exlude) {
+        internal void addUniqueToList(dynamic obj, params string[] exlude) {
             bool locked = false;
             PropertyInfo[] prop = obj.GetType().GetProperties();
             foreach (var line in l) {

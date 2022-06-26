@@ -1,5 +1,4 @@
-﻿using MTPrison.Aids;
-using MTPrison.Data.Party;
+﻿using MTPrison.Data.Party;
 using MTPrison.Domain.Party;
 
 namespace MTPrison.Infra.Party {
@@ -12,6 +11,7 @@ namespace MTPrison.Infra.Party {
                 x => x.Id.Contains(y)
                   || x.CellNumber.ToString().Contains(y)
                   || x.Section.Contains(y)
+                  || (x.Type.ToString().Contains(y) && false) // needs fixing, disabled at the moment
                   || x.Capacity.ToString().Contains(y));
         }
     }
